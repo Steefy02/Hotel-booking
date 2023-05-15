@@ -1,0 +1,61 @@
+CREATE TABLE TypeRoom(
+id_RoomType INT PRIMARY KEY NOT NULL IDENTITY,
+type VARCHAR(100),
+description VARCHAR(500),
+price FLOAT,
+capacity INT)
+
+
+CREATE TABLE HistoryPrice(
+id_HistoryPrice INT PRIMARY KEY NOT NULL IDENTITY, 
+dateStart DATE, 
+dateEnd DATE,
+price FLOAT,
+id_RoomType INT FOREIGN KEY REFERENCES TypeRoom(id_RoomType) NOT NULL)
+
+ 
+CREATE TABLE Room(
+id_Room INT PRIMARY KEY NOT NULL IDENTITY,
+roomNumber INT NOT NULL,
+status VARCHAR(20) NOT NULL,
+image VARCHAR(100) NOT NULL,
+id_RoomType INT FOREIGN KEY REFERENCES TypeRoom(id_RoomType) NOT NULL)
+
+
+CREATE TABLE Facility(
+id_Facility INT PRIMARY KEY NOT NULL IDENTITY,
+name VARCHAR(100) NOT NULL)
+
+
+CREATE TABLE AssociationFacility(
+id_Association INT PRIMARY KEY NOT NULL IDENTITY,
+id_Room INT FOREIGN KEY REFERENCES Room(id_Room) NOT NULL,
+id_Facility INT FOREIGN KEY REFERENCES Facility(id_Facility) NOT NULL)
+
+
+CREATE TABLE UserAccount(
+id_User INT PRIMARY KEY NOT NULL IDENTITY,
+username VARCHAR(20) NOT NULL,
+email VARCHAR(50) NOT NULL,
+password VARCHAR(20) NOT NULL,
+userType VARCHAR(20) NOT NULL)
+
+
+CREATE TABLE Payment(
+id_Payment INT PRIMARY KEY NOT NULL IDENTITY,
+typePayment VARCHAR(20),
+dateOfPay DATE)
+
+
+CREATE TABLE Booking(
+id_Reservation INT PRIMARY KEY NOT NULL IDENTITY,
+fullName VARCHAR(20),
+checkIn DATETIME NOT NULL,
+checkOut DATETIME NOT NULL,
+status VARCHAR(20) NOT NULL,
+roomsBooked INT,
+numberAdults INT,
+numberChildren INT,
+id_Room INT FOREIGN KEY REFERENCES Room(id_Room) NOT NULL,
+id_User INT FOREIGN KEY REFERENCES UserAccount(id_User) NOT NULL,
+id_Payment INT FOREIGN KEY REFERENCES Payment(id_Payment) NOT NULL)
