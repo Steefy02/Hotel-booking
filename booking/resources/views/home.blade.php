@@ -45,24 +45,11 @@
 
                             <li role="presentation" class="active">
                                  <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
-                                     <i class="fa fa-tree"></i>
-                                     tours
+                                     <i class="fas fa-bed"></i>
+                                     Camere
                                  </a>
                             </li>
 
-                            <li role="presentation">
-                                <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">
-                                    <i class="fa fa-building"></i>
-                                    hotels
-                                </a>
-                            </li>
-
-                            <li role="presentation">
-                                 <a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
-                                     <i class="fa fa-plane"></i>
-                                     flights
-                                 </a>
-                            </li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -644,45 +631,6 @@
 </section><!--/.gallery-->
 <!--gallery end-->
 
-
-<!--discount-offer start-->
-<section class="discount-offer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="dicount-offer-content text-center">
-                    <h2>Join with us within 7 March, 2019 and get upto 40% Discount</h2>
-                    <div class="campaign-timer">
-                        <div id="timer">
-                            <div class="time time-after" id="days">
-                                <span></span>
-                            </div><!--/.time-->
-                            <div class="time time-after" id="hours">
-
-                            </div><!--/.time-->
-                            <div class="time time-after" id="minutes">
-
-                            </div><!--/.time-->
-                            <div class="time" id="seconds">
-
-                            </div><!--/.time-->
-                        </div><!--/.timer-->
-                    </div><!--/.campaign-timer-->
-                    <div class="about-btn">
-                        <button  class="about-view discount-offer-btn">
-                            join now
-                        </button>
-                    </div><!--/.about-btn-->
-
-
-                </div><!-- /.dicount-offer-content-->
-            </div><!-- /.col-->
-        </div><!-- /.row-->
-    </div><!-- /.container-->
-
-</section><!-- /.discount-offer-->
-<!--discount-offer end-->
-
 <!--packages start-->
 <section id="pack" class="packages">
     <div class="container">
@@ -1167,180 +1115,6 @@
 </section><!--/.testimonial-->	
 <!-- testemonial End -->
 
-
-<!--special-offer start-->
-<section id="spo" class="special-offer">
-    <div class="container">
-        <div class="special-offer-content">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="single-special-offer">
-                        <div class="single-special-offer-txt">
-                            <h2>thiland</h2>
-                            <div class="packages-review special-offer-review">
-                                <p>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <span>2544 review</span>
-                                </p>
-                            </div><!--/.packages-review-->
-                            <div class="packages-para special-offer-para">
-                                <p>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i> 5 Days 6 nights
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i> 2 person
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i>  5 star accomodation
-                                    </span>
-                                </p>
-                                <p>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
-                                    </span>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i>  food facilities
-                                    </span>  
-                                </p>
-                                <p class="offer-para">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem ut labore et dolore magna  aliqua. Ut enim ad minim veniam, quis nostrud exercitation una <br> ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                </p>
-                            </div><!--/.packages-para-->
-                            <div class="offer-btn-group">
-                                <div class="about-btn">
-                                    <button  class="about-view packages-btn offfer-btn">
-                                        make tour
-                                    </button>
-                                </div><!--/.about-btn-->
-                                <div class="about-btn">
-                                    <button  class="about-view packages-btn">
-                                        book now
-                                    </button>
-                                </div><!--/.about-btn-->
-                            </div><!--/.offer-btn-group-->
-                        </div><!--/.single-special-offer-txt-->
-                    </div><!--/.single-special-offer-->
-                </div><!--/.col-->
-                <div class="col-sm-4">
-                    <div class="single-special-offer">
-                        <div class="single-special-offer-bg">
-                            <img src="assets/images/offer/offer-shape.png" alt="offer-shape">
-                        </div><!--/.single-special-offer-bg-->
-                        <div class="single-special-shape-txt">
-                            <h3>special offer</h3>
-                            <h4><span>40%</span><br>off</h4>
-                            <p><span>$999</span><br>reguler $ 1450</p>
-                        </div><!--/.single-special-shape-txt-->
-                    </div><!--/.single-special-offer-->
-                </div><!--/.col-->
-            </div><!--/.row-->
-        </div><!--/.special-offer-content-->
-    </div><!--/.container-->
-
-</section><!--/.special-offer end-->
-<!--special-offer end-->
-
-<!--blog start-->
-<section id="blog" class="blog">
-    <div class="container">
-        <div class="blog-details">
-                <div class="gallary-header text-center">
-                    <h2>
-                        latest news
-                    </h2>
-                    <p>
-                        Travel News from all over the world 
-                    </p>
-                </div><!--/.gallery-header-->
-                <div class="blog-content">
-                    <div class="row">
-
-                        <div class="col-sm-4 col-md-4">
-                            <div class="thumbnail">
-                                <h2>trending news <span>15 november 2017</span></h2>
-                                <div class="thumbnail-img">
-                                    <img src="assets/images/blog/b1.jpg" alt="blog-img">
-                                    <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-                                
-                                </div><!--/.thumbnail-img-->
-                              
-                                <div class="caption">
-                                    <div class="blog-txt">
-                                        <h3>
-                                            <a href="#">
-                                                Discover on beautiful weather, Fantastic foods and historical place in Prag
-                                            </a>
-                                        </h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-                                        </p>
-                                        <a href="#">Read More</a>
-                                    </div><!--/.blog-txt-->
-                                </div><!--/.caption-->
-                            </div><!--/.thumbnail-->
-
-                        </div><!--/.col-->
-
-                        <div class="col-sm-4 col-md-4">
-                            <div class="thumbnail">
-                                <h2>trending news <span>15 november 2017</span></h2>
-                                <div class="thumbnail-img">
-                                    <img src="assets/images/blog/b2.jpg" alt="blog-img">
-                                    <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-                                
-                                </div><!--/.thumbnail-img-->
-                                <div class="caption">
-                                    <div class="blog-txt">
-                                        <h3>
-                                            <a href="#">
-                                                Discover on beautiful weather, Fantastic foods and historical place in india
-                                            </a>
-                                        </h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-                                        </p>
-                                        <a href="#">Read More</a>
-                                    </div><!--/.blog-txt-->
-                                </div><!--/.caption-->
-                            </div><!--/.thumbnail-->
-
-                        </div><!--/.col-->
-
-                        <div class="col-sm-4 col-md-4">
-                            <div class="thumbnail">
-                                <h2>trending news <span>15 november 2017</span></h2>
-                                <div class="thumbnail-img">
-                                    <img src="assets/images/blog/b3.jpg" alt="blog-img">
-                                    <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-                                
-                                </div><!--/.thumbnail-img-->
-                                <div class="caption">
-                                    <div class="blog-txt">
-                                        <h3><a href="#">10 Most Natural place to Discover</a></h3>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam 
-                                        </p>
-                                        <a href="#">Read More</a>
-                                    </div><!--/.blog-txt-->
-                                </div><!--/.caption-->
-                            </div><!--/.thumbnail-->
-
-                        </div><!--/.col-->
-
-                    </div><!--/.row-->
-                </div><!--/.blog-content-->
-            </div><!--/.blog-details-->
-        </div><!--/.container-->
-
-</section><!--/.blog-->
-<!--blog end-->
-
-
 <!--subscribe start-->
 <section id="subs" class="subscribe">
     <div class="container">
@@ -1370,4 +1144,8 @@
 </section>
 <!--subscribe end-->
 
+@endsection
+
+@section('scripts')
+<script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
 @endsection
