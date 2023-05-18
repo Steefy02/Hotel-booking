@@ -36,10 +36,10 @@ CREATE TABLE `AssociationFacility` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Bookings`
+-- Table structure for table `Booking`
 --
 
-CREATE TABLE `Bookings` (
+CREATE TABLE `Booking` (
   `id_Reservation` int(11) NOT NULL,
   `fullName` varchar(20) DEFAULT NULL,
   `checkIn` datetime NOT NULL,
@@ -93,10 +93,10 @@ CREATE TABLE `Payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Rooms`
+-- Table structure for table `Room`
 --
 
-CREATE TABLE `Rooms` (
+CREATE TABLE `Room` (
   `id_Room` int(11) NOT NULL,
   `roomNumber` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
@@ -121,10 +121,10 @@ CREATE TABLE `TypeRoom` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- Table structure for table `UserAccount`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `UserAccount` (
   `id_User` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -145,9 +145,9 @@ ALTER TABLE `AssociationFacility`
   ADD KEY `id_Facility` (`id_Facility`);
 
 --
--- Indexes for table `Bookings`
+-- Indexes for table `Booking`
 --
-ALTER TABLE `Bookings`
+ALTER TABLE `Booking`
   ADD PRIMARY KEY (`id_Reservation`),
   ADD KEY `id_Room` (`id_Room`),
   ADD KEY `id_User` (`id_User`),
@@ -173,9 +173,9 @@ ALTER TABLE `Payment`
   ADD PRIMARY KEY (`id_Payment`);
 
 --
--- Indexes for table `Rooms`
+-- Indexes for table `Room`
 --
-ALTER TABLE `Rooms`
+ALTER TABLE `Room`
   ADD PRIMARY KEY (`id_Room`),
   ADD KEY `id_RoomType` (`id_RoomType`);
 
@@ -186,9 +186,9 @@ ALTER TABLE `TypeRoom`
   ADD PRIMARY KEY (`id_RoomType`);
 
 --
--- Indexes for table `Users`
+-- Indexes for table `UserAccount`
 --
-ALTER TABLE `Users`
+ALTER TABLE `UserAccount`
   ADD PRIMARY KEY (`id_User`);
 
 --
@@ -202,9 +202,9 @@ ALTER TABLE `AssociationFacility`
   MODIFY `id_Association` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Bookings`
+-- AUTO_INCREMENT for table `Booking`
 --
-ALTER TABLE `Bookings`
+ALTER TABLE `Booking`
   MODIFY `id_Reservation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -226,9 +226,9 @@ ALTER TABLE `Payment`
   MODIFY `id_Payment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Rooms`
+-- AUTO_INCREMENT for table `Room`
 --
-ALTER TABLE `Rooms`
+ALTER TABLE `Room`
   MODIFY `id_Room` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -238,9 +238,9 @@ ALTER TABLE `TypeRoom`
   MODIFY `id_RoomType` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `Users`
+-- AUTO_INCREMENT for table `UserAccount`
 --
-ALTER TABLE `Users`
+ALTER TABLE `UserAccount`
   MODIFY `id_User` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -251,28 +251,28 @@ ALTER TABLE `Users`
 -- Constraints for table `AssociationFacility`
 --
 ALTER TABLE `AssociationFacility`
-  ADD CONSTRAINT `associationfacility_ibfk_1` FOREIGN KEY (`id_Room`) REFERENCES `rooms` (`id_Room`),
-  ADD CONSTRAINT `associationfacility_ibfk_2` FOREIGN KEY (`id_Facility`) REFERENCES `facility` (`id_Facility`);
+  ADD CONSTRAINT `associationfacility_ibfk_1` FOREIGN KEY (`id_Room`) REFERENCES `Room` (`id_Room`),
+  ADD CONSTRAINT `associationfacility_ibfk_2` FOREIGN KEY (`id_Facility`) REFERENCES `Facility` (`id_Facility`);
 
 --
--- Constraints for table `Bookings`
+-- Constraints for table `Booking`
 --
-ALTER TABLE `Bookings`
-  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`id_Room`) REFERENCES `rooms` (`id_Room`),
-  ADD CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`id_User`) REFERENCES `users` (`id_User`),
-  ADD CONSTRAINT `bookings_ibfk_3` FOREIGN KEY (`id_Payment`) REFERENCES `payment` (`id_Payment`);
+ALTER TABLE `Booking`
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`id_Room`) REFERENCES `Room` (`id_Room`),
+  ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`id_User`) REFERENCES `UserAccount` (`id_User`),
+  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`id_Payment`) REFERENCES `Payment` (`id_Payment`);
 
 --
 -- Constraints for table `HistoryPrice`
 --
 ALTER TABLE `HistoryPrice`
-  ADD CONSTRAINT `fk_RoomType` FOREIGN KEY (`id_RoomType`) REFERENCES `typeroom` (`id_RoomType`);
+  ADD CONSTRAINT `fk_RoomType` FOREIGN KEY (`id_RoomType`) REFERENCES `TypeRoom` (`id_RoomType`);
 
 --
--- Constraints for table `Rooms`
+-- Constraints for table `Room`
 --
-ALTER TABLE `Rooms`
-  ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`id_RoomType`) REFERENCES `typeroom` (`id_RoomType`);
+ALTER TABLE `Room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`id_RoomType`) REFERENCES `TypeRoom` (`id_RoomType`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
