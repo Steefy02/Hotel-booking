@@ -14,7 +14,9 @@
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
 
 		<!-- TITLE OF SITE -->
-		<title>Travel</title>
+		<title>@yield('title')</title>
+
+		@yield('styles')
 
 		<!-- favicon img -->
 		{{-- <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/> --}}
@@ -74,7 +76,7 @@
 						<div class="col-sm-2">
 							<div class="logo">
 								<a href="index.html">
-									tour<span>Nest</span>
+									Mountain<span>Hotel</span>
 								</a>
 							</div><!-- /.logo-->
 						</div><!-- /.col-->
@@ -90,9 +92,8 @@
 								<div class="collapse navbar-collapse">		  
 									<ul class="nav navbar-nav navbar-right">
 										<li class="smooth-menu"><a href="#home">Acasa</a></li>
-										<li class="smooth-menu"><a href="#gallery">Despre</a></li>
-										<li class="smooth-menu"><a href="#pack">Camere</a></li>
-										<li class="smooth-menu"><a href="#spo">Pachete</a></li>
+										<li class="smooth-menu"><a href="#gallery">Camere</a></li>
+										<li class="smooth-menu"><a href="#pack">Pachete</a></li>
 										<li>
 											<button class="book-btn">Rezerva
 											</button>

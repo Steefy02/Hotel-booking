@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class CustomAuthController extends Controller {
 
     public function __construct() {
+        //$this->middleware('web');
         $this->middleware('guest')->except('logout');
     }
 
@@ -30,10 +31,12 @@ class CustomAuthController extends Controller {
         $credentials = $request->only(['email', 'password']);
 
         if(Auth::attempt($credentials)) {
-            return redirect()->route('home');
+            $user = Auth::user();
+            Session::put('user', $user);
+            return redirect()->route('db_test');
         }
 
-        return redirect()->back()->with('err', 'Email / Parola gresite');
+        return redirect()->back()->with('message', 'Email / Parola gresite');
     }
 
     public function process_registration(Request $request) {

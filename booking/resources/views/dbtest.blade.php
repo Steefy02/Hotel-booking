@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <body>
-        @guest
+        @if(!Session::has('user'))
             <h1>test html</h1>
         @else
-            <h1>logged in</h1>
-        @endguest
+            <h1>logged in as {{Session::get('user')->name}}</h1>
+        @endif
     </body>
 </html>

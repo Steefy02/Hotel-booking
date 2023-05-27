@@ -16,9 +16,14 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
-
+//Client pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [CustomAuthController::class, 'get_login'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'get_registration'])->name('register');
-
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
+
+//Auth
+Route::post('loginUser',[CustomAuthController::class,'process_login'])->name('loginPost');
+Route::post('register',[CustomAuthController::class,'process_registration'])->name('register');
+Route::post('logout', [CustomAuthController::class, 'logout'])->name('logout')->middleware('auth');
+

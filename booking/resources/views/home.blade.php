@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Hotel Booking Management System')
+
+@section('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+
+@endsection
+
 @section('content')
 
-<section id="home" class="about-us">
+<section id="home" class="about-us" style="background-image: url(images/banner.jpg);">
     <div class="container">
         <div class="about-us-content">
             <div class="row">
@@ -13,11 +20,7 @@
                                 Exploreaza Muntii Rodnei 
 
                             </h2>
-                            <div class="about-btn">
-                                <button  class="about-view">
-                                    Vezi detalii    
-                                </button>
-                            </div><!--/.about-btn-->
+                            
                         </div><!--/.about-us-txt-->
                     </div><!--/.single-about-us-->
                 </div><!--/.col-->
@@ -87,7 +90,7 @@
                                                 <h2>check in</h2>
                                                 <div class="travel-check-icon">
                                                     <form action="#">
-                                                        <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="12 -01 - 2017 ">
+                                                        <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
                                                     </form>
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
@@ -98,7 +101,12 @@
                                                 <h2>check out</h2>
                                                 <div class="travel-check-icon">
                                                     <form action="#">
-                                                        <input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="22 -01 - 2017 ">
+                                                        @php
+                                                            $datet = explode("/", date('m/d/Y'));
+                                                            //echo "<script>alert(" . print_r($datet) . ")</script>";
+                                                            $datet[1] = intval($datet[1]) + 1;    
+                                                        @endphp
+                                                        <input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
                                                     </form>
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
@@ -146,19 +154,13 @@
                                         <div class="col-sm-5">
                                             <div class="travel-budget">
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-4">
-                                                        <h3>budget : </h3>
-                                                    </div><!--/.col-->
                                                     <div class="co-md-9 col-sm-8">
                                                         <div class="travel-filter">
                                                             <div class="info_widget">
                                                                 <div class="price_filter">
                                                                     
-                                                                    <div id="slider-range"></div><!--/.slider-range-->
-
-                                                                    <div class="price_slider_amount">
-                                                                        <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
-                                                                    </div><!--/.price_slider_amount-->
+                                                                    <input type="text" id="rangePrimary" name="rangePrimary" value="" />
+                                                                    <p id="priceRangeSelected"></P>
                                                                 </div><!--/.price-filter-->
                                                             </div><!--/.info_widget-->
                                                         </div><!--/.travel-filter-->
@@ -198,15 +200,15 @@
             <div class="col-md-4 col-sm-4">
                 <div class="single-service-box">
                     <div class="service-img">
-                        <img src="assets/images/service/s1.png" alt="service-icon" />
+                        <i class="fa-solid fa-person-walking-luggage" style="font-size: 5rem"></i>
                     </div><!--/.service-img-->
                     <div class="service-content">
                         <h2>
                             <a href="#">
-                            Choose amazing tour packages
+                            Gama variata de pachete
                             </a>
                         </h2>
-                        <p>Must use our tour Planner for breathtaking tour packages!</p>
+                        <p>Alege pachetul care ti se potriveste</p>
                     </div><!--/.service-content-->
                 </div><!--/.single-service-box-->
             </div><!--/.col-->
@@ -214,15 +216,15 @@
             <div class="col-md-4 col-sm-4">
                 <div class="single-service-box">
                     <div class="service-img">
-                        <img src="assets/images/service/s2.png" alt="service-icon" />
+                        <i class="fa-solid fa-tree" style="font-size: 5rem"></i>
                     </div><!--/.service-img-->
                     <div class="service-content">
                         <h2>
                             <a href="#">
-                                book top class hotel
+                                Petrece timp in natura
                             </a>
                         </h2>
-                        <p>This amazing site helps you book the best hotels all around the world!</p>
+                        <p>Iesi in natura si uita de aglomeratia urbana</p>
                     </div><!--/.service-content-->
                 </div><!--/.single-service-box-->
             </div><!--/.col-->
@@ -230,16 +232,16 @@
             <div class="col-md-4 col-sm-4">
                 <div class="single-service-box">
                     <div class="statistics-img">
-                        <img src="assets/images/service/s3.png" alt="service-icon" />
+                        <i class="fa-solid fa-mountain-sun" style="font-size: 5rem"></i>
                     </div><!--/.service-img-->
                     <div class="service-content">
 
                         <h2>
                             <a href="#">
-                                online flight booking
+                                Exploreaza frumusetea platoului muntos
                             </a>
                         </h2>
-                        <p>Book your flight instantly using TourNest!</p>
+                        <p>Admira natura si alege din drumetiile prin defileuri</p>
                     </div><!--/.service-content-->
                 </div><!--/.single-service-box-->
             </div><!--/.col-->
@@ -262,88 +264,38 @@
                     Where do you wanna go? How much you wanna explore?  
                 </p>
             </div><!--/.gallery-header-->
-            <div class="gallery-box">
-                <div class="gallery-content">
-                      <div class="filtr-container">
-                          <div class="row">
+            <div class="owl-carousel owl-theme" id="testemonial-carousel">
+                @php
+                    use App\Models\Room;
+                    $rooms = Room::all();
+                @endphp
 
-                              <div class="col-md-6">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g1.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            china
-                                        </a>
-                                        <p><span>20 tours</span><span>15 places</span></p>
-                                    </div><!-- /.item-title -->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                              <div class="col-md-6">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g2.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            venuzuala
-                                        </a>
-                                        <p><span>12 tours</span><span>9 places</span></p>
-                                    </div> <!-- /.item-title-->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                              <div class="col-md-4">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g3.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            brazil
-                                        </a>
-                                        <p><span>25 tours</span><span>10 places</span></p>
-                                    </div><!-- /.item-title -->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                              <div class="col-md-4">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g4.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            australia 
-                                        </a>
-                                        <p><span>18 tours</span><span>9 places</span></p>
-                                    </div> <!-- /.item-title-->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                              <div class="col-md-4">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g5.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            netharlands
-                                        </a>
-                                        <p><span>14 tours</span><span>12 places</span></p>
-                                    </div> <!-- /.item-title-->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                              <div class="col-md-8">
-                                  <div class="filtr-item">
-                                    <img src="assets/images/gallary/g6.jpg" alt="portfolio image"/>
-                                    <div class="item-title">
-                                        <a href="#">
-                                            turkey
-                                        </a>
-                                        <p><span>14 tours</span><span>6 places</span></p>
-                                    </div> <!-- /.item-title-->
-                                </div><!-- /.filtr-item -->
-                              </div><!-- /.col -->
-
-                          </div><!-- /.row -->
-
-                      </div><!-- /.filtr-container-->
-                </div><!-- /.gallery-content -->
-            </div><!--/.galley-box-->
+                @foreach ($rooms as $room)
+                <div class="home1-testm item">
+                    <div class="home1-testm-single text-center" style="padding-top:0px">
+                        <div class="home1-testm-img">
+                            <img src="{{asset('/images/' . $room->image)}}" alt="img"/>
+                        </div><!--/.home1-testm-img-->
+                        <div class="home1-testm-txt">
+                            <span class="icon section-icon">
+                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </span>
+                            <p>
+                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            </p>
+                            <h3>
+                                <a href="#">
+                                    {{$room->status}}
+                                </a>
+                            </h3>
+                            <h4>london, england</h4>
+                        </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-single-->
+    
+                </div><!--/.item-->
+                @endforeach
+    
+            </div><!--/.testemonial-carousel-->
         </div><!--/.gallery-details-->
     </div><!--/.container-->
 
@@ -619,7 +571,7 @@
 
         </div><!--/.gallery-header-->
 
-        <div class="owl-carousel owl-theme" id="testemonial-carousel">
+        <div class="owl-carousel owl-theme" id="testemonial-carousel1">
 
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
@@ -866,5 +818,23 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
 <script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
+
+<script>
+
+
+$("#rangePrimary").ionRangeSlider({
+    type: "double",
+    grid: true,
+    min: 0,
+    max: 1000,
+    from: 200,
+    to: 800,
+    prefix: "RON"
+});
+
+
+
+</script>
 @endsection

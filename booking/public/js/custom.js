@@ -155,6 +155,40 @@ $(document).ready(function(){
             
         });
 
+        var owl1=$('#testemonial-carousel1');
+        owl1.owlCarousel({
+            items:3,
+            margin:0,
+            
+            loop:true,
+            autoplay:true,
+            smartSpeed:1000,
+            
+            //nav:false,
+            //navText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+            
+            dots:true,
+            autoplayHoverPause:true,
+        
+            responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    640:{
+                        items:1
+                    },
+                    767:{
+                        items:2
+                    },
+                    992:{
+                        items:3
+                    }
+                }
+            
+            
+        });
+
     // 5. datepicker
             $('[data-toggle="datepicker"]').datepicker();
 
