@@ -94,10 +94,21 @@
 										<li class="smooth-menu"><a href="#home">Acasa</a></li>
 										<li class="smooth-menu"><a href="#gallery">Camere</a></li>
 										<li class="smooth-menu"><a href="#pack">Pachete</a></li>
+										@if(!Session::has('user'))
+										<a href="{{route('login')}}"><li>
+											<button class="book-btn">Log In
+											</button>
+										</li></a><!--/.project-btn--> 
+										<a href="{{route('register')}}"><li>
+											<button class="book-btn">Register
+											</button>
+										</li></a><!--/.project-btn-->
+										@else
 										<li>
-											<button class="book-btn">Rezerva
+											<button class="book-btn" id="logout">Log Out
 											</button>
 										</li><!--/.project-btn--> 
+										@endif
 									</ul>
 								</div><!-- /.navbar-collapse -->
 							</div><!-- /.main-menu-->
@@ -231,6 +242,26 @@
 
 		<!--Custom JS-->
 		<script src="{{asset('/js/custom.js')}}"></script>
+
+		@if(Session::has('user')) 
+		<script>
+			alert(1);
+
+			$("#logout").on("click", function () {
+				$.ajax({
+					url:"{{route('logout')}}",
+					type: "POST",
+					data: {
+        				"_token": "{{ csrf_token() }}",
+        			},
+					success: function(data, status, xhr) {
+						location.reload();
+					}
+				});
+			});
+
+		</script>
+		@endif
 
         @yield('scripts')
 

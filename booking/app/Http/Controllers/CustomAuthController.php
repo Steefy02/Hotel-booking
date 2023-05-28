@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Validator;
 class CustomAuthController extends Controller {
 
     public function __construct() {
-        //$this->middleware('web');
-        $this->middleware('guest')->except('logout');
+        $this->middleware('web');
+        //$this->middleware('guest')->except('logout');
     }
 
     public function get_login() {
@@ -63,7 +63,8 @@ class CustomAuthController extends Controller {
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        //Auth::logout();
+        $request->session()->forget('user');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2023 at 01:11 AM
+-- Generation Time: May 28, 2023 at 01:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,6 +67,22 @@ CREATE TABLE `Facility` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `HistoryPrice`
 --
 
@@ -77,6 +93,53 @@ CREATE TABLE `HistoryPrice` (
   `price` float DEFAULT NULL,
   `id_RoomType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(3, '2014_10_12_100000_create_password_resets_table', 1),
+(4, '2019_08_19_000000_create_failed_jobs_table', 1),
+(5, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -93,6 +156,25 @@ CREATE TABLE `Payment` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Room`
 --
 
@@ -103,6 +185,16 @@ CREATE TABLE `Room` (
   `image` varchar(100) NOT NULL,
   `id_RoomType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Room`
+--
+
+INSERT INTO `Room` (`id_Room`, `roomNumber`, `status`, `image`, `id_RoomType`) VALUES
+(1, 100, 'open', 'r1.jpg', 1),
+(2, 12, 'open', 'r2.jpg', 3),
+(3, 204, 'open', 'r3.jpg', 4),
+(4, 725, 'open', 'r4.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -118,6 +210,16 @@ CREATE TABLE `TypeRoom` (
   `capacity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `TypeRoom`
+--
+
+INSERT INTO `TypeRoom` (`id_RoomType`, `type`, `description`, `price`, `capacity`) VALUES
+(1, 'Studio', 'Studio micut', 200, 1),
+(2, 'Double', 'Camera double', 250, 2),
+(3, 'Triple', 'Camera triple', 400, 3),
+(4, 'Apartament', 'Apartament frumos', 600, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -128,9 +230,20 @@ CREATE TABLE `UserAccount` (
   `id_User` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `userType` varchar(20) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `userType` varchar(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `UserAccount`
+--
+
+INSERT INTO `UserAccount` (`id_User`, `username`, `email`, `password`, `userType`, `name`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'DSteef', 'test@yahoo.com', '$2y$10$swtv30u6Y49Hmq8VOdLg7ev5AIeBfjH99U8cV1obgTwLsm9Eg.5JW', 'admin', 'Dari Steef', NULL, '2023-05-22 22:37:20', '2023-05-22 22:37:20');
 
 --
 -- Indexes for dumped tables
@@ -160,6 +273,13 @@ ALTER TABLE `Facility`
   ADD PRIMARY KEY (`id_Facility`);
 
 --
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
 -- Indexes for table `HistoryPrice`
 --
 ALTER TABLE `HistoryPrice`
@@ -167,10 +287,36 @@ ALTER TABLE `HistoryPrice`
   ADD KEY `fk_RoomType` (`id_RoomType`);
 
 --
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
 -- Indexes for table `Payment`
 --
 ALTER TABLE `Payment`
   ADD PRIMARY KEY (`id_Payment`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
 -- Indexes for table `Room`
@@ -214,10 +360,22 @@ ALTER TABLE `Facility`
   MODIFY `id_Facility` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `HistoryPrice`
 --
 ALTER TABLE `HistoryPrice`
   MODIFY `id_HistoryPrice` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Payment`
@@ -226,22 +384,28 @@ ALTER TABLE `Payment`
   MODIFY `id_Payment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `Room`
 --
 ALTER TABLE `Room`
-  MODIFY `id_Room` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Room` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `TypeRoom`
 --
 ALTER TABLE `TypeRoom`
-  MODIFY `id_RoomType` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_RoomType` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `UserAccount`
 --
 ALTER TABLE `UserAccount`
-  MODIFY `id_User` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

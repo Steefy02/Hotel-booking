@@ -267,10 +267,14 @@
             <div class="owl-carousel owl-theme" id="testemonial-carousel">
                 @php
                     use App\Models\Room;
+                    use App\Http\Controllers\RoomController;
                     $rooms = Room::all();
                 @endphp
 
                 @foreach ($rooms as $room)
+                @php
+                    $data = RoomController::get_data($room->id_Room);
+                @endphp
                 <div class="home1-testm item">
                     <div class="home1-testm-single text-center" style="padding-top:0px">
                         <div class="home1-testm-img">
@@ -281,14 +285,15 @@
                                 <i class="fa fa-quote-left" aria-hidden="true"></i>
                             </span>
                             <p>
-                                Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                                {{$data[0]->description}} 
                             </p>
                             <h3>
                                 <a href="#">
-                                    {{$room->status}}
+                                    {{$data[0]->type}}
                                 </a>
                             </h3>
-                            <h4>london, england</h4>
+                            <h4>Pret: {{$data[0]->price}}RON / noapte</h4>
+                            <h4><i class="fa-solid fa-user"></i>: {{$data[0]->capacity}}</h4>
                         </div><!--/.home1-testm-txt-->	
                     </div><!--/.home1-testm-single-->
     
