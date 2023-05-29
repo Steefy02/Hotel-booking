@@ -75,7 +75,7 @@
 					<div class="row">
 						<div class="col-sm-2">
 							<div class="logo">
-								<a href="index.html">
+								<a href="{{route('home')}}">
 									Mountain<span>Hotel</span>
 								</a>
 							</div><!-- /.logo-->
@@ -96,11 +96,11 @@
 										<li class="smooth-menu"><a href="#pack">Pachete</a></li>
 										@if(!Session::has('user'))
 										<a href="{{route('login')}}"><li>
-											<button class="book-btn">Log In
+											<button class="book-btn">Logare
 											</button>
 										</li></a><!--/.project-btn--> 
 										<a href="{{route('register')}}"><li>
-											<button class="book-btn">Register
+											<button class="book-btn">Inregistrare
 											</button>
 										</li></a><!--/.project-btn-->
 										@else
@@ -245,7 +245,6 @@
 
 		@if(Session::has('user')) 
 		<script>
-			alert(1);
 
 			$("#logout").on("click", function () {
 				$.ajax({

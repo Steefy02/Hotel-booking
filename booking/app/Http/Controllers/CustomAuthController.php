@@ -21,7 +21,7 @@ class CustomAuthController extends Controller {
         return view('auth.login');
     }
 
-    public function get_registration() {
+    public function get_register() {
         return view('auth.register');
     }
 
@@ -33,32 +33,35 @@ class CustomAuthController extends Controller {
         if(Auth::attempt($credentials)) {
             $user = Auth::user();
             Session::put('user', $user);
-            return redirect()->route('db_test');
+            return redirect()->route('home');
         }
 
         return redirect()->back()->with('message', 'Email / Parola gresite');
     }
 
-    public function process_registration(Request $request) {
+    public function process_register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:50',
+            'username' => 'required|max:50',
             'email' => 'required|email',
             'password' => 'required|min:6',
-            'password-confirm' => 'required|same:password',
         ]);
 
         $user = User::create([
             'name' => trim($request->name),
+            'username' => trim($request->username),
             'email' => strtolower($request->email),
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'userType' => "client"
         ]);
-        $user->is_admin = 0;
 
-        if(Auth::attempt($request->only(['email', 'password']))) {
-            return redirect()->route('home');    
+        $credentials = $request->only(['email', 'password']);
+        if(Auth::attempt($credentials)) {
+            $user = Auth::user();
+            Session::put('user', $user);
+            return redirect()->route('home');
         }
-
-        return redirect()->back();
+        return redirect()->back()->with("error", "Some error occured (CustomAuthController line 64)");
     }
 
     public function logout(Request $request)

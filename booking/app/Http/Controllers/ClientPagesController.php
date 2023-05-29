@@ -10,4 +10,11 @@ class ClientPagesController extends Controller {
         return view('dbtest');
     }
 
+    public function forgot_password() {
+        return view('auth.passwords.forgotPassword');
+    }
+
+    public function get_terms() {
+        return view('auth.terms');
+    }
 }

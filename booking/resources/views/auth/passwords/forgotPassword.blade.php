@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+
+<!-- =========================================================
+* Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
+==============================================================
+
+* Product Page: https://themeselection.com/products/sneat-bootstrap-html-admin-template/
+* Created by: ThemeSelection
+* License: You must have a valid license purchased in order to legally use the theme for your project.
+* Copyright ThemeSelection (https://themeselection.com)
+
+=========================================================
+ -->
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style customizer-hide"
@@ -27,16 +40,10 @@
       rel="stylesheet"
     />
 
-    <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{asset('/css/core.css')}}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{asset('/css/theme-default.css')}}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{asset('/css/demo.css')}}" />
-
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <!-- Page CSS -->
     <!-- Page -->
@@ -55,83 +62,59 @@
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
-          <!-- Register -->
+        <div class="authentication-inner py-4">
+          <!-- Forgot Password -->
           <div class="card">
             <div class="card-body">
-            <div class="mb-2">
-              <div class="logo" style="text-align: center; margin-bottom: 50px; ">
-                <a href="{{route('home')}}" style="color: black;">
-                  Mountain<span>Hotel</span>
-                </a>
-              </div>
-            </div>
-
-              <form id="formAuthentication" class="mb-3" action="{{route('loginPost')}}" method="POST">
-                @csrf
+                <div class="mb-2">
+                    <div class="logo" style="text-align: center; margin-bottom: 50px; ">
+                        <a href="{{route('home')}}" style="color: black;">
+                        Mountain<span>Hotel</span>
+                        </a>
+                    </div>
+                </div>
+              <h4 class="mb-2">Ai uitat <span style="color: #00d8ff;">parola</span>? 🔒</h4>
+              <p class="mb-4">Introdu email-ul si iti vom trimite instructiunile de resetare a parolei.</p>
+              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
-                    style="margin-bottom: 30px;"
                     type="text"
                     class="form-control"
                     id="email"
                     name="email"
-                    placeholder="Introdu adresa de email"
+                    placeholder="Enter your email"
                     autofocus
                   />
                 </div>
-                <div class="mb-3 form-password-toggle">
-                  <div class="d-flex justify-content-between">
-                    <label class="form-label" for="password">Parola</label>
-                    <a href="{{route('forgotPassword')}}">
-                      <small>Ai uitat parola?</small>
-                    </a>
-                  </div>
-                  <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">Logheaza-te</button>
-                </div>
+                <button class="btn btn-primary d-grid w-100">Trimite link de resetare</button>
               </form>
-
-              <p class="text-center">
-                <span>Nu ai un cont existent?</span>
-                <a href="{{route('register')}}">
-                  <span>Creeaza un cont</span>
+              <div class="text-center">
+                <a href="{{route('login')}}" class="d-flex align-items-center justify-content-center">
+                  <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
+                  Inapoi la pagina de logare
                 </a>
-              </p>
+              </div>
             </div>
           </div>
-          <!-- /Register -->
+          <!-- /Forgot Password -->
         </div>
       </div>
     </div>
 
-    <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{asset('/js/jquery.js')}}"></script>
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="{{asset('/js/menu.js')}}"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
 
     <!-- Main JS -->
-    <script src="{{asset('/js/main.js')}}"></script>
+    <script src="../assets/js/main.js"></script>
 
     <!-- Page JS -->
 
