@@ -25,6 +25,14 @@ class CustomAuthController extends Controller {
         return view('auth.register');
     }
 
+    public function forgot_password() {
+        return view('auth.passwords.forgotPassword');
+    }
+
+    public function get_account() {
+        return view('auth.account');
+    }
+
     public function process_login(Request $request) {
 
         $request->validate(['email' => 'required', 'password' => 'required']);
