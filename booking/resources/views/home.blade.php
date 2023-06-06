@@ -312,10 +312,10 @@
     <div class="container">
         <div class="gallary-header text-center">
             <h2>
-                special packages
+                Pachete speciale
             </h2>
             <p>
-                Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+                Alege unul dintre pachetele noastre si bucura-te de natura  
             </p>
         </div><!--/.gallery-header-->
         <div class="packages-content">
@@ -568,10 +568,10 @@
 
         <div class="gallary-header text-center">
             <h2>
-                clients reviews
+                Testimoniale
             </h2>
             <p>
-                Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla. 
+                Iata ce au spus clientii nostrii despre locatia noastra
             </p>
 
         </div><!--/.gallery-header-->
@@ -796,10 +796,10 @@
     <div class="container">
         <div class="subscribe-title text-center">
             <h2>
-                Join our Subscribers List to Get Regular Update
+                Fii primul care afla despre noile noastre oferte!
             </h2>
             <p>
-                Subscribe Now. We will send you Best offer for your Trip 
+                Aboneaza-te la newsletter: 
             </p>
         </div>
         <form>
@@ -807,7 +807,7 @@
                 <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="custom-input-group">
                         <input type="email" class="form-control" placeholder="Enter your Email Here">
-                        <button class="appsLand-btn subscribe-btn">Subscribe</button>
+                        <button class="appsLand-btn subscribe-btn">Aboneaza-te</button>
                         <div class="clearfix"></div>
                         <i class="fa fa-envelope"></i>
                     </div>
