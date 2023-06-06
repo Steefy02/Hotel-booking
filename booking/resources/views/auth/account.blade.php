@@ -77,7 +77,7 @@
         <div class="header-area">
             <div class="container"
                  style="margin-left:87.500px; margin-right:87.500px; padding-left:15px; padding-right:15px;">
-                <div class="row" style="margin-left:15px; margin-right:15px;">
+                <div class="row">
                     <div class="col-sm-2">
                         <div class="logo">
                             <a href="http://127.0.0.1:8000">
@@ -114,7 +114,7 @@
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
                                                         data-toggle="dropdown"
-                                                        style="background-color: #00d8ff; border-color: #00d8ff;">
+                                                        style="background-color: #00d8ff; border-color: #00d8ff; margin-right: 100px;">
                                                     <i class="fa-solid fa-circle-user"
                                                        style="margin-right: 10px;"></i><span
                                                         class="caret"></span></button>
@@ -169,3 +169,6 @@
 </div>
 
 </body>
+
+<script src="{{asset('/js/jquery.js')}}"></script>
+<script src="{{asset('/js/bootstrap.min.js')}}"></script>

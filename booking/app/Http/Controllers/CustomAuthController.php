@@ -30,7 +30,7 @@ class CustomAuthController extends Controller {
     }
 
     public function get_account() {
-        return view('auth.account');
+        return view('auth.acctest');
     }
 
     public function process_login(Request $request) {

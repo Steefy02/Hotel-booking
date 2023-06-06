@@ -93,7 +93,7 @@
                         </div><!-- /.navbar-header-->
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="smooth-menu"><a href="#home">Acasa</a></li>
+                                <li class="smooth-menu"><a href="#home" style="bottom:0px;">Acasa</a></li>
                                 <li class="smooth-menu"><a href="#gallery">Camere</a></li>
                                 <li class="smooth-menu"><a href="#pack">Pachete</a></li>
                                 @if(!Session::has('user'))
