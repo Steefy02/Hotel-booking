@@ -111,6 +111,7 @@
                                         </a><!--/.project-btn-->
                                     @else
                                         <li>
+                                            <p>HELLO?</p>
                                             <div class="dropdown">
                                                 <button class="btn btn-primary dropdown-toggle" type="button"
                                                         data-toggle="dropdown"
@@ -120,9 +121,9 @@
                                                         class="caret"></span></button>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="{{route('account')}}"
-                                                           style="color:black; height:20px; padding-top:0px;">Account</a>
+                                                           style="color:black; height:20px; padding-top:0px;">Contul meu</a>
                                                     </li>
-                                                    <li><a href="#" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                    <li><a href="#" style="color:black; height:20px; padding-top:0px;">Setari</a>
                                                     </li>
                                                     <li><a id='logout' href="#"
                                                            style="color:red; height:20px; padding-top:0px;">Log out</a>
