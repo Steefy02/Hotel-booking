@@ -123,6 +123,10 @@
                                                 </li>
                                                 <li><a href="#" style="color:black; height:20px; padding-top:0px;">Settings</a>
                                                 </li>
+                                                @if(Session::get('user')['userType'] == 'admin')
+                                                <li><a href="{{route('admin-home')}}" style="color:black; height:20px; padding-top:0px;">Admin</a>
+                                                </li>
+                                                @endif
                                                 <li><a id='logout' href="#"
                                                        style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
