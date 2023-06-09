@@ -25,6 +25,7 @@ Route::get('/account', [CustomAuthController::class, 'get_account'])->name('acco
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
+Route::get('/room', [ClientPagesController::class, 'get_room'])->name('room');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
