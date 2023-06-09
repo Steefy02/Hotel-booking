@@ -141,82 +141,130 @@
     </div><!-- /.header-area -->
 </header><!-- /.top-area-->
 
-<div class="container-fluid" style="margin-top: 70px; margin-left: 200px;">
-    <div class="col-md-6 col-lg-4 mb-3">
-        <div class="card h-100">
-        <div class="card-body">
-            <h5 class="card-title">Camera hotel 69</h5>
-            <h6 class="card-subtitle text-muted"><i class="fa-solid fa-location-dot"></i> Strada matii nr 420</h6>
-        </div>
-        <img class="img-fluid" src="http://127.0.0.1:8000/images/r2.jpg" alt="Card image cap">
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <p style="  margin-bottom: 5px;">Informatii</p>
-                </li>
-                <li class="list-group-item">
-                    <p style="margin-top: 15px;">
-                    Cea mai noua unitate de cazare de pe litoralul Marii Negre 
-                    apare langa hotelul Phoenicia Luxury 4*, un hotel grandios de 5*, 
-                    PHOENICIA ROYAL. Hotelul a fost inaugurat in sezonul estival 2017 
-                    si detine distinctia Five Star Diamond Award
-                    Toti oaspetii din cadrul Phoenicia Royal, Phoenicia Luxury au 
-                    acces la facilitatile gratuite din cadrul Phoenicia Holiday Resort.
-                    </p>
-                    <p style="margin-top: 70px; margin-bottom: 5px;">Dotari si servicii</p>
-                </li>
-                <li class="list-group-item">
-                    <p style="margin-top: 15px;">
-                    Hotelul dispune de 144 spatii de cazare (duplexuri si suite de lux).
-                    Servicii incluse:
-                    Parcare proprie supravegheata, Internet, Business Corner, Presa (in receptie), 
-                    Prosoape de plaja (oferite la cazare, pe baza de tichet), Sezlonguri si umbrele 
-                    la plaja si piscine, Sauna, Parc de joaca pentru copii, pe categorii de varsta, 
-                    Teatru de vara/Cinema, Parcul indragostitilor (foisoare pentru seri romantice), 
-                    Club animatie copii, Jocuri si concursuri pentru adulti si copii (la plaja, piscine, terasa),
-                     Piscine exterioare pentru adulti si piscine exterioare pentru copii, cu valuri/ tobogane, 
-                     Piscina interioara cu apa incalzita, Animatori, Petreceri tematice, Karaoke, Carnaval, Fitness, 
-                     Clase de aerobic, kangoo jumps, zumba, yoga, pilates, aquagym, Baza sportiva (tenis/baschet/fotbal/volei), 
-                     Spalatorie haine cu autoservire, Cabinet cu medic generalist, Televiziune interna proprie, 
-                     Statie radio si TV intern.
-                    *Facilitatile sunt subiectul conditiilor impuse de temeiul legal reglementat de institutiile abilitate.
+<div class="container-fluid" style="margin: 0 auto; margin-top: 50px;">
+	<div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #00d8ff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center;">
+		<a href="#informatii" class="py-1 px-3" style="color: black"><b>Informatii</b></a>
+		<a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
+		<a href="#facilitati" class="py-1 px-3" style="color: black"><b>Facilitati</b></a>
+		<a href="#servicii_masa" class="py-1 px-3" style="color: black"><b>Servicii masa</b></a>
+	</div>
 
-                    Servicii contra cost:
-                    Transfer la/de la gara/aeroport Constanta/Bucuresti, Centru de fotografiere 
-                    (pentru cele mai frumoase amintiri din vacanta), Servicii de masaj, Farmacie, 
-                    Complex de magazine (alimente/cosmetice/jucarii), Echitatie, Ateliere de creatie, 
-                    Club Games/ Biliard, Sporturi nautice, Instructori de sport, Baruri, Restaurante, 
-                    Athena Casino (in incinta Phoenicia Boutique).
-                    *Parte din servicii sunt subiectul conditiilor impuse de temeiul legal reglementat 
-                    de institutiile abilitate.
+	<div class="row justify-content-center" style="margin: 0 auto; margin-top: 50px;">
+		<div class="col-md-6 col-lg-6 mb-3">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Camera hotel 69</h4>
+                    <h5 class="card-subtitle" style="margin-top: 10px;">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </h5>
+					<h6 class="card-subtitle text-muted" style="margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> Strada matii nr 420</h6>
+				</div>
+				<img class="img-fluid" src="http://127.0.0.1:8000/images/r2.jpg" alt="Card image cap">
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<h4 id="informatii" style="margin-bottom: 5px;">Informatii</h4>
+						</li>
+						<li class="list-group-item">
+							<p style="margin-top: 15px;">
+							Cea mai noua unitate de cazare de pe litoralul Marii Negre 
+							apare langa hotelul Phoenicia Luxury 4*, un hotel grandios de 5*, 
+							PHOENICIA ROYAL. Hotelul a fost inaugurat in sezonul estival 2017 
+							si detine distinctia Five Star Diamond Award
+							Toti oaspetii din cadrul Phoenicia Royal, Phoenicia Luxury au 
+							acces la facilitatile gratuite din cadrul Phoenicia Holiday Resort.
+							</p>
+							<h4 id="dotari" style="margin-top: 70px; margin-bottom: 5px;">Dotari camere</h4>
+						</li>
+						<li class="list-group-item">
+							<p style="margin-top: 15px;">
+                            Sunset Apartment - are un spatiu generos de 61 mp, format dintr-un living si un dormitor 
+                            cu pat matrimonial(180/200 cm), o cada rotunda in fata patului, baie cu dus, balcon, 
+                            vedere frontala catre lacul Siutghiol.<br>
+                            Capacitate maxima: 2 adulti<br>
+                            Facilitati spatii de cazare: Sistem de acces pe baza de cartela magnetica, 
+                            instalatie individuala de climatizare,TV, internet, seif in camera, telefon, 
+                            minibar, cana electrica, cani, pahare, lingurite, fier de calcat, masa de calcat, 
+                            uscator de par, prosoape, halate, papuci, cosmetice hoteliere, canapea, baie cu dus, 
+                            pat bebe la cerere, housekeeping zilnic.
+							</p>
+							<h4 id="facilitati" style="margin-top: 70px; margin-bottom: 5px;">Facilitati</h4>
+						</li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col"><i class="fa-solid fa-check"></i> All inclusive</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Piscina</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Internet</div>
 
-                    Este obligatorie purtarea bratarilor primite la check-in pentru a beneficia de serviciile 
-                    comandate atat la plaja cat si in complex!
-                    Ziua hoteliera incepe cu ora 16:00 si se incheie la ora 12:00.
-                    </p>
-                    <p>Servicii masa</p>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </div>
+                                <!-- Force next columns to break to new line -->
+                                <div class="w-100"></div>
 
-    <div class="col-md-6 col-lg-4 mb-3" style="margin-left: 70px;">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">Contact</h5>
-                <h6 class="card-subtitle"> Esti prost si ai nevoie de ajutor?</h6>
-                <h6 class="card-subtitle" style="margin-top: 10px;"> Contacteaza-ne la:</h6>
-            </div>
-            <div class="card-body" style="padding-top: 10px;">
-                <p class="card-text">0769 420 mortii matii</p>
-                <p class="card-text">0769 420 mortii matii</p>
-                <div class="btn btn-primary">
-                    Rezerva
-                </div>
-            </div>
-        </div>
-    </div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Parcare</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Restaurant</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Minibar</div>
+
+                                <!-- Force next columns to break to new line -->
+                                <div class="w-100"></div>
+                                
+                                <div class="col"><i class="fa-solid fa-check"></i> Aer conditionat</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Frigider</div>
+                                <div class="col"><i class="fa-solid fa-check"></i> Prosoape</div>
+                            </div>
+							<h4 id="servicii_masa" style="margin-top: 70px; margin-bottom: 5px;">Servicii masa</h4>
+						</li>
+                        <li class="list-group-item">
+							<p style="margin-top: 15px;">
+                            MASA: restaurant propriu, Piazzetta; mic dejun, pranz, cina sistem bufet suedez.<br>
+                            1. Mic dejun  - (07:30 - 10:00 bufet) suedez, se serveste incepand cu a doua zi de cazare 
+                            si inclusiv in ziua plecarii.
+                            Bauturi incluse: apa, suc, ceai, cafea, cappuccino, ciocolata calda;<br>
+                            2. Demipensiune -  (7:30 - 10:00) mic dejun bufet suedez si masa de pranz (13:00 - 15:00)bufet suedez- 
+                            se serveste incepand cu a doua zi de cazare si inclusiv in ziua plecarii.
+                            Bauturi incluse: apa, suc, ceai, cafea, cappuccino, ciocolata calda;<br>
+                            3. Pensiune Completa -  mic dejun (7:30 - 10:00), masa de pranz (13:00 - 15.00), 
+                            cina (19:00 - 21:00) in sistem bufet suedez. In prima zi de cazare se serveste cina, 
+                            incepand cu a doua zi de cazare se servesc toate mesele si in ziua plecarii se servesc 
+                            doar micul dejun si pranzul.
+                            Bauturi incluse: apa, suc, ceai, cafea, cappuccino, ciocolata calda;<br>
+                            4. All Inclusive - mic dejun (07:30 - 10:00), masa de pranz (13:00 - 15.00) si cina 
+                            (19:00 - 21:00), acces la barul de pe piscina si la barul de pe plaja. 
+                            In prima zi de cazare se serveste cina, incepand cu a doua zi de cazare 
+                            se servesc toate mesele si in ziua plecarii se servesc doar micul dejun si pranzul.<br>
+                            Bauturile incluse: apa, cafea, cappuccino, ciocolata calda, bauturi racoritoare(gama Pepsi), 
+                            bauturi alcoolice(bere, draft, vin alb/rosu draft, whisky, vodka, rom, gin, lichior), 
+                            cocktailuri( Cuba Libre, Screwdriver, Whisky Cola, Gin Tonic, Campari Orange).<br>
+                            * Bauturile incluse pentru tipurile de masa 1, 2 si 3 sunt disponibile doar in restaurant, 
+                            in timpul servirii mesei.<br>
+                            * Pachetul de bauturi inclus in tipul de masa All Inclusive este disponibil in restaurant
+                            (in intervalul de servire al meselor principale), la barul de pe plaja( program 10:00-19:00) 
+                            si la barul de pe piscina( program 10:00-20:00).
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Contact</h5>
+					<h6 class="card-subtitle"> Esti prost si ai nevoie de ajutor?</h6>
+					<h6 class="card-subtitle" style="margin-top: 10px;"> Contacteaza-ne la:</h6>
+				</div>
+				<div class="card-body" style="padding-top: 10px;">
+					<p class="card-text">0769 420 mortii matii</p>
+					<p class="card-text">guta.regele.manelelor@gmail.com</p>
+					<div class="btn btn-primary" style="color: black; background-color: #00d8ff; border:#00d8ff">
+						Rezerva
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </body>
