@@ -141,11 +141,17 @@
     </div><!-- /.header-area -->
 </header><!-- /.top-area-->
 
-<div class="container-fluid" style="margin: 0 auto; margin-top: 50px;">
+<img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+
+<div class="container-fluid" style="margin: 0 auto; padding-top: 50px; background-color: transparent;">
+
 	<div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #00d8ff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center;">
 		<a href="#informatii" class="py-1 px-3" style="color: black"><b>Informatii</b></a>
+        <span style="color: black"><b> | </b></span>
 		<a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
+        <span style="color: black"><b> | </b></span>
 		<a href="#facilitati" class="py-1 px-3" style="color: black"><b>Facilitati</b></a>
+        <span style="color: black"><b> | </b></span>
 		<a href="#servicii_masa" class="py-1 px-3" style="color: black"><b>Servicii masa</b></a>
 	</div>
 
@@ -163,7 +169,48 @@
                     </h5>
 					<h6 class="card-subtitle text-muted" style="margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> Strada matii nr 420</h6>
 				</div>
-				<img class="img-fluid" src="http://127.0.0.1:8000/images/r2.jpg" alt="Card image cap">
+                
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" style="background-color: #365566;">
+                        <div class="item active">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="http://127.0.0.1:8000/images/r1.jpg" alt="Los Angeles">
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="http://127.0.0.1:8000/images/r2.jpg" alt="Chicago">
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="http://127.0.0.1:8000/images/r3.jpg" alt="New York">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
@@ -249,20 +296,61 @@
 		</div>
 
 		<div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
-			<div class="card">
+            <div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Contact</h5>
-					<h6 class="card-subtitle"> Esti prost si ai nevoie de ajutor?</h6>
-					<h6 class="card-subtitle" style="margin-top: 10px;"> Contacteaza-ne la:</h6>
-				</div>
-				<div class="card-body" style="padding-top: 10px;">
-					<p class="card-text">0769 420 mortii matii</p>
-					<p class="card-text">guta.regele.manelelor@gmail.com</p>
-					<div class="btn btn-primary" style="color: black; background-color: #00d8ff; border:#00d8ff">
-						Rezerva
-					</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" style="text-align: center;">
+                            <h4 style="margin-bottom: 5px;">Tarif pentru perioada selectata</h4>
+                            <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>31.02.2050 - 34.02.2050</b></p>
+                        </li>
+                        <li class="list-group-item"  style="text-align: center;">
+                            <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">420 Lei</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p style="font-size:medium; color: #3e4d5d; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i>&ensp; Strada Matii Nr 420</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-person"></i><i class="fa-solid fa-person-dress"></i>&ensp;Capacitate: 2 pers</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-bed"></i>&ensp; Pat dublu</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-clock"></i>&ensp; Checkin 7:00 - 12:00</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-wifi"></i>&ensp; Wifi gratuit</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-square-parking"></i>&ensp; Parcare</p>
+                        </li>
+                        <li class="list-group-item" style="display: flex; justify-content: center;">
+                            <div class="btn btn-primary" style="color: black; background-color: #00d8ff; width: 250px; border:#00d8ff; margin-top: 10px;">
+						        Rezerva acum
+					        </div>
+                        </li>
+                    </ul>
+
 				</div>
 			</div>
+
+            <div class="card" style="background-color: #00d8ff; margin-top: 70px;">
+				<div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5 class="card-title" style="color: #3e4d5d; margin-bottom: 5px;">Contact</h5>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px;">
+                            <p style="font-size:medium; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"> Esti prost si ai nevoie de ajutor?</p>
+                            <p style="font-size:medium; color: #3e4d5d;"> Contacteaza-ne la:</p>
+                            <p style="margin-bottom: 5px; padding-left: 10px;"><i class="fa-solid fa-phone"></i>&emsp;0769 420 mortii matii</p>
+                            <p style="margin-bottom: 5px; padding-left: 10px;"><i class="fa-solid fa-envelope"></i>&emsp;guta.regele.manelelor@gmail.com</p>
+                        </li>
+                    </ul>
+				</div>
+			</div>
+
+            <div class="card" style="margin-top: 70px; height:400px;">
+                <div class="card-body" style="padding: 0px; display: flex; justify-content: center;">
+                <iframe style="width: 100%; height: 100%; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 70px; height:300px;">
+                <div class="card-body" style="padding: 0px; display: flex; justify-content: center;">
+                TO DO RECENZII
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
