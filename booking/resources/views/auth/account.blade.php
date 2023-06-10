@@ -72,104 +72,168 @@
 </head>
 
 <body>
-<header class="top-area" style="background-color:#4d4e54">
-    <div id="sticky-wrapper" class="sticky-wrapper" style="height: 82px;">
-        <div class="header-area">
-            <div class="container"
-                 style="margin-left:87.500px; margin-right:87.500px; padding-left:15px; padding-right:15px;">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="logo">
-                            <a href="http://127.0.0.1:8000">
-                                Mountain<span>Hotel</span>
-                            </a>
-                        </div><!-- /.logo-->
-                    </div><!-- /.col-->
-                    <div class="col-sm-10">
-                        <div class="main-menu">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                        data-target=".navbar-collapse">
-                                    <i class="fa fa-bars"></i>
-                                </button><!-- / button-->
-                            </div><!-- /.navbar-header-->
-                            <div class="collapse navbar-collapse">
-                                <ul class="nav navbar-nav navbar-right">
-                                    @if(!Session::has('user'))
-                                        <a href="{{route('login')}}">
-                                            <li>
-                                                <button class="book-btn">Logare
-                                                </button>
-                                            </li>
-                                        </a><!--/.project-btn-->
-                                        <a href="{{route('register')}}">
-                                            <li>
-                                                <button class="book-btn">Inregistrare
-                                                </button>
-                                            </li>
-                                        </a><!--/.project-btn-->
-                                    @else
+
+<!-- main-menu Start -->
+<header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
+    <div class="header-area" style="height: 77px;">
+        <div class="container">
+            <div class="row" style="max-width: 76vw; margin: 0 auto;">
+                <div class="col-sm-2">
+                    <div class="logo">
+                        <a href="{{route('home')}}">
+                            Mountain<span>Hotel</span>
+                        </a>
+                    </div><!-- /.logo-->
+                </div><!-- /.col-->
+                <div class="col-sm-10">
+                    <div class="main-menu">
+
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <i class="fa fa-bars"></i>
+                            </button><!-- / button-->
+                        </div><!-- /.navbar-header-->
+                        <div class="collapse navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                @if(!Session::has('user'))
+                                    <a href="{{route('login')}}">
                                         <li>
-                                            <p>HELLO?</p>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button"
-                                                        data-toggle="dropdown"
-                                                        style="background-color: #00d8ff; border-color: #00d8ff; margin-right: 100px;">
-                                                    <i class="fa-solid fa-circle-user"
-                                                       style="margin-right: 10px;"></i><span
-                                                        class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{{route('account')}}"
-                                                           style="color:black; height:20px; padding-top:0px;">Contul meu</a>
-                                                    </li>
-                                                    <li><a href="#" style="color:black; height:20px; padding-top:0px;">Setari</a>
-                                                    </li>
-                                                    <li><a id='logout' href="#"
-                                                           style="color:red; height:20px; padding-top:0px;">Log out</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li><!--/.project-btn-->
-                                    @endif
-                                </ul>
-                            </div><!-- /.navbar-collapse -->
-                        </div><!-- /.main-menu-->
-                    </div><!-- /.col-->
+                                            <button class="book-btn">Logare
+                                            </button>
+                                        </li>
+                                    </a><!--/.project-btn-->
+                                    <a href="{{route('register')}}">
+                                        <li>
+                                            <button class="book-btn">Inregistrare
+                                            </button>
+                                        </li>
+                                    </a><!--/.project-btn-->
+                                @else
+                                    <li>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                    data-toggle="dropdown"
+                                                    style="background-color: #00d8ff; border-color: #00d8ff;">
+                                                <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span
+                                                    class="caret"></span></button>
+                                            <ul class="dropdown-menu" style="position: absolute;">
+                                                <li><a href="{{route('account')}}"
+                                                       style="color:black; height:20px; padding-top:0px;">Account</a>
+                                                </li>
+                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                </li>
+                                                <li><a id='logout' href="#"
+                                                       style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                            </ul>
+                                        </div>
+                                        <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>
+                                            </button-->
+                                    </li><!--/.project-btn-->
+                                @endif
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.main-menu-->
+                </div><!-- /.col-->
+            </div><!-- /.row -->
+        </div><!-- /.container-->
+    </div><!-- /.header-area -->
+</header><!-- /.top-area-->
+
+<img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+
+<div class="container-fluid" style="margin-top: 70px; opacity: 0.85;">
+    <div class="col-md-12">
+        <div class="card mb-4">
+            <h5 class="card-header">Detaliile profilului</h5>
+            <!-- Account -->
+            <div class="card-body">
+                <div class="d-flex align-items-start align-items-sm-center gap-4">
+                    <img src="images/cat.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+                    <div class="button-wrapper">
+                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                            <span class="d-none d-sm-block">Incarcati o imagine noua</span>
+                            <i class="bx bx-upload d-block d-sm-none"></i>
+                            <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                        </label>
+                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                            <i class="bx bx-reset d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Reset</span>
+                        </button>
+
+                        <p class="text-muted mb-0">Doar format JPG sau PNG.</p>
+                    </div>
                 </div>
             </div>
+            <hr class="my-0">
+            <div class="card-body">
+                <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="firstName" class="form-label">Nume</label>
+                            <input class="form-control" type="text" id="firstName" name="firstName" value="nume" autofocus="">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label">Prenume</label>
+                            <input class="form-control" type="text" name="lastName" id="lastName" value="prenume">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">E-mail</label>
+                            <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="email">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label" for="phoneNumber">Numar de telefon</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="0769 420 696" placeholder="0769 420 696">
+                        </div>    
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Adresa</label>
+                            <input class="form-control" type="text" id="adress" name="adress" value="adresa" placeholder="adresa">
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="email" class="form-label">Sex</label>
+                            <input class="form-control" type="text" id="sex" name="sex" value="sex" placeholder="sex">
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary me-2">Salveaza modificarile</button>
+                        <button type="reset" class="btn btn-outline-secondary">Anulare</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /Account -->
         </div>
-    </div>
-</header>
-
-<div class="container-fluid" style="padding-top:100px;">
-    <div class="container-xl flex-grow-1 container-p-y">
-        <div class="row mb-5">
-            <h4 class="fw-bold">Setarile contului</h4>
-            <div class="col-md-6 col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fa-solid fa-user-gear"></i> Detalii personale</h5>
-                        <div class="card-subtitle text-muted mb-3">Actualizati-va informatiile.</div>
-                        <a href="javascript:void(0)" class="card-link">Gestionati detaliile personale.</a>
+        <div class="card">
+            <h5 class="card-header">Sterge cont</h5>
+            <div class="card-body">
+                <div class="mb-3 col-12 mb-0">
+                    <div class="alert alert-warning">
+                        <h6 class="alert-heading fw-bold mb-1">Sunteti sigur ca doriti sa stergeti acest cont?</h6>
+                        <p class="mb-0">O data ce contul dumneavoastra este sters, acesta nu se va mai putea recupera.</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fa-solid fa-credit-card"></i> Detalii de plata</h5>
-                        <div class="card-subtitle text-muted mb-3">Actualizati-va informatiile.</div>
-                        <a href="javascript:void(0)" class="card-link">Gestionati detaliile de plata.</a>
+                <form id="formAccountDeactivation" onsubmit="return false">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
+                        <label class="form-check-label" for="accountActivation">Confirm stergerea contului</label>
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-danger deactivate-account">Sterge cont</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+
+<script>
+    $('#card1').on('click', function(){
+        window.location.href="{{route('home')}}";
+    });
+
+    $('#card2').on('click', function(){
+        window.location.href="{{route('home')}}";
+    });
+</script>

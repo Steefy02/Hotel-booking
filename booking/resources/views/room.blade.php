@@ -122,7 +122,7 @@
                                                 <li><a href="{{route('account')}}"
                                                        style="color:black; height:20px; padding-top:0px;">Account</a>
                                                 </li>
-                                                <li><a href="#" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
                                                 </li>
                                                 <li><a id='logout' href="#"
                                                        style="color:red; height:20px; padding-top:0px;">Log out</a></li>
@@ -145,7 +145,7 @@
 
 <div class="container-fluid" style="margin: 0 auto; padding-top: 50px; background-color: transparent;">
 
-	<div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #00d8ff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center;">
+	<div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #00d8ff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center; opacity: 0.70;">
 		<a href="#informatii" class="py-1 px-3" style="color: black"><b>Informatii</b></a>
         <span style="color: black"><b> | </b></span>
 		<a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
@@ -296,7 +296,7 @@
 		</div>
 
 		<div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
-            <div class="card">
+            <div class="card" style="opacity: 0.85;">
 				<div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" style="text-align: center;">
@@ -315,7 +315,7 @@
                             <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-square-parking"></i>&ensp; Parcare</p>
                         </li>
                         <li class="list-group-item" style="display: flex; justify-content: center;">
-                            <div class="btn btn-primary" style="color: black; background-color: #00d8ff; width: 250px; border:#00d8ff; margin-top: 10px;">
+                            <div class="btn btn-primary" style="color: white; width: 250px; margin-top: 10px;">
 						        Rezerva acum
 					        </div>
                         </li>
@@ -324,7 +324,7 @@
 				</div>
 			</div>
 
-            <div class="card" style="background-color: #00d8ff; margin-top: 70px;">
+            <div class="card" style="background-color: #00d8ff; margin-top: 70px; opacity: 0.85;">
 				<div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
@@ -346,7 +346,7 @@
                 </div>
             </div>
 
-            <div class="card" style="margin-top: 70px; height:300px;">
+            <div class="card" style="margin-top: 70px; height:300px; opacity: 0.85;">
                 <div class="card-body" style="padding: 0px; display: flex; justify-content: center;">
                 TO DO RECENZII
                 </div>

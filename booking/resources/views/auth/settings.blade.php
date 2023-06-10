@@ -141,12 +141,14 @@
     </div><!-- /.header-area -->
 </header><!-- /.top-area-->
 
+<img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+
 <div class="container-fluid" style="margin-top: 70px;">
     <div class="container-xl flex-grow-1 container-p-y">
         <div class="row mb-5">
-            <h4 class="fw-bold">Setarile contului</h4>
+            <h4 class="fw-bold" style="color: white;">Setarile contului</h4>
             <div class="col-md-6 col-lg-4">
-                <div class="card mb-4">
+                <div class="card mb-4" style="opacity: 0.85;">
                     <div id="card1" class="card-body" style="cursor: pointer;">
                         <h5 class="card-title"><i class="fa-solid fa-user-gear"></i> Detalii personale</h5>
                         <div class="card-subtitle mb-3" style="color: #26b1f3;">Actualizati-va informatiile.</div>
@@ -155,7 +157,7 @@
             </div>
 
             <div class="col-md-6 col-lg-4">
-                <div class="card mb-4">
+                <div class="card mb-4" style="opacity: 0.85;">
                     <div id="card2" class="card-body" style="cursor: pointer;">
                         <h5 class="card-title"><i class="fa-solid fa-credit-card"></i> Detalii de plata</h5>
                         <div class="card-subtitle mb-3" style="color: #26b1f3;">Actualizati-va informatiile.</div>

@@ -121,7 +121,7 @@
                                                 <li><a href="{{route('account')}}"
                                                        style="color:black; height:20px; padding-top:0px;">Account</a>
                                                 </li>
-                                                <li><a href="#" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
                                                 </li>
                                                 @if(Session::get('user')['userType'] == 'admin')
                                                 <li><a href="{{route('admin-home')}}" style="color:black; height:20px; padding-top:0px;">Admin</a>

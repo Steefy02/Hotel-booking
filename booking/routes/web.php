@@ -23,6 +23,7 @@ Route::get('/login', [CustomAuthController::class, 'get_login'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'get_register'])->name('register');
 Route::get('/forgotPassword', [CustomAuthController::class, 'forgot_password'])->name('forgotPassword');
 Route::get('/account', [CustomAuthController::class, 'get_account'])->name('account');
+Route::get('/settings', [CustomAuthController::class, 'get_settings'])->name('settings');
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
