@@ -60,12 +60,14 @@
     <script src="{{asset('/js/config.js')}}"></script>
   </head>
 
+  <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+
   <body>
     <!-- Content -->
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner">
+        <div class="authentication-inner" style="opacity: 0.90">
           <!-- Register Card -->
           <div class="card">
             <div class="card-body">
