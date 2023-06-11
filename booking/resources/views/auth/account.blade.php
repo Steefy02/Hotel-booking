@@ -96,15 +96,15 @@
                             </button><!-- / button-->
                         </div><!-- /.navbar-header-->
                         <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right" style="display: inline;">
                                 @if(!Session::has('user'))
-                                    <a href="{{route('login')}}">
+                                    <a href="{{route('login')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Logare
                                             </button>
                                         </li>
                                     </a><!--/.project-btn-->
-                                    <a href="{{route('register')}}">
+                                    <a href="{{route('register')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Inregistrare
                                             </button>
@@ -143,7 +143,7 @@
 
 <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
 
-<div class="container-fluid" style="margin-top: 70px; opacity: 0.85;">
+<div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
     <div class="col-md-12">
         <div class="card mb-4">
             <h5 class="card-header">Detaliile profilului</h5>

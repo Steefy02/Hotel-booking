@@ -76,8 +76,8 @@
 <!-- main-menu Start -->
 <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
     <div class="header-area" style="height: 77px;">
-        <div class="container">
-            <div class="row" style="max-width: 76vw; margin: 0 auto;">
+        <div class="container" style="max-height: 77px;">
+            <div class="row" style="max-width: 76vw; max-height: 77px; margin: 0 auto;">
                 <div class="col-sm-2">
                     <div class="logo">
                         <a href="{{route('home')}}">
@@ -85,9 +85,8 @@
                         </a>
                     </div><!-- /.logo-->
                 </div><!-- /.col-->
-                <div class="col-sm-10">
+                <div class="col-sm-10" style="height: 77px;">
                     <div class="main-menu">
-
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -96,20 +95,21 @@
                             </button><!-- / button-->
                         </div><!-- /.navbar-header-->
                         <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-nav navbar-right" style="display: inline;">
                                 @if(!Session::has('user'))
-                                    <a href="{{route('login')}}">
-                                        <li>
-                                            <button class="book-btn">Logare
-                                            </button>
-                                        </li>
+                                <li>
+                                    <a href="{{route('login')}}" class="my-buttons">
+                                        <button class="book-btn">Logare
+                                        </button>
+
                                     </a><!--/.project-btn-->
-                                    <a href="{{route('register')}}">
-                                        <li>
-                                            <button class="book-btn">Inregistrare
-                                            </button>
-                                        </li>
+                                </li>
+                                <li>
+                                    <a href="{{route('register')}}" class="my-buttons">
+                                        <button class="book-btn">Inregistrare
+                                        </button>
                                     </a><!--/.project-btn-->
+                                </li>
                                 @else
                                     <li>
                                         <div class="dropdown">
@@ -124,8 +124,7 @@
                                                 </li>
                                                 <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
                                                 </li>
-                                                <li><a id='logout' href="#"
-                                                       style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                                <li><a id='logout' href="" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
                                         </div>
                                         <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>
@@ -315,12 +314,13 @@
                             <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-square-parking"></i>&ensp; Parcare</p>
                         </li>
                         <li class="list-group-item" style="display: flex; justify-content: center;">
-                            <div class="btn btn-primary" style="color: white; width: 250px; margin-top: 10px;">
-						        Rezerva acum
-					        </div>
+                            <a href="{{route('checkout')}}">
+                                <div class="btn btn-primary my-book-buttons" style="color: white; width: 250px; margin-top: 10px;">
+                                    Rezerva acum
+                                </div>
+                            </a>
                         </li>
                     </ul>
-
 				</div>
 			</div>
 
@@ -342,7 +342,7 @@
 
             <div class="card" style="margin-top: 70px; height:400px;">
                 <div class="card-body" style="padding: 0px; display: flex; justify-content: center;">
-                <iframe style="width: 100%; height: 100%; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe style="width: 100%; height: 100%; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -359,6 +359,23 @@
 
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+
+@if(Session::has('user'))
+    <script>
+        $("#logout").on("click", function () {
+            $.ajax({
+                url: "{{route('logout')}}",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (data, status, xhr) {
+                    location.reload();
+                }
+            });
+        });
+    </script>
+@endif
 
 <script>
     $('#card1').on('click', function(){

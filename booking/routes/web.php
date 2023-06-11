@@ -28,6 +28,7 @@ Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
 Route::get('/room', [ClientPagesController::class, 'get_room'])->name('room');
+Route::get('/checkout', [ClientPagesController::class, 'get_checkout'])->name('checkout');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
