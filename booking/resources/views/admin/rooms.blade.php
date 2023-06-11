@@ -117,7 +117,7 @@
                     {{$roomtype->capacity}}
                   </td>
                   <td>
-                    <a href=""><button class="dri-btn">Edit</button>
+                    <a href="{{route('admin-roomtype-edit', [])}}"><button class="dri-btn">Edit</button>
                   </td>
                 </tr>
                 @endforeach

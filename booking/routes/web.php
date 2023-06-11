@@ -40,6 +40,7 @@ Route::post('/admin/users/update/{id}', [AdminController::class, 'edit_user'])->
 Route::get('/admin/rooms', [AdminController::class, 'get_rooms_page'])->name('admin-rooms');
 Route::get('/admin/rooms/{id}', [AdminController::class, 'get_room_edit_page'])->name('admin-rooms-edit');
 Route::post('/admin/rooms/update/{id}', [AdminController::class, 'edit_room'])->name('admin-edit-room-post');
+Route::get('/admin/roomtypes/{id}', [AdminController::class, 'get_roomtype_edit_page'])->name('admin-roomtype-edit');
 Route::get('/admin/bookings', [AdminController::class, 'get_bookings_page'])->name('admin-bookings');
 Route::get('/admin/packages', [AdminController::class, 'get_packages_page'])->name('admin-packages');
 Route::get('/admin/specials', [AdminController::class, 'get_specials_page'])->name('admin-specials');

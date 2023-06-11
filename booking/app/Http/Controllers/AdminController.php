@@ -145,4 +145,17 @@ class AdminController extends Controller {
         }
     }
 
+    public function get_roomtype_edit_page($id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $roomtype = RoomType::find($id);
+                return view('singleroomtype')->with('roomtype', $roomtype);
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
 }
