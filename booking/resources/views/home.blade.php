@@ -9,7 +9,7 @@
 
 @section('content')
 
-<section id="home" class="about-us" style="background-image: url(images/banner.jpg);">
+<section id="home" class="about-us" style="background-image: url(images/room-bg.jpg);">
     <div class="container">
         <div class="about-us-content">
             <div class="row">

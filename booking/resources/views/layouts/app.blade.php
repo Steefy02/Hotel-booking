@@ -97,13 +97,13 @@
                                 <li class="smooth-menu"><a href="#gallery">Camere</a></li>
                                 <li class="smooth-menu"><a href="#pack">Pachete</a></li>
                                 @if(!Session::has('user'))
-                                    <a href="{{route('login')}}">
+                                    <a href="{{route('login')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Logare
                                             </button>
                                         </li>
                                     </a><!--/.project-btn-->
-                                    <a href="{{route('register')}}">
+                                    <a href="{{route('register')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Inregistrare
                                             </button>
@@ -118,17 +118,18 @@
                                                 <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span
                                                     class="caret"></span></button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{route('account')}}"
-                                                       style="color:black; height:20px; padding-top:0px;">Account</a>
+                                                <li><a href="{{route('account')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                    Account</a>
                                                 </li>
-                                                <li><a href="#" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                <li><a href="{{route('settings')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                    Settings</a>
                                                 </li>
                                                 @if(Session::get('user')['userType'] == 'admin')
-                                                <li><a href="{{route('admin-home')}}" style="color:black; height:20px; padding-top:0px;">Admin</a>
+                                                <li><a href="{{route('admin-home')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                    Admin</a>
                                                 </li>
                                                 @endif
-                                                <li><a id='logout' href="#"
-                                                       style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                                <li><a id='logout' href="" class="my-dropdown-items" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
                                         </div>
                                         <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>

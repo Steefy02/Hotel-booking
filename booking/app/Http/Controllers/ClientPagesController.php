@@ -17,4 +17,12 @@ class ClientPagesController extends Controller {
     public function get_contact() {
         return view('contact');
     }
+    
+    public function get_room() {
+        return view('room');
+    }
+
+    public function get_checkout() {
+        return view('checkout');
+    }
 }
