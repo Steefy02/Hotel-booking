@@ -58,12 +58,13 @@
                   {{$roomtype->price}} RON
                 </td>
                 <td>
-                  <a href="{{route('admin-rooms-edit', ['id' => $room->id_Room])}}"><button class="dri-btn">Edit</button>
+                  <a href="{{route('admin-rooms-edit', ['id' => $room->id_Room])}}"><button class="dri-btn" >Edit</button></a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+          <a href="{{route('admin-roomtype-edit', ['id' => $roomtype->id_RoomType])}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Camera</button></a>
         </div>
       </div>
     </div>
@@ -117,12 +118,13 @@
                     {{$roomtype->capacity}}
                   </td>
                   <td>
-                    <a href="{{route('admin-roomtype-edit', [])}}"><button class="dri-btn">Edit</button>
+                    <a href="{{route('admin-roomtype-edit', ['id' => $roomtype->id_RoomType])}}"><button class="dri-btn">Edit</button></a>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            <a href="{{route('admin-add-roomtype')}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Tip de Camera</button></a>
           </div>
         </div>
       </div>

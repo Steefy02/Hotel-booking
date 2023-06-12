@@ -267,33 +267,27 @@
             <div class="owl-carousel owl-theme" id="testemonial-carousel">
                 @php
                     use App\Models\Room;
-                    use App\Http\Controllers\RoomController;
+                    use App\Models\RoomType;
                     $rooms = Room::all();
                 @endphp
 
                 @foreach ($rooms as $room)
                 @php
-                    $data = RoomController::get_data($room->id_Room);
+                    $data = RoomType::find($room->id_RoomType);
                 @endphp
                 <div class="home1-testm item">
                     <div class="home1-testm-single text-center" style="padding-top:0px">
                         <div class="home1-testm-img">
-                            <img src="{{asset('/images/' . $room->image)}}" alt="img"/>
+                            <a href="{{route('room', ['id' => $room->id_Room])}}"><img src="{{asset('/images/' . $room->image)}}" alt="img"/></a>
                         </div><!--/.home1-testm-img-->
                         <div class="home1-testm-txt">
-                            <span class="icon section-icon">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                            </span>
-                            <p>
-                                {{$data[0]->description}} 
-                            </p>
                             <h3>
                                 <a href="#">
-                                    {{$data[0]->type}}
+                                    {{$data->type}}
                                 </a>
                             </h3>
-                            <h4>Pret: {{$data[0]->price}}RON / noapte</h4>
-                            <h4><i class="fa-solid fa-user"></i>: {{$data[0]->capacity}}</h4>
+                            <h4>Pret: {{$data->price}} RON / noapte</h4>
+                            <h4><i class="fa-solid fa-user"></i>: {{$data->capacity}}</h4>
                         </div><!--/.home1-testm-txt-->	
                     </div><!--/.home1-testm-single-->
     

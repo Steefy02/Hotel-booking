@@ -27,7 +27,7 @@ Route::get('/settings', [CustomAuthController::class, 'get_settings'])->name('se
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
-Route::get('/room', [ClientPagesController::class, 'get_room'])->name('room');
+Route::get('/room/{id}', [ClientPagesController::class, 'get_room'])->name('room');
 Route::get('/checkout', [ClientPagesController::class, 'get_checkout'])->name('checkout');
 
 //Auth
@@ -44,6 +44,9 @@ Route::get('/admin/rooms', [AdminController::class, 'get_rooms_page'])->name('ad
 Route::get('/admin/rooms/{id}', [AdminController::class, 'get_room_edit_page'])->name('admin-rooms-edit');
 Route::post('/admin/rooms/update/{id}', [AdminController::class, 'edit_room'])->name('admin-edit-room-post');
 Route::get('/admin/roomtypes/{id}', [AdminController::class, 'get_roomtype_edit_page'])->name('admin-roomtype-edit');
+Route::post('/admin/roomtypes/update/{id}', [AdminController::class, 'edit_roomtype'])->name('admin-edit-roomtype-post');
+Route::get('/admin/add-roomtype', [AdminController::class, 'get_add_new_roomtype_page'])->name('admin-add-roomtype');
+Route::post('/admin/add-roomtype/add', [AdminController::class, 'add_roomtype'])->name('admin-add-roomtype-post');
 Route::get('/admin/bookings', [AdminController::class, 'get_bookings_page'])->name('admin-bookings');
 Route::get('/admin/packages', [AdminController::class, 'get_packages_page'])->name('admin-packages');
 Route::get('/admin/specials', [AdminController::class, 'get_specials_page'])->name('admin-specials');

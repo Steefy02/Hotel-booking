@@ -72,7 +72,7 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
-<body>
+<body style="background-image: url('{{asset('images/room-bg.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: top;">
 
 <!-- main-menu Start -->
 <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
@@ -142,7 +142,7 @@
     </div><!-- /.header-area -->
 </header><!-- /.top-area-->
 
-<img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+{{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
 <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
     <div class="col-md-7">
@@ -209,19 +209,19 @@
                     <div class="row">
                         <div class="mb-3 col-md-6">
                             <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="card-name" name="fullName" value="****" autofocus="">
+                            <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****">
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail <i class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="email" name="email" value="****@example.com" placeholder="email">
+                            <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                            <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com">
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Numar de telefon <i class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="**** *** ***" placeholder="0769 420 696">
+                            <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***">
                         </div>    
                         <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Adresa <i class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="adress" name="adress" value="****" placeholder="adresa">
+                            <label for="email" class="form-label">Adresa <i id="address-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                            <input class="form-control" type="text" id="adress" name="adress" placeholder="adresa">
                         </div>
                     </div>
                 </form>
@@ -288,16 +288,63 @@
 
 <script>
     var name_bouncy = document.getElementById('name-bouncy');
-    var name_input = document.getElementsByName('fullName');
+    var name_input = document.getElementById('card-name');
+    var email_bouncy = document.getElementById('email-bouncy');
+    var email_input = document.getElementById('email');
+    var tel_bouncy = document.getElementById('tel-bouncy');
+    var tel_input = document.getElementById('phoneNumber');
+    var address_bouncy = document.getElementById('address-bouncy');
+    var address_input = document.getElementById('adress');
     
-    name_input.onchange=function(){
-        if(this.value == "")
+    name_input.onkeyup = function(event){
+        if(name_input.value == "")
         {
-            name_bouncy.classList.remove('fa-bounce');
+            if(!name_bouncy.classList.contains('fa-bounce')) {
+                name_bouncy.classList.add('fa-bounce')
+            }
         }
         else
         {
-            name_bouncy.classList.add('fa-bounce');
+            name_bouncy.classList.remove('fa-bounce');
+        }
+    };
+
+    email_input.onkeyup = function(event){
+        if(email_input.value == "")
+        {
+            if(!email_bouncy.classList.contains('fa-bounce')) {
+                email_bouncy.classList.add('fa-bounce')
+            }
+        }
+        else
+        {
+            email_bouncy.classList.remove('fa-bounce');
+        }
+    };
+
+    tel_input.onkeyup = function(event){
+        if(tel_input.value == "")
+        {
+            if(!tel_bouncy.classList.contains('fa-bounce')) {
+                tel_bouncy.classList.add('fa-bounce')
+            }
+        }
+        else
+        {
+            tel_bouncy.classList.remove('fa-bounce');
+        }
+    };
+
+    address_input.onkeyup = function(event){
+        if(address_input.value == "")
+        {
+            if(!address_bouncy.classList.contains('fa-bounce')) {
+                address_bouncy.classList.add('fa-bounce')
+            }
+        }
+        else
+        {
+            address_bouncy.classList.remove('fa-bounce');
         }
     };
 </script>

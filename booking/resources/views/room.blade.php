@@ -142,11 +142,16 @@
 
 <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
 
+@php
+    use App\Models\Room;
+    use App\Models\RoomType;
+
+    $roomtype = RoomType::find($room->id_RoomType);
+@endphp
+
 <div class="container-fluid" style="margin: 0 auto; padding-top: 50px; background-color: transparent;">
 
 	<div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #00d8ff; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center; opacity: 0.70;">
-		<a href="#informatii" class="py-1 px-3" style="color: black"><b>Informatii</b></a>
-        <span style="color: black"><b> | </b></span>
 		<a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
         <span style="color: black"><b> | </b></span>
 		<a href="#facilitati" class="py-1 px-3" style="color: black"><b>Facilitati</b></a>
@@ -158,7 +163,7 @@
 		<div class="col-md-6 col-lg-6 mb-3">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">Camera hotel 69</h4>
+					<h4 class="card-title">{{$roomtype->type}}, {{$room->roomNumber}}</h4>
                     <h5 class="card-subtitle" style="margin-top: 10px;">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -166,7 +171,7 @@
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </h5>
-					<h6 class="card-subtitle text-muted" style="margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> Strada matii nr 420</h6>
+					<h6 class="card-subtitle text-muted" style="margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> Valea mare, jud Bistrita-Nasaud</h6>
 				</div>
                 
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -181,19 +186,7 @@
                     <div class="carousel-inner" style="background-color: #365566;">
                         <div class="item active">
                             <div style="display: flex; justify-content: center; align-items: center;">
-                                <img src="http://127.0.0.1:8000/images/r1.jpg" alt="Los Angeles">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div style="display: flex; justify-content: center; align-items: center;">
-                                <img src="http://127.0.0.1:8000/images/r2.jpg" alt="Chicago">
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div style="display: flex; justify-content: center; align-items: center;">
-                                <img src="http://127.0.0.1:8000/images/r3.jpg" alt="New York">
+                                <img src="{{asset('/images/' . $room->image)}}" alt="Los Angeles">
                             </div>
                         </div>
                     </div>
@@ -213,30 +206,11 @@
 				<div class="card-body">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<h4 id="informatii" style="margin-bottom: 5px;">Informatii</h4>
-						</li>
-						<li class="list-group-item">
-							<p style="margin-top: 15px;">
-							Cea mai noua unitate de cazare de pe litoralul Marii Negre 
-							apare langa hotelul Phoenicia Luxury 4*, un hotel grandios de 5*, 
-							PHOENICIA ROYAL. Hotelul a fost inaugurat in sezonul estival 2017 
-							si detine distinctia Five Star Diamond Award
-							Toti oaspetii din cadrul Phoenicia Royal, Phoenicia Luxury au 
-							acces la facilitatile gratuite din cadrul Phoenicia Holiday Resort.
-							</p>
 							<h4 id="dotari" style="margin-top: 70px; margin-bottom: 5px;">Dotari camere</h4>
 						</li>
 						<li class="list-group-item">
 							<p style="margin-top: 15px;">
-                            Sunset Apartment - are un spatiu generos de 61 mp, format dintr-un living si un dormitor 
-                            cu pat matrimonial(180/200 cm), o cada rotunda in fata patului, baie cu dus, balcon, 
-                            vedere frontala catre lacul Siutghiol.<br>
-                            Capacitate maxima: 2 adulti<br>
-                            Facilitati spatii de cazare: Sistem de acces pe baza de cartela magnetica, 
-                            instalatie individuala de climatizare,TV, internet, seif in camera, telefon, 
-                            minibar, cana electrica, cani, pahare, lingurite, fier de calcat, masa de calcat, 
-                            uscator de par, prosoape, halate, papuci, cosmetice hoteliere, canapea, baie cu dus, 
-                            pat bebe la cerere, housekeeping zilnic.
+                            {{$roomtype->description}}
 							</p>
 							<h4 id="facilitati" style="margin-top: 70px; margin-bottom: 5px;">Facilitati</h4>
 						</li>
@@ -294,25 +268,38 @@
 			</div>
 		</div>
 
+        @php
+            use App\Http\Controllers\ClientPagesController;
+
+            $start = ['day' => 20, 'month' => 12, 'year' => 2002];
+            $end = ['day' => 10, 'month' => 1, 'year' => 2003];
+        @endphp
+
 		<div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
             <div class="card" style="opacity: 0.85;">
 				<div class="card-body">
                     <ul class="list-group list-group-flush">
+                        @if(Session::has('data-start') && Session::has('data-end') || true)
                         <li class="list-group-item" style="text-align: center;">
                             <h4 style="margin-bottom: 5px;">Tarif pentru perioada selectata</h4>
-                            <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>31.02.2050 - 34.02.2050</b></p>
+                            <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>{{$start['day']}}.{{$start['month']}}.{{$start['year']}} - {{$end['day']}}.{{$end['month']}}.{{$end['year']}}</b></p>
                         </li>
                         <li class="list-group-item"  style="text-align: center;">
-                            <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">420 Lei</p>
+                            <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$roomtype->price * ClientPagesController::calc_days($start, $end)}} Lei</p>
                         </li>
+                        @else
+                        <li class="list-group-item"  style="text-align: center;">
+                            <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">Nu ai setat datele sejurului in pagina <a href="{{route('home')}}" style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #blue;">Home</a></p>
+                        </li>
+                        @endif
                         <li class="list-group-item">
-                            <p style="font-size:medium; color: #3e4d5d; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i>&ensp; Strada Matii Nr 420</p>
-                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-person"></i><i class="fa-solid fa-person-dress"></i>&ensp;Capacitate: 2 pers</p>
-                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-bed"></i>&ensp; Pat dublu</p>
-                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-clock"></i>&ensp; Checkin 7:00 - 12:00</p>
+                            <p style="font-size:medium; color: #3e4d5d; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i>&ensp;  Valea Mare, jud Bistrita-Nasaud</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-person"></i><i class="fa-solid fa-person-dress"></i>&ensp;Capacitate: {{$roomtype->capacity}} pers</p>
+                            <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-clock"></i>&ensp; Check-in 7:00 - 12:00</p>
                             <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-wifi"></i>&ensp; Wifi gratuit</p>
                             <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-square-parking"></i>&ensp; Parcare</p>
                         </li>
+                        @if(Session::has('data-start') && Session::has('data-end') || true)
                         <li class="list-group-item" style="display: flex; justify-content: center;">
                             <a href="{{route('checkout')}}">
                                 <div class="btn btn-primary my-book-buttons" style="color: white; width: 250px; margin-top: 10px;">
@@ -320,6 +307,7 @@
                                 </div>
                             </a>
                         </li>
+                        @endif
                     </ul>
 				</div>
 			</div>
@@ -342,7 +330,7 @@
 
             <div class="card" style="margin-top: 70px; height:400px;">
                 <div class="card-body" style="padding: 0px; display: flex; justify-content: center;">
-                    <iframe style="width: 100%; height: 100%; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe style="width: 100%; height: 100%; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 

@@ -149,7 +149,51 @@ class AdminController extends Controller {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
                 $roomtype = RoomType::find($id);
-                return view('singleroomtype')->with('roomtype', $roomtype);
+                return view('admin.singleroomtype')->with('roomtype', $roomtype);
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function edit_roomtype(Request $request, $id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $roomtype = RoomType::find($id);
+                $roomtype->update(['type' => $request->type, 'description' => $request->description, 'price' => $request->price, 'capacity' => $request->capacity]);
+                return redirect()->back()->with('message', 'yes');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_add_new_roomtype_page() {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                return view('admin.addroomtype');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_roomtype(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $roomtype = new RoomType;
+                $roomtype->type = $request->type;
+                $roomtype->description = $request->description;
+                $roomtype->price = $request->price;
+                $roomtype->capacity = $request->capacity;
+                $roomtype->save();
+                return redirect()->route('admin-rooms');
             }else{
                 return redirect()->back();
             }

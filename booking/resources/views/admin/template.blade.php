@@ -83,16 +83,16 @@
               <span class="menu-title">Camere</span>
             </a>
           </li>
+          <li class="nav-item" id='packages'>
+            <a class="nav-link" href="{{route('admin-packages')}}">
+                <i class="fa-solid fa-box menu-icon"></i>
+              <span class="menu-title">Facilitati Camere</span>
+            </a>
+          </li>
           <li class="nav-item" id='bookings'>
             <a class="nav-link" href="{{route('admin-bookings')}}">
                 <i class="fa-solid fa-check menu-icon"></i>
               <span class="menu-title">Rezervari</span>
-            </a>
-          </li>
-          <li class="nav-item" id='packages'>
-            <a class="nav-link" href="{{route('admin-packages')}}">
-                <i class="fa-solid fa-box menu-icon"></i>
-              <span class="menu-title">Pachete</span>
             </a>
           </li>
           <li class="nav-item" id='special'>
