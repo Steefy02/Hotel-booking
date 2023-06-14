@@ -8,9 +8,13 @@ use Session;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\RoomType;
+use App\Models\SpecialDate;
+use App\Models\Facility;
+use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\ClientPagesController;
 
 class AdminController extends Controller {
 
@@ -83,7 +87,7 @@ class AdminController extends Controller {
     public function get_packages_page() {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
-                return view('admin.packages');
+                return view('admin.facilities');
             }else{
                 return redirect()->back();
             }
@@ -200,6 +204,126 @@ class AdminController extends Controller {
         }else {
             return redirect()->back();
         }
+    }
+
+    public function get_add_special_page() {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                return view('admin.addspecial');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_special(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $data = explode('-', $request->dateStart);
+                $start = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+                $data = explode('-', $request->dateEnd);
+                $end = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+                //dd($start);
+                if($request->type != 'no' && ClientPagesController::validate_dates($start, $end)) {
+                    $special = new SpecialDate;
+                    $special->dateStart = $request->dateStart;
+                    $special->dateEnd = $request->dateEnd;
+                    $special->price = $request->price;
+                    $special->id_RoomType = $request->type;
+                    $special->save();
+                    return redirect()->route('admin-specials');
+                }else {
+                    return redirect()->back()->with('errMsg', 'no');
+                }
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_edit_special_page($id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $special = SpecialDate::find($id);
+                return view('admin.singlespecial')->with('special', $special);
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function edit_special(Request $request, $id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $special = SpecialDate::find($id);
+                $data = ClientPagesController::convert_date($request->dateStart, $request->dateEnd);
+                if(ClientPagesController::validate_dates($data['start'], $data['end'])) {
+                    $special->update(['dateStart' => $request->dateStart, 'dateEnd' => $request->dateEnd, 'price' => $request->price, 'id_RoomType' => $request->type]);
+                    return redirect()->back()->with('message', 'yes');
+                }
+                return redirect()->back()->with('errMsg', 'no');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_facility(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $facility = new Facility;
+                $facility->name = $request->name;
+                $facility->save();
+                return redirect()->back();
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function update_facility(Request $request, $id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $facility = Facility::find($id);
+                $facility->update(['name' => $request->name]);
+                return redirect()->back();
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_facility_to_room(Request $request) {
+        DB::insert('insert into AssociationFacility (id_Room, id_Facility) values (?, ?)', [$request->id_Room, $request->id_Facility]);
+        return response()->json(['success' => 'success'], 200);
+    }
+
+    public function remove_facility_from_room(Request $request) {
+        DB::delete('delete from AssociationFacility where id_Room = ? and id_Facility = ?', [$request->id_Room, $request->id_Facility]);
+        return response()->json(['success' => 'success'], 200);
+    }
+
+    public static function check_room_has_facility($room, $facility) {
+        $data = DB::select('select * from AssociationFacility where id_Room = ' . $room . ' and id_Facility = ' . $facility);
+
+        if(sizeof($data) == 1) {
+            return true;
+        }
+        return false;
     }
 
 }

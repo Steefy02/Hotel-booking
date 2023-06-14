@@ -51,6 +51,7 @@
 
     <!-- Page CSS -->
     <script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <!-- Helpers -->
     <script src="{{asset('js/helpers.js')}}"></script>
@@ -68,6 +69,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('js/config.js')}}"></script>
+
 </head>
 
 <body>
@@ -114,7 +116,7 @@
                                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #00d8ff; border-color: #00d8ff;">
                                                 <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span class="caret"></span></button>
                                             <ul class="dropdown-menu" style="position: absolute;">
-                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
+                                                <li><a href="{{route('account')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
                                                 </li>
                                                 @if(Session::get('user')['userType'] == 'admin')
                                                 <li><a href="{{route('admin-home')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
@@ -142,6 +144,8 @@
     @php
     use App\Models\Room;
     use App\Models\RoomType;
+    use App\Models\Facility;
+    use App\Http\Controllers\ClientPagesController;
 
     $roomtype = RoomType::find($room->id_RoomType);
     @endphp
@@ -213,23 +217,31 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="row">
-                                    <div class="col"><i class="fa-solid fa-check"></i> All inclusive</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Piscina</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Internet</div>
+
+                                    @php
+                                    $k = 0;
+                                    $facilities = ClientPagesController::get_facilities_for_room($room->id_Room);
+                                    @endphp
+
+                                    @foreach ($facilities as $facility)
+
+                                    @php
+                                    $fac = Facility::find($facility->id_Facility);
+                                    @endphp
+
+                                    <div class="col"><i class="fa-solid fa-check"></i>{{$fac->name}}</div>
+
+                                    @php
+                                    $k++;
+                                    @endphp
+
+                                    @if($k % 3 == 0)
+                                    <div class="w-100"></div>
+                                    @endif
+                                    @endforeach
 
                                     <!-- Force next columns to break to new line -->
-                                    <div class="w-100"></div>
-
-                                    <div class="col"><i class="fa-solid fa-check"></i> Parcare</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Restaurant</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Minibar</div>
-
-                                    <!-- Force next columns to break to new line -->
-                                    <div class="w-100"></div>
-
-                                    <div class="col"><i class="fa-solid fa-check"></i> Aer conditionat</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Frigider</div>
-                                    <div class="col"><i class="fa-solid fa-check"></i> Prosoape</div>
+                                    {{-- <div class="w-100"></div> --}}
                                 </div>
                                 <h4 id="servicii_masa" style="margin-top: 70px; margin-bottom: 5px;">Servicii masa</h4>
                             </li>
@@ -266,10 +278,10 @@
             </div>
 
             @php
-            use App\Http\Controllers\ClientPagesController;
+            use App\Models\SpecialDate;
 
-            $start = ['day' => 20, 'month' => 12, 'year' => 2002];
-            $end = ['day' => 10, 'month' => 1, 'year' => 2003];
+            $start = ['day' => 20, 'month' => 6, 'year' => 2023];
+            $end = ['day' => 22, 'month' => 6, 'year' => 2023];
             @endphp
 
             <div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
@@ -281,21 +293,64 @@
                                 <h4 style="margin-bottom: 5px;">Tarif pentru perioada selectata</h4>
                                 <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>{{$start['day']}}.{{$start['month']}}.{{$start['year']}} - {{$end['day']}}.{{$end['month']}}.{{$end['year']}}</b></p>
                             </li>
+
                             <li class="list-group-item" style="text-align: center;">
+                                @php
+
+                                $specials = SpecialDate::all();
+                                //dd($specials);
+                                $price = 0;
+                                $is_in_range = false;
+
+                                foreach($specials as $special) {
+                                if($special->id_RoomType == $roomtype->id_RoomType) {
+                                $dates = ClientPagesController::convert_date($special->dateStart, $special->dateEnd);
+
+                                $startSpec = $dates['start'];
+                                $endSpec = $dates['end'];
+
+                                if(ClientPagesController::is_date_in($start, $startSpec, $endSpec) && ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                                $price = $special->price * ClientPagesController::calc_days($start, $end);
+                                $is_in_range = true;
+                                }else if(ClientPagesController::is_date_in($start, $startSpec, $endSpec)) {
+                                $price = $special->price * ClientPagesController::calc_days($start, $endSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end);
+                                $is_in_range = true;
+                                }else if(ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                                $price = $special->price * ClientPagesController::calc_days($startSpec, $end) + $roomtype->price * ClientPagesController::calc_days($start, $startSpec);
+                                $is_in_range = true;
+                                }else if(ClientPagesController::is_date_in($startSpec, $start, $end) && ClientPagesController::is_date_in($endSpec, $start, $end)) {
+                                $price = $roomtype->price * ClientPagesController::calc_days($start, $startSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end) + $special->price * ClientPagesController::calc_days($startSpec, $endSpec);
+                                $is_in_range = true;
+                                }
+                                }
+                                }
+
+                                @endphp
+
+                                @if($is_in_range)
+                                <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$price}} Lei</p>
+                                @else
                                 <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$roomtype->price * ClientPagesController::calc_days($start, $end)}} Lei</p>
+                                @endif
                             </li>
+
                             @else
                             <li class="list-group-item" style="text-align: center;">
                                 <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">Nu ai setat datele sejurului in pagina <a href="{{route('home')}}" style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #blue;">Home</a></p>
                             </li>
                             @endif
+
                             <li class="list-group-item">
                                 <p style="font-size:medium; color: #3e4d5d; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i>&ensp; Valea Mare, jud Bistrita-Nasaud</p>
                                 <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-person"></i><i class="fa-solid fa-person-dress"></i>&ensp;Capacitate: {{$roomtype->capacity}} pers</p>
                                 <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-clock"></i>&ensp; Check-in 7:00 - 12:00</p>
                                 <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-wifi"></i>&ensp; Wifi gratuit</p>
                                 <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-square-parking"></i>&ensp; Parcare</p>
+                                <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-person-swimming"></i>&ensp; Piscina</p>
+                                <p style="font-size:medium; color: #3e4d5d;"><i class="fa-solid fa-utensils"></i>&ensp; Restaurant</p>
                             </li>
+
+
                             @if(Session::has('data-start') && Session::has('data-end') || true)
                             <li class="list-group-item" style="display: flex; justify-content: center;">
                                 <a href="{{route('checkout')}}">
@@ -336,6 +391,7 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
+                            <button id="review-modal-button" class="btn my-buttons review-button trigger">Adauga o recenzie!</button>
                             <h5 class="card-title" style="margin-bottom: 5px; color: white;">Recenzii</h5>
                             <div class="stars">
                                 <form action="" style="float: left;">
@@ -353,32 +409,166 @@
                             </div>
                         </li>
                         <li class="list-group-item" style="padding-left: 0px;">
-                            <p style="font-size:medium; margin-top: 10px; margin-bottom: 5px; color: black;"> Esti prost si ai nevoie de ajutor?</p>
-                            <p style="font-size:medium; color: black;"> Contacteaza-ne la:</p>
-                            <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-phone"></i>&emsp;0769 420 mortii matii</p>
-                            <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-envelope"></i>&emsp;guta.regele.manelelor@gmail.com</p>
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <h6 class="review-user-name">Alexandru</h6>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Studio</h7>
+                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;1 Noapte</h7>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="review-date">04 aprilie 2023</h6>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-regular fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <div class="review-text">
+                                        Experiența noastră la acest hotel de la munte a fost excelentă! Cazarea a fost impecabilă,
+                                        cu o cameră spațioasă și o priveliște uimitoare. Personalul a fost amabil și serviciile au
+                                        fost de înaltă calitate. Recomand cu căldură acest loc pentru o escapadă relaxantă în mijlocul naturii.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px;">
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <h6 class="review-user-name">Simona</h6>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Apartament</h7>
+                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;6 Nopti</h7>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="review-date">20 decembrie 2022</h6>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <div class="review-text">
+                                        Am avut o experiență extraordinară la acest hotel de la munte! Cazarea noastră a fost într-o cameră minunată,
+                                        cu o priveliște panoramică uimitoare asupra munților înzăpeziți. Camera era spațioasă, confortabilă și elegant decorată,
+                                        oferind o atmosferă relaxantă și primitoare.
+                                        Tot mobilierul și facilitățile erau de înaltă calitate, iar patul a fost extrem de confortabil,
+                                        asigurându-ne un somn odihnitor după o zi plină de aventuri în natură. Baia modernă era dotată cu produse de îngrijire de lux,
+                                        iar cada cu hidromasaj ne-a oferit o relaxare revigorantă.
+                                        Personalul hotelului a fost extrem de amabil, atent și profesionist, asigurându-se că avem tot ce ne trebuie pentru a ne
+                                        simți ca acasă. Ne-au oferit informații utile despre traseele de drumeție și activitățile din zonă,
+                                        ajutându-ne să planificăm zilele în munți în mod eficient.
+                                        Am fost impresionați și de facilitățile hotelului, cum ar fi restaurantul cu mâncăruri delicioase și diverse,
+                                        care au satisfăcut toate gusturile noastre. De asemenea, centrul spa ne-a oferit momente de relaxare și răsfăț,
+                                        cu piscină încălzită, saună și servicii de masaj de înaltă calitate.
+                                        În ansamblu, această cameră de hotel de la munte a depășit așteptările noastre în toate privințele. Recomand cu
+                                        căldură acest loc tuturor celor care doresc să petreacă timp în mijlocul naturii, beneficiind totodată de confort
+                                        și servicii impecabile. Cu siguranță ne vom întoarce în viitor pentru a ne bucura din nou de această experiență minunată!
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px;">
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <h6 class="review-user-name">Raluca</h6>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera double</h7>
+                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;4 Nopti</h7>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="review-date">17 august 2020</h6>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="fa-regular fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <div class="review-text">
+                                        Sederea a fost decentă. Camera era confortabilă și avea o priveliște plăcută către munți.
+                                        Personalul a fost amabil în general. În ansamblu, a fost o experiență satisfăcătoare pentru o ședere la munte.
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="padding-left: 0px;">
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <h6 class="review-user-name">Mihai</h6>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera single</h7>
+                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;2 Nopti</h7>
+                                </div>
+                                <div class="col-md-10">
+                                    <h6 class="review-date">13 septembrie 2021</h6>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <i class="fa-solid fa-star fa-sm" style="color: #ffee77;"></i>
+                                    <div class="review-text">
+                                        Cazarea la acest hotel a fost deosebit de plăcută. Cazarea a depășit cu mult așteptările mele.
+                                        Camera a fost elegantă, spațioasă și confortabilă, oferind o atmosferă relaxantă și primitoare.
+                                        Personalul a fost extrem de amabil și atent la nevoile mele, asigurându-se că am avut o ședere fără cusur.
+                                        Facilitățile hotelului au fost excelente, de la restaurantul cu preparate delicioase până la centrul spa relaxant.
+                                        Am plecat cu amintiri frumoase și cu dorința de a reveni în viitor.
+                                        Recomand cu încredere acest hotel pentru o experiență deosebită de cazare.
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="card" style="margin-top: 70px; height:300px;">
-                <div class="card-body">
-                    <div>
-                        <h5 class="card-title" style="color: #3e4d5d; max-width: 200px; margin: 0px !important;">Recenzii</h5>
+    <!--Modal-->
 
+    <div class="my-modal-wrapper">
+        <div class="my-modal">
+            <div class="my-head">
+                <a class="my-btn-close trigger" href="#">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+            </div>
+            <div class="my-content">
+                <div class="row" style="margin-bottom: 90px;">
+                    <div class="col-md-6">
+                        <label>Alege tipul de camera</label>
+                        <select id="selectRoomType" class="form-select color-dropdown" style="max-width: 200px;" autofocus>
+                            <option selected="">Studio</option>
+                            <option>Camera Single</option>
+                            <option>Camera Double</option>
+                            <option>Camera Triple</option>
+                            <option>Apartament</option>
+                        </select>
                     </div>
-                    <hr class="my-0">
-                    <div class="row mt-4">
-                    </div>
-                    <div class="row">
-                        <img src="https://via.placeholder.com/400x200" class="user-picture">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="height: 79px;"></textarea>
+                    <div class="col-md-6">
+                        <label>Cum ti s-a parut sederea?</label>
+                        <div class="stars">
+                            <form class="my-stars-form" action="" style="float: left;">
+                                <input class="star star-5" id="star-5-1" type="radio" name="star" />
+                                <label style="font-size: 16px; margin-bottom: 0px;" class="star star-5" for="star-5-1"></label>
+                                <input class="star star-4" id="star-4-1" type="radio" name="star" />
+                                <label style="font-size: 16px; margin-bottom: 0px;" class="star star-4" for="star-4-1"></label>
+                                <input class="star star-3" id="star-3-1" type="radio" name="star" />
+                                <label style="font-size: 16px; margin-bottom: 0px;" class="star star-3" for="star-3-1"></label>
+                                <input class="star star-2" id="star-2-1" type="radio" name="star" />
+                                <label style="font-size: 16px; margin-bottom: 0px;" class="star star-2" for="star-2-1"></label>
+                                <input class="star star-1" id="star-1-1" type="radio" name="star" />
+                                <label style="font-size: 16px; margin-bottom: 0px;" class="star star-1" for="star-1-1" style="padding-left: 0px;"></label>
+                            </form>
+                        </div>
                     </div>
                 </div>
+                <div>
+                    <label>Impartaseste-ne experienta ta in cateva cuvinte</label>
+                    <textarea type="text" class="form-control" style="height: 150px; margin-bottom: 20px;"></textarea>
+                </div>
+                <button id="review-modal-button" class="btn my-buttons review-button trigger">Salveaza</button>
             </div>
         </div>
     </div>
+
+    <!--Modal-->
 
 </body>
 
@@ -411,3 +601,15 @@
         window.location.href = "{{route('home')}}";
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $('.trigger').on('click', function() {
+            $('.my-modal-wrapper').toggleClass('open');
+            $('.page-wrapper').toggleClass('my-blur-it');
+            return false;
+        });
+    });
+</script>
+
+</html>

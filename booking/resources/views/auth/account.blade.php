@@ -114,7 +114,7 @@
                                             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #00d8ff; border-color: #00d8ff;">
                                                 <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span class="caret"></span></button>
                                             <ul class="dropdown-menu" style="position: absolute;">
-                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
+                                                <li><a href="{{route('account')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
                                                 </li>
                                                 @if(Session::get('user')['userType'] == 'admin')
                                                 <li><a href="{{route('admin-home')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
@@ -139,6 +139,12 @@
 
     <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);" />
 
+    @php
+    use App\Models\User;
+
+    $user = Session::get('user');
+    @endphp
+
     <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
         <div class="col-md-12">
             <div class="card mb-4">
@@ -153,47 +159,34 @@
                                 <i class="bx bx-upload d-block d-sm-none"></i>
                                 <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
                             </label>
-                            <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                                <i class="bx bx-reset d-block d-sm-none"></i>
-                                <span class="d-none d-sm-block">Reset</span>
-                            </button>
-
                             <p class="text-muted mb-0">Doar format JPG sau PNG.</p>
                         </div>
                     </div>
                 </div>
                 <hr class="my-0">
+
                 <div class="card-body">
                     <form id="formAccountSettings" method="POST" onsubmit="return false">
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="firstName" class="form-label">Nume</label>
-                                <input class="form-control" type="text" id="firstName" name="firstName" value="nume" autofocus="">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="lastName" class="form-label">Prenume</label>
-                                <input class="form-control" type="text" name="lastName" id="lastName" value="prenume">
+                                <label for="firstName" class="form-label">Nume Complet</label>
+                                <input class="form-control" type="text" id="firstName" name="firstName" value="{{$user['name']}}" autofocus="">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
-                                <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="email">
+                                <input class="form-control" type="text" id="email" name="email" value="{{$user['email']}}" placeholder="email">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="phoneNumber">Numar de telefon</label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="0769 420 696" placeholder="0769 420 696">
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{$user['phoneNumber']}}" placeholder="0769 420 696">
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Adresa</label>
-                                <input class="form-control" type="text" id="adress" name="adress" value="adresa" placeholder="adresa">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Sex</label>
-                                <input class="form-control" type="text" id="sex" name="sex" value="sex" placeholder="sex">
+                                <label for="email" class="form-label">Username</label>
+                                <input class="form-control" type="text" id="username" name="username" placeholder="username" value="{{$user['username']}}">
                             </div>
                         </div>
                         <div class="mt-2">
                             <button type="submit" class="btn btn-primary me-2">Salveaza modificarile</button>
-                            <button type="reset" class="btn btn-outline-secondary">Anulare</button>
                         </div>
                     </form>
                 </div>

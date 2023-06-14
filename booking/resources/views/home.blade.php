@@ -3,7 +3,7 @@
 @section('title', 'Hotel Booking Management System')
 
 @section('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
 
 @endsection
 
@@ -17,16 +17,16 @@
                     <div class="single-about-us">
                         <div class="about-us-txt">
                             <h2>
-                                Exploreaza Muntii Rodnei 
+                                Exploreaza Muntii Rodnei
 
                             </h2>
-                            
+
                         </div><!--/.about-us-txt-->
                     </div><!--/.single-about-us-->
                 </div><!--/.col-->
                 <div class="col-sm-0">
                     <div class="single-about-us">
-                        
+
                     </div><!--/.single-about-us-->
                 </div><!--/.col-->
             </div><!--/.row-->
@@ -37,7 +37,7 @@
 <!--about-us end -->
 
 <!--travel-box start-->
-<section  class="travel-box">
+<section class="travel-box">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -47,10 +47,10 @@
                         <ul class="nav nav-tabs" role="tablist">
 
                             <li role="presentation" class="active">
-                                 <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
-                                     <i class="fas fa-bed"></i>
-                                     Camere
-                                 </a>
+                                <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
+                                    <i class="fas fa-bed"></i>
+                                    Camere
+                                </a>
                             </li>
 
                         </ul>
@@ -62,36 +62,12 @@
                                 <div class="tab-para">
 
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-4 col-sm-12">
-                                            <div class="single-tab-select-box">
-
-                                                <h2>tip camera</h2>
-
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
-
-                                                          <option value="default">alege tipul de camera</option><!-- /.option-->
-
-                                                          <option value="turkey">studio</option><!-- /.option-->
-
-                                                          <option value="russia">camera single</option><!-- /.option-->
-                                                          <option value="egept">camera dubla</option><!-- /.option-->
-                                                          <option value="">camera tripla</option>
-                                                          <option value="">apartament</option>
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
-
-                                            </div><!--/.single-tab-select-box-->
-                                        </div><!--/.col-->
 
                                         <div class="col-lg-2 col-md-3 col-sm-4">
                                             <div class="single-tab-select-box">
                                                 <h2>check in</h2>
                                                 <div class="travel-check-icon">
-                                                    <form action="#">
-                                                        <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
-                                                    </form>
+                                                    <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
@@ -100,78 +76,54 @@
                                             <div class="single-tab-select-box">
                                                 <h2>check out</h2>
                                                 <div class="travel-check-icon">
-                                                    <form action="#">
-                                                        @php
-                                                            $datet = explode("/", date('m/d/Y'));
-                                                            //echo "<script>alert(" . print_r($datet) . ")</script>";
-                                                            $datet[1] = intval($datet[1]) + 1;    
-                                                        @endphp
-                                                        <input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
-                                                    </form>
+                                                    @php
+                                                    $datet = explode("/", date('m/d/Y'));
+                                                    $datet[1] = intval($datet[1]) + 1;
+                                                    @endphp
+                                                    <input type="text" name="check_out" class="form-control" data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
 
-                                        <div class="col-lg-2 col-md-1 col-sm-4">
+                                        @php
+                                        use App\Models\RoomType;
+                                        $roomtypes = RoomType::all();
+                                        @endphp
+
+                                        <div class="col-lg-3 col-md-2 col-sm-5">
                                             <div class="single-tab-select-box">
-                                                <h2>numar adulti</h2>
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
-
-                                                          <option value="default">5</option><!-- /.option-->
-
-                                                          <option value="10">10</option><!-- /.option-->
-
-                                                          <option value="15">15</option><!-- /.option-->
-                                                          <option value="20">20</option><!-- /.option-->
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
+                                                <h2>Tip camera</h2>
+                                                <select name='type' class="form-control" style="height: 48px">
+                                                    @foreach ($roomtypes as $roomtype)
+                                                    <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                                                    @endforeach
+                                                    <option value="no" selected>Selecteaza tipul</option>
+                                                </select>
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
 
-                                        <div class="col-lg-2 col-md-1 col-sm-4">
-                                            <div class="single-tab-select-box">
-                                                <h2>numar copii</h2>
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
+                                        <div class="col-lg-4 col-md-1 col-sm-4">
+                                            <div class="single-tab-select-box" style="text-align: center">
+                                                <h2>Pret</h2>
+                                                <div class="travel-filter">
+                                                    <div class="info_widget">
+                                                        <div class="price_filter">
 
-                                                          <option value="default">1</option><!-- /.option-->
-
-                                                          <option value="2">2</option><!-- /.option-->
-
-                                                          <option value="4">4</option><!-- /.option-->
-                                                          <option value="8">8</option><!-- /.option-->
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
-                                            </div><!--/.single-tab-select-box-->
-                                        </div><!--/.col-->
+                                                            <input type="text" id="rangePrimary" name="rangePrimary" value="" />
+                                                            <p id="priceRangeSelected"></P>
+                                                        </div><!--/.price-filter-->
+                                                    </div><!--/.info_widget-->
+                                                </div><!--/.travel-filter-->
+                                            </div><!--/.col-->
+                                        </div>
 
                                     </div><!--/.row-->
 
                                     <div class="row">
-                                        <div class="col-sm-5">
-                                            <div class="travel-budget">
-                                                <div class="row">
-                                                    <div class="co-md-9 col-sm-8">
-                                                        <div class="travel-filter">
-                                                            <div class="info_widget">
-                                                                <div class="price_filter">
-                                                                    
-                                                                    <input type="text" id="rangePrimary" name="rangePrimary" value="" />
-                                                                    <p id="priceRangeSelected"></P>
-                                                                </div><!--/.price-filter-->
-                                                            </div><!--/.info_widget-->
-                                                        </div><!--/.travel-filter-->
-                                                    </div><!--/.col-->
-                                                </div><!--/.row-->
-                                            </div><!--/.travel-budget-->
-                                        </div><!--/.col-->
-                                        <div class="clo-sm-7">
-                                            <div class="about-btn travel-mrt-0 pull-right">
-                                                <button  class="about-view travel-btn">
-                                                    cauta	
+                                        <div class="col-sm-7">
+                                            <div class="about-btn travel-mrt-0 pull-left">
+                                                <button class="about-view travel-btn">
+                                                    cauta
                                                 </button><!--/.travel-btn-->
                                             </div><!--/.about-btn-->
                                         </div><!--/.col-->
@@ -205,7 +157,7 @@
                     <div class="service-content">
                         <h2>
                             <a href="#">
-                            Gama variata de pachete
+                                Gama variata de pachete
                             </a>
                         </h2>
                         <p>Alege pachetul care ti se potriveste</p>
@@ -246,7 +198,7 @@
                 </div><!--/.single-service-box-->
             </div><!--/.col-->
 
-        </div><!--/.statistics-counter-->	
+        </div><!--/.statistics-counter-->
     </div><!--/.container-->
 
 </section><!--/.service-->
@@ -258,27 +210,26 @@
         <div class="gallery-details">
             <div class="gallary-header text-center">
                 <h2>
-                    top destination
+                    Destinatie de top
                 </h2>
                 <p>
-                    Where do you wanna go? How much you wanna explore?  
+                    Alege una dintre camerele noastre
                 </p>
             </div><!--/.gallery-header-->
             <div class="owl-carousel owl-theme" id="testemonial-carousel">
                 @php
-                    use App\Models\Room;
-                    use App\Models\RoomType;
-                    $rooms = Room::all();
+                use App\Models\Room;
+                $rooms = Room::all();
                 @endphp
 
                 @foreach ($rooms as $room)
                 @php
-                    $data = RoomType::find($room->id_RoomType);
+                $data = RoomType::find($room->id_RoomType);
                 @endphp
                 <div class="home1-testm item">
                     <div class="home1-testm-single text-center" style="padding-top:0px">
                         <div class="home1-testm-img">
-                            <a href="{{route('room', ['id' => $room->id_Room])}}"><img src="{{asset('/images/' . $room->image)}}" alt="img"/></a>
+                            <a href="{{route('room', ['id' => $room->id_Room])}}"><img src="{{asset('/images/' . $room->image)}}" alt="img" /></a>
                         </div><!--/.home1-testm-img-->
                         <div class="home1-testm-txt">
                             <h3>
@@ -288,12 +239,12 @@
                             </h3>
                             <h4>Pret: {{$data->price}} RON / noapte</h4>
                             <h4><i class="fa-solid fa-user"></i>: {{$data->capacity}}</h4>
-                        </div><!--/.home1-testm-txt-->	
+                        </div><!--/.home1-testm-txt-->
                     </div><!--/.home1-testm-single-->
-    
+
                 </div><!--/.item-->
                 @endforeach
-    
+
             </div><!--/.testemonial-carousel-->
         </div><!--/.gallery-details-->
     </div><!--/.container-->
@@ -309,7 +260,7 @@
                 Pachete speciale
             </h2>
             <p>
-                Alege unul dintre pachetele noastre si bucura-te de natura  
+                Alege unul dintre pachetele noastre si bucura-te de natura
             </p>
         </div><!--/.gallery-header-->
         <div class="packages-content">
@@ -325,14 +276,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 3 Days 2 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
                                     <i class="fa fa-angle-right"></i> food facilities
-                                 </p>
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -345,7 +296,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -364,14 +315,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 6 Days 7 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  Free food 
-                                 </p>
+                                    <i class="fa fa-angle-right"></i> Free food
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -384,7 +335,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -392,7 +343,7 @@
                     </div><!--/.single-package-item-->
 
                 </div><!--/.col-->
-                
+
                 <div class="col-md-4 col-sm-6">
                     <div class="single-package-item">
                         <img src="assets/images/packages/p3.jpg" alt="package-place">
@@ -403,14 +354,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 5 Days 6 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  food facilities
-                                 </p>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -423,7 +374,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -431,7 +382,7 @@
                     </div><!--/.single-package-item-->
 
                 </div><!--/.col-->
-                
+
                 <div class="col-md-4 col-sm-6">
                     <div class="single-package-item">
                         <img src="assets/images/packages/p4.jpg" alt="package-place">
@@ -442,14 +393,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 4 Days 5 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  food facilities
-                                 </p>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -462,7 +413,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -470,7 +421,7 @@
                     </div><!--/.single-package-item-->
 
                 </div><!--/.col-->
-                
+
                 <div class="col-md-4 col-sm-6">
                     <div class="single-package-item">
                         <img src="assets/images/packages/p5.jpg" alt="package-place">
@@ -481,14 +432,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 4 Days 4 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  food facilities
-                                 </p>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -501,7 +452,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -509,7 +460,7 @@
                     </div><!--/.single-package-item-->
 
                 </div><!--/.col-->
-                
+
                 <div class="col-md-4 col-sm-6">
                     <div class="single-package-item">
                         <img src="assets/images/packages/p6.jpg" alt="package-place">
@@ -520,14 +471,14 @@
                                     <span>
                                         <i class="fa fa-angle-right"></i> 5 Days 6 nights
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    <i class="fa fa-angle-right"></i> 5 star accomodation
                                 </p>
                                 <p>
                                     <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
+                                        <i class="fa fa-angle-right"></i> transportation
                                     </span>
-                                    <i class="fa fa-angle-right"></i>  food facilities
-                                 </p>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                </p>
                             </div><!--/.packages-para-->
                             <div class="packages-review">
                                 <p>
@@ -540,7 +491,7 @@
                                 </p>
                             </div><!--/.packages-review-->
                             <div class="about-btn">
-                                <button  class="about-view packages-btn">
+                                <button class="about-view packages-btn">
                                     book now
                                 </button>
                             </div><!--/.about-btn-->
@@ -557,7 +508,7 @@
 <!--packages end-->
 
 <!-- testemonial Start -->
-<section   class="testemonial">
+<section class="testemonial">
     <div class="container">
 
         <div class="gallary-header text-center">
@@ -575,14 +526,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -590,7 +541,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -598,14 +549,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial2.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial2.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -613,7 +564,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -621,14 +572,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -636,7 +587,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -644,14 +595,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -659,7 +610,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -667,14 +618,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial2.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial2.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -682,7 +633,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -690,14 +641,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -705,7 +656,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -713,14 +664,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -728,7 +679,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -736,14 +687,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial2.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial2.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -751,7 +702,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -759,14 +710,14 @@
             <div class="home1-testm item">
                 <div class="home1-testm-single text-center">
                     <div class="home1-testm-img">
-                        <img src="assets/images/client/testimonial1.jpg" alt="img"/>
+                        <img src="assets/images/client/testimonial1.jpg" alt="img" />
                     </div><!--/.home1-testm-img-->
                     <div class="home1-testm-txt">
                         <span class="icon section-icon">
                             <i class="fa fa-quote-left" aria-hidden="true"></i>
                         </span>
                         <p>
-                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam. 
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
                         <h3>
                             <a href="#">
@@ -774,7 +725,7 @@
                             </a>
                         </h3>
                         <h4>london, england</h4>
-                    </div><!--/.home1-testm-txt-->	
+                    </div><!--/.home1-testm-txt-->
                 </div><!--/.home1-testm-single-->
 
             </div><!--/.item-->
@@ -782,7 +733,7 @@
         </div><!--/.testemonial-carousel-->
     </div><!--/.container-->
 
-</section><!--/.testimonial-->	
+</section><!--/.testimonial-->
 <!-- testemonial End -->
 
 <!--subscribe start-->
@@ -793,7 +744,7 @@
                 Fii primul care afla despre noile noastre oferte!
             </h2>
             <p>
-                Aboneaza-te la newsletter: 
+                Aboneaza-te la newsletter:
             </p>
         </div>
         <form>
@@ -821,19 +772,14 @@
 <script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
 
 <script>
-
-
-$("#rangePrimary").ionRangeSlider({
-    type: "double",
-    grid: true,
-    min: 0,
-    max: 1000,
-    from: 200,
-    to: 800,
-    prefix: "RON"
-});
-
-
-
+    $("#rangePrimary").ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: 0,
+        max: 1000,
+        from: 200,
+        to: 800,
+        prefix: "RON"
+    });
 </script>
 @endsection

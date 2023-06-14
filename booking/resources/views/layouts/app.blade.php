@@ -111,10 +111,10 @@
                                     @else
                                     <li>
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle my-buttons" type="button" data-toggle="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle my-home-button" type="button" data-toggle="dropdown">
                                                 <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span class="caret"></span></button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{route('settings')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                <li><a href="{{route('account')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
                                                         Administrare cont</a>
                                                 </li>
                                                 @if(Session::get('user')['userType'] == 'admin')
@@ -176,7 +176,7 @@
                     </div><!--/.col-->
 
                     <div class="col-sm-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d349752.50176071655!2d23.12399903508541!3d46.775905687856174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490c18ae19d137%3A0xa7352ce9c8b974de!2zU29tZciZ!5e0!3m2!1sen!2sro!4v1685370928918!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
 

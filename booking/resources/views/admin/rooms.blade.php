@@ -109,7 +109,11 @@
                     {{$roomtype->type}}
                   </td>
                   <td>
+                    @if(strlen($roomtype->description) > 40)
+                    {{substr($roomtype->description, 0, 40) . " ..."}}
+                    @else 
                     {{$roomtype->description}}
+                    @endif
                   </td>
                   <td>
                     {{$roomtype->price}} RON

@@ -23,7 +23,6 @@ Route::get('/login', [CustomAuthController::class, 'get_login'])->name('login');
 Route::get('/register', [CustomAuthController::class, 'get_register'])->name('register');
 Route::get('/forgotPassword', [CustomAuthController::class, 'forgot_password'])->name('forgotPassword');
 Route::get('/account', [CustomAuthController::class, 'get_account'])->name('account');
-Route::get('/settings', [CustomAuthController::class, 'get_settings'])->name('settings');
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
@@ -48,5 +47,15 @@ Route::post('/admin/roomtypes/update/{id}', [AdminController::class, 'edit_roomt
 Route::get('/admin/add-roomtype', [AdminController::class, 'get_add_new_roomtype_page'])->name('admin-add-roomtype');
 Route::post('/admin/add-roomtype/add', [AdminController::class, 'add_roomtype'])->name('admin-add-roomtype-post');
 Route::get('/admin/bookings', [AdminController::class, 'get_bookings_page'])->name('admin-bookings');
-Route::get('/admin/packages', [AdminController::class, 'get_packages_page'])->name('admin-packages');
+Route::get('/admin/facilities', [AdminController::class, 'get_packages_page'])->name('admin-facilities');
+Route::post('/admin/new-facility', [AdminController::class, 'add_facility'])->name('admin-add-facility');
+Route::post('/admin/facilities/update/{id}', [AdminController::class, 'update_facility'])->name('admin-update-facility');
 Route::get('/admin/specials', [AdminController::class, 'get_specials_page'])->name('admin-specials');
+Route::get('/admin/add-special', [AdminController::class, 'get_add_special_page'])->name('admin-add-special');
+Route::post('/admin/add-new-special', [AdminController::class, 'add_special'])->name('admin-add-special-post');
+Route::get('/admin/specials/{id}', [AdminController::class, 'get_edit_special_page'])->name('admin-edit-special');
+Route::post('/admin/specials/update/{id}', [AdminController::class, 'edit_special'])->name('admin-edit-special-post');
+
+//Admin ajax routes
+Route::post('/admin/facility-room-add', [AdminController::class, 'add_facility_to_room'])->name('admin-add-facility-to-room');
+Route::post('/admin/facility-room-remove', [AdminController::class, 'remove_facility_from_room'])->name('admin-remove-facility-from-room');

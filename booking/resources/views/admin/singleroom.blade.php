@@ -2,14 +2,34 @@
 
 @section('title', 'Editeaza Camera')
 
+@section('styles')
+<style>
+
+.checkbx {
+  position: relative;
+  margin-left: 0px;
+}
+
+.my-list-item {
+  margin-bottom: 0px;
+}
+
+</style>
+@endsection
+
 @section('content')
 
 @php
     use App\Models\RoomType;
+    use App\Models\Facility;
+    use App\Http\Controllers\AdminController;
+
+    $facilities = Facility::all();
+
     $roomtype = RoomType::find($room->id_RoomType);
     $roomtypes = RoomType::all();
 @endphp
-
+<div class="row">
 <form class='col-lg-4 col-sm-10 dri-form' method='post' action="{{route('admin-edit-room-post', ['id' => $room->id_Room])}}">
     @csrf
     <div class="form-group row">
@@ -74,4 +94,54 @@
     @endif
   </form>
 
+
+  <div class="col-lg-8" style="padding-left: 4rem">
+    <div class="col-lg-6">
+      <h6 class=" fw-semibold">Lista Facilitati</h6>
+      <div class="demo-inline-spacing mt-3">
+        <div class="list-group" style="background-color: white">
+          @foreach($facilities as $facility)
+          <label class="list-group-item my-list-item">
+            <input class="form-check-input me-1 checkbx" onchange="upload_changes(this)" id="chk_{{$facility->id_Facility}}" type="checkbox" value="" @if(AdminController::check_room_has_facility($room->id_Room, $facility->id_Facility)) checked @endif/>
+            {{$facility->name}}
+          </label>
+          @endforeach
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('scripts')
+<script>
+
+function upload_changes(elem) {
+  var stuff = elem.id.split('_');
+
+  var fac_id = stuff[1];
+  var room_id = {{$room->id_Room}};
+
+  if(elem.checked) {
+    $.ajax({
+      type: "POST",
+      url: "{{route('admin-add-facility-to-room')}}",
+      data: {'_token': '{{ csrf_token() }}', 'id_Room': room_id, 'id_Facility': fac_id},
+      success: function(data, xhr, status) {
+        alert('yes');
+      }
+    });
+  }else {
+    $.ajax({
+      type: "POST",
+      url: "{{route('admin-remove-facility-from-room')}}",
+      data: {'_token': '{{ csrf_token() }}', 'id_Room': room_id, 'id_Facility': fac_id},
+      success: function(data, xhr, status) {
+        alert('yes');
+      }
+    });
+  }
+}
+
+</script>
 @endsection
