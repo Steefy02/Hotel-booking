@@ -1,34 +1,34 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <title>Cards basic - UI elements | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="">
 
     <!--animate.css-->
-    <link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}" />
 
     <!--hover.css-->
     <link rel="stylesheet" href="{{asset('/css/hover-min.css')}}">
 
     <!-- range css-->
-    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}" />
 
     <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
 
     <!-- bootsnav -->
-    <link rel="stylesheet" href="{{asset('/css/bootsnav.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/bootsnav.css')}}" />
 
     <!--style.css-->
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}" />
 
     <!--responsive.css-->
-    <link rel="stylesheet" href="{{asset('/css/responsive.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/responsive.css')}}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
@@ -36,9 +36,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css">
@@ -64,7 +62,8 @@
 
         .content-wrapper {
             padding-bottom: 0px !important;
-        }</style>
+        }
+    </style>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -73,32 +72,30 @@
 </head>
 
 <body style="background-image: url('{{asset('images/room-bg.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: top;">
+    <!-- main-menu Start -->
+    <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
+        <div class="header-area" style="height: 77px;">
+            <div class="container">
+                <div class="row" style="max-width: 76vw; margin: 0 auto;">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="{{route('home')}}">
+                                Mountain<span>Hotel</span>
+                            </a>
+                        </div><!-- /.logo-->
+                    </div><!-- /.col-->
+                    <div class="col-sm-10">
+                        <div class="main-menu">
 
-<!-- main-menu Start -->
-<header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
-    <div class="header-area" style="height: 77px;">
-        <div class="container">
-            <div class="row" style="max-width: 76vw; margin: 0 auto;">
-                <div class="col-sm-2">
-                    <div class="logo">
-                        <a href="{{route('home')}}">
-                            Mountain<span>Hotel</span>
-                        </a>
-                    </div><!-- /.logo-->
-                </div><!-- /.col-->
-                <div class="col-sm-10">
-                    <div class="main-menu">
-
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                <i class="fa fa-bars"></i>
-                            </button><!-- / button-->
-                        </div><!-- /.navbar-header-->
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right" style="display: inline;">
-                                @if(!Session::has('user'))
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <i class="fa fa-bars"></i>
+                                </button><!-- / button-->
+                            </div><!-- /.navbar-header-->
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right" style="display: inline;">
+                                    @if(!Session::has('user'))
                                     <a href="{{route('login')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Logare
@@ -111,176 +108,179 @@
                                             </button>
                                         </li>
                                     </a><!--/.project-btn-->
-                                @else
+                                    @else
                                     <li>
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                    data-toggle="dropdown"
-                                                    style="background-color: #00d8ff; border-color: #00d8ff;">
-                                                <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span
-                                                    class="caret"></span></button>
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span class="caret"></span></button>
                                             <ul class="dropdown-menu" style="position: absolute;">
-                                                <li><a href="{{route('account')}}"
-                                                       style="color:black; height:20px; padding-top:0px;">Account</a>
+                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
                                                 </li>
-                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                @if(Session::get('user')['userType'] == 'admin')
+                                                <li><a href="{{route('admin-home')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                        Admin</a>
                                                 </li>
-                                                <li><a id='logout' href="#"
-                                                       style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                                @endif
+                                                <li><a id='logout' href="#" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
                                         </div>
                                         <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>
                                             </button-->
                                     </li><!--/.project-btn-->
-                                @endif
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.main-menu-->
-                </div><!-- /.col-->
-            </div><!-- /.row -->
-        </div><!-- /.container-->
-    </div><!-- /.header-area -->
-</header><!-- /.top-area-->
+                                    @endif
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.main-menu-->
+                    </div><!-- /.col-->
+                </div><!-- /.row -->
+            </div><!-- /.container-->
+        </div><!-- /.header-area -->
+    </header><!-- /.top-area-->
 
-{{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
+    {{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
-<div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
-    <div class="col-md-7">
-        <div class="card mb-4" style="height: 887px;">
-            <h5 class="card-header"><i class="fa-solid fa-suitcase"></i> Detalii rezervare</h5>
-            <hr class="my-0">
-            <div class="card-body">
-                <div class="mb-3 col-12 mb-0">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item mb-4">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="http://127.0.0.1:8000/images/r1.jpg">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <h4><b>Camera Hotel69</b></h4>
-                                        <h6><i class="fa-solid fa-location-dot"></i> Strada Matii Nr 420</h6>
+    <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
+        <div class="col-md-7">
+            <div class="card mb-4" style="height: 887px;">
+                <h5 class="card-header"><i class="fa-solid fa-suitcase"></i> Detalii rezervare</h5>
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item mb-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="http://127.0.0.1:8000/images/r1.jpg">
                                     </div>
-                                    <hr class="my-0 mb-4 mt-2">
-                                    <div class="row mb-4">
-                                        <div class="col-md-5">
-                                            <h5>Check-in</h5>
-                                            <h6 style="color: black;"><b>luni 31 feb. 2025</b></h6>
-                                            <h6>Incepand cu 12:00</h6>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h4><b>Camera Hotel69</b></h4>
+                                                <h6><i class="fa-solid fa-location-dot"></i> Strada Matii Nr 420</h6>
+                                            </div>
+                                            <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
+                                                <h4><b>420 lei/noapte</b></h4>
+                                            </div>
                                         </div>
-                                        <div class="col-md-1" style="padding: 0;">
-                                            <div style="border-left:1px solid #ccd0d5; height:100px"></div>
+                                        <hr class="my-0 mb-4 mt-2">
+                                        <div class="row mb-4">
+                                            <div class="col-md-5">
+                                                <h5>Check-in</h5>
+                                                <h6 style="color: black;"><b>luni 31 feb. 2025</b></h6>
+                                                <h6>Incepand cu 12:00</h6>
+                                            </div>
+                                            <div class="col-md-1" style="padding: 0;">
+                                                <div style="border-left:1px solid #ccd0d5; height:100px"></div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h5>Check-out</h5>
+                                                <h6 style="color: black;"><b>luni 34 feb. 2025</b></h6>
+                                                <h6>Pana la 12:00</h6>
+                                            </div>
+                                            <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">*** zile</span></b></h5>
                                         </div>
-                                        <div class="col-md-5">
-                                            <h5>Check-out</h5>
-                                            <h6 style="color: black;"><b>luni 34 feb. 2025</b></h6>
-                                            <h6>Pana la 12:00</h6>
-                                        </div>
-                                        <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">*** zile</span></b></h5>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item mt-4">
-                            <div class="col-md-6">
-                                <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: 2 pers</p>
-                                <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-bed fa-xl"></i>&ensp; Pat dublu</p>
-                                <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-wifi fa-xl"></i>&ensp; Wifi gratuit</p>
-                                <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-square-parking fa-xl"></i>&emsp; Parcare</p>
-                            </div>
-                            <div class="col-md-6">
-                                <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="list-group-item mt-4">
+                                <div class="col-md-6">
+                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: 2 pers</p>
+                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-bed fa-xl"></i>&ensp; Pat dublu</p>
+                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-wifi fa-xl"></i>&ensp; Wifi gratuit</p>
+                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-square-parking fa-xl"></i>&emsp; Parcare</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-md-5">
-        <div class="card mb-4">
-            <h5 class="card-header"><i class="fa-solid fa-circle-info"></i> Detalii de facturare</h5>
-            <!-- Billing details -->
-            <hr class="my-0">
-            <div class="card-body">
-                <form id="formAccountSettings" method="POST" onsubmit="return false">
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+        <div class="col-md-5">
+            <div class="card mb-4">
+                <h5 class="card-header"><i class="fa-solid fa-circle-info"></i> Detalii de facturare</h5>
+                <!-- Billing details -->
+                <hr class="my-0">
+                <div class="card-body">
+                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
                                 <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***">
-                        </div>    
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Adresa <i id="address-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                            <input class="form-control" type="text" id="adress" name="adress" placeholder="adresa">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- /Billing details -->
-        </div>
-
-        <div class="card mb-4">
-            <h5 class="card-header"><i class="fa-solid fa-credit-card"></i> Detalii card</h5>
-            <hr class="my-0">
-            <div class="card-body" style="margin: 0 auto;">
-
-                <div class = "my-credit-card">
-                    <div class="card-content">
-                        <div class = "row">
-                            <h5 class="card-label mb-3">Numar card</h5>
-                            <h6 id="card-number" class="card-input mb-4">0000 0000 0000 0000</h6>
-                        </div>
-                        <div class = "row">
-                            <div class="col-md-9">
-                                <h5 class="card-label mb-3">Data expirare</h5>
-                                <h6 id="card-expiration" class="card-input mb-4">00 / 00</h6>
                             </div>
-                            <div class="col-md-3">
-                                <h5 class="card-label">CVC</h5>
-                                <h6 id="card-cvc" class="card-input">000</h6>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Adresa <i id="address-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="text" id="adress" name="adress" placeholder="adresa">
                             </div>
                         </div>
-                        <div class = "row">
-                            <h5 class="card-label mb-3">Nume detinator</h5>
-                            <h6 id="card-owner" class="card-input mb-4">Nume Prenume</h6>
+                    </form>
+                </div>
+                <!-- /Billing details -->
+            </div>
+
+            <div class="card mb-4">
+                <h5 class="card-header"><i class="fa-solid fa-credit-card"></i> Detalii card</h5>
+                <hr class="my-0">
+                <div class="card-body" style="margin: 0 auto;">
+
+                    <div class="my-credit-card">
+                        <div class="card-content">
+                            <div class="row">
+                                <h5 class="card-label mb-3">Numar card</h5>
+                                <h6 id="card-number" class="card-input mb-4">0000 0000 0000 0000</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h5 class="card-label mb-3">Data expirare</h5>
+                                    <h6 id="card-expiration" class="card-input mb-4">00 / 00</h6>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5 class="card-label">CVC</h5>
+                                    <h6 id="card-cvc" class="card-input">000</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <h5 class="card-label mb-3">Nume detinator</h5>
+                                <h6 id="card-owner" class="card-input mb-4">Nume Prenume</h6>
+                            </div>
                         </div>
+                        <div class="wave"></div>
                     </div>
-                    <div class="wave"></div>
+                    <form action="{{ route('login') }}" method="POST" id="card-form">
+                        <div id="card-row" class="row" style="margin: 0 auto; margin-top: 30px;">
+                            <div id="card" style="width: 400px; border: 3px solid #00d8ff; padding: 5px; border-radius:10px;"></div>
+                        </div>
+                    </form>
                 </div>
-                <form action="{{ route('login') }}" method="POST" id="card-form">
-                    <div class="row" style="margin: 0 auto; margin-top: 30px;">
-                        <div id="card" style="width: 400px; border: 3px solid #00d8ff; padding: 5px; border-radius:10px;"></div>
+                <hr class="my-0">
+                <div class="card-body">
+                    <div class="col-md-6">
+                        <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
-                </form>
-            </div>
-            <hr class="my-0">
-            <div class="card-body">
-                <div class="col-md-6">
-                    <h5 style="margin: 0px; margin-left:38px;">TOTAL REZERVARE:</h5>
+                    <div class="col-md-6">
+                        <h5 style="margin: 0px;"><b>*****&emsp;LEI</b></h5>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h5 style="margin: 0px;">*****&emsp;LEI</h5>
-                </div>
-            </div>
-            <hr class="my-0">
-            <div class="card-body" style="margin: 0 auto;">
-                <div class="row">
-                    <button type="submit" class="btn btn-danger" style="width: fit-content;">Efectueaza plata</button>
+                <hr class="my-0">
+                <div class="card-body" style="margin: 0 auto;">
+                    <div class="row">
+                        <button type="submit" class="btn btn-danger" style="width: fit-content;">Efectueaza plata</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 <script src="{{asset('/js/jquery.js')}}"></script>
@@ -295,67 +295,55 @@
     var tel_input = document.getElementById('phoneNumber');
     var address_bouncy = document.getElementById('address-bouncy');
     var address_input = document.getElementById('adress');
-    
-    name_input.onkeyup = function(event){
-        if(name_input.value == "")
-        {
-            if(!name_bouncy.classList.contains('fa-bounce')) {
+
+    name_input.onkeyup = function(event) {
+        if (name_input.value == "") {
+            if (!name_bouncy.classList.contains('fa-bounce')) {
                 name_bouncy.classList.add('fa-bounce')
             }
-        }
-        else
-        {
+        } else {
             name_bouncy.classList.remove('fa-bounce');
         }
     };
 
-    email_input.onkeyup = function(event){
-        if(email_input.value == "")
-        {
-            if(!email_bouncy.classList.contains('fa-bounce')) {
+    email_input.onkeyup = function(event) {
+        if (email_input.value == "") {
+            if (!email_bouncy.classList.contains('fa-bounce')) {
                 email_bouncy.classList.add('fa-bounce')
             }
-        }
-        else
-        {
+        } else {
             email_bouncy.classList.remove('fa-bounce');
         }
     };
 
-    tel_input.onkeyup = function(event){
-        if(tel_input.value == "")
-        {
-            if(!tel_bouncy.classList.contains('fa-bounce')) {
+    tel_input.onkeyup = function(event) {
+        if (tel_input.value == "") {
+            if (!tel_bouncy.classList.contains('fa-bounce')) {
                 tel_bouncy.classList.add('fa-bounce')
             }
-        }
-        else
-        {
+        } else {
             tel_bouncy.classList.remove('fa-bounce');
         }
     };
 
-    address_input.onkeyup = function(event){
-        if(address_input.value == "")
-        {
-            if(!address_bouncy.classList.contains('fa-bounce')) {
+    address_input.onkeyup = function(event) {
+        if (address_input.value == "") {
+            if (!address_bouncy.classList.contains('fa-bounce')) {
                 address_bouncy.classList.add('fa-bounce')
             }
-        }
-        else
-        {
+        } else {
             address_bouncy.classList.remove('fa-bounce');
         }
     };
 </script>
 
 <script>
-    $('#card1').on('click', function(){
-        window.location.href="{{route('home')}}";
+    $('#card1').on('click', function() {
+        window.location.href = "{{route('home')}}";
     });
 
-    $('#card2').on('click', function(){
-        window.location.href="{{route('home')}}";
+    $('#card2').on('click', function() {
+        window.location.href = "{{route('home')}}";
     });
 </script>
 
@@ -386,11 +374,14 @@
     const cardName = document.getElementById('card-name');
     cardElement.mount('#card');
 
-    
+
     cardForm.addEventListener('submit', async (e) => {
 
         e.preventDefault()
-        const { paymentMethod, error } = await stripe.createPaymentMethod({
+        const {
+            paymentMethod,
+            error
+        } = await stripe.createPaymentMethod({
             type: 'card',
             card: cardElement,
             billing_details: {

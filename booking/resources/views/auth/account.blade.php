@@ -1,34 +1,34 @@
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
     <title>Cards basic - UI elements | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="">
 
     <!--animate.css-->
-    <link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
+    <link rel="stylesheet" href="{{asset('css/animate.css')}}" />
 
     <!--hover.css-->
     <link rel="stylesheet" href="{{asset('/css/hover-min.css')}}">
 
     <!-- range css-->
-    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}" />
 
     <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
 
     <!-- bootsnav -->
-    <link rel="stylesheet" href="{{asset('/css/bootsnav.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/bootsnav.css')}}" />
 
     <!--style.css-->
-    <link rel="stylesheet" href="{{asset('/css/style.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/style.css')}}" />
 
     <!--responsive.css-->
-    <link rel="stylesheet" href="{{asset('/css/responsive.css')}}"/>
+    <link rel="stylesheet" href="{{asset('/css/responsive.css')}}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico">
@@ -36,9 +36,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
 
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css">
@@ -64,7 +62,8 @@
 
         .content-wrapper {
             padding-bottom: 0px !important;
-        }</style>
+        }
+    </style>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
@@ -73,31 +72,30 @@
 
 <body>
 
-<!-- main-menu Start -->
-<header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
-    <div class="header-area" style="height: 77px;">
-        <div class="container">
-            <div class="row" style="max-width: 76vw; margin: 0 auto;">
-                <div class="col-sm-2">
-                    <div class="logo">
-                        <a href="{{route('home')}}">
-                            Mountain<span>Hotel</span>
-                        </a>
-                    </div><!-- /.logo-->
-                </div><!-- /.col-->
-                <div class="col-sm-10">
-                    <div class="main-menu">
+    <!-- main-menu Start -->
+    <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
+        <div class="header-area" style="height: 77px;">
+            <div class="container">
+                <div class="row" style="max-width: 76vw; margin: 0 auto;">
+                    <div class="col-sm-2">
+                        <div class="logo">
+                            <a href="{{route('home')}}">
+                                Mountain<span>Hotel</span>
+                            </a>
+                        </div><!-- /.logo-->
+                    </div><!-- /.col-->
+                    <div class="col-sm-10">
+                        <div class="main-menu">
 
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target=".navbar-collapse">
-                                <i class="fa fa-bars"></i>
-                            </button><!-- / button-->
-                        </div><!-- /.navbar-header-->
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right" style="display: inline;">
-                                @if(!Session::has('user'))
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <i class="fa fa-bars"></i>
+                                </button><!-- / button-->
+                            </div><!-- /.navbar-header-->
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right" style="display: inline;">
+                                    @if(!Session::has('user'))
                                     <a href="{{route('login')}}" class="my-buttons">
                                         <li>
                                             <button class="book-btn">Logare
@@ -110,130 +108,128 @@
                                             </button>
                                         </li>
                                     </a><!--/.project-btn-->
-                                @else
+                                    @else
                                     <li>
                                         <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                    data-toggle="dropdown"
-                                                    style="background-color: #00d8ff; border-color: #00d8ff;">
-                                                <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span
-                                                    class="caret"></span></button>
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #00d8ff; border-color: #00d8ff;">
+                                                <i class="fa-solid fa-circle-user" style="margin-right: 10px;"></i><span class="caret"></span></button>
                                             <ul class="dropdown-menu" style="position: absolute;">
-                                                <li><a href="{{route('account')}}"
-                                                       style="color:black; height:20px; padding-top:0px;">Account</a>
+                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Administrare cont</a>
                                                 </li>
-                                                <li><a href="{{route('settings')}}" style="color:black; height:20px; padding-top:0px;">Settings</a>
+                                                @if(Session::get('user')['userType'] == 'admin')
+                                                <li><a href="{{route('admin-home')}}" class="my-dropdown-items" style="color:black; height:20px; padding-top:0px;">
+                                                        Admin</a>
                                                 </li>
-                                                <li><a id='logout' href="#"
-                                                       style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                                @endif
+                                                <li><a id='logout' href="#" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
                                         </div>
                                         <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>
                                             </button-->
                                     </li><!--/.project-btn-->
-                                @endif
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.main-menu-->
-                </div><!-- /.col-->
-            </div><!-- /.row -->
-        </div><!-- /.container-->
-    </div><!-- /.header-area -->
-</header><!-- /.top-area-->
+                                    @endif
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.main-menu-->
+                    </div><!-- /.col-->
+                </div><!-- /.row -->
+            </div><!-- /.container-->
+        </div><!-- /.header-area -->
+    </header><!-- /.top-area-->
 
-<img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
+    <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);" />
 
-<div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
-    <div class="col-md-12">
-        <div class="card mb-4">
-            <h5 class="card-header">Detaliile profilului</h5>
-            <!-- Account -->
-            <div class="card-body">
-                <div class="d-flex align-items-start align-items-sm-center gap-4">
-                    <img src="images/cat.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
-                    <div class="button-wrapper">
-                        <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Incarcati o imagine noua</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
-                        </label>
-                        <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
-                            <i class="bx bx-reset d-block d-sm-none"></i>
-                            <span class="d-none d-sm-block">Reset</span>
-                        </button>
+    <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Detaliile profilului</h5>
+                <!-- Account -->
+                <div class="card-body">
+                    <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img src="images/cat.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+                        <div class="button-wrapper">
+                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Incarcati o imagine noua</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                            </label>
+                            <button type="button" class="btn btn-outline-secondary account-image-reset mb-4">
+                                <i class="bx bx-reset d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Reset</span>
+                            </button>
 
-                        <p class="text-muted mb-0">Doar format JPG sau PNG.</p>
+                            <p class="text-muted mb-0">Doar format JPG sau PNG.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr class="my-0">
-            <div class="card-body">
-                <form id="formAccountSettings" method="POST" onsubmit="return false">
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">Nume</label>
-                            <input class="form-control" type="text" id="firstName" name="firstName" value="nume" autofocus="">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Prenume</label>
-                            <input class="form-control" type="text" name="lastName" id="lastName" value="prenume">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="email">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Numar de telefon</label>
+                <hr class="my-0">
+                <div class="card-body">
+                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="firstName" class="form-label">Nume</label>
+                                <input class="form-control" type="text" id="firstName" name="firstName" value="nume" autofocus="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="lastName" class="form-label">Prenume</label>
+                                <input class="form-control" type="text" name="lastName" id="lastName" value="prenume">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="email">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">Numar de telefon</label>
                                 <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="0769 420 696" placeholder="0769 420 696">
-                        </div>    
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Adresa</label>
-                            <input class="form-control" type="text" id="adress" name="adress" value="adresa" placeholder="adresa">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Adresa</label>
+                                <input class="form-control" type="text" id="adress" name="adress" value="adresa" placeholder="adresa">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Sex</label>
+                                <input class="form-control" type="text" id="sex" name="sex" value="sex" placeholder="sex">
+                            </div>
                         </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Sex</label>
-                            <input class="form-control" type="text" id="sex" name="sex" value="sex" placeholder="sex">
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2">Salveaza modificarile</button>
+                            <button type="reset" class="btn btn-outline-secondary">Anulare</button>
                         </div>
-                    </div>
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2">Salveaza modificarile</button>
-                        <button type="reset" class="btn btn-outline-secondary">Anulare</button>
-                    </div>
-                </form>
-            </div>
-            <!-- /Account -->
-        </div>
-        <div class="card">
-            <h5 class="card-header">Sterge cont</h5>
-            <div class="card-body">
-                <div class="mb-3 col-12 mb-0">
-                    <div class="alert alert-warning">
-                        <h6 class="alert-heading fw-bold mb-1">Sunteti sigur ca doriti sa stergeti acest cont?</h6>
-                        <p class="mb-0">O data ce contul dumneavoastra este sters, acesta nu se va mai putea recupera.</p>
-                    </div>
+                    </form>
                 </div>
-                <form id="formAccountDeactivation" onsubmit="return false">
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
-                        <label class="form-check-label" for="accountActivation">Confirm stergerea contului</label>
+                <!-- /Account -->
+            </div>
+            <div class="card">
+                <h5 class="card-header">Sterge cont</h5>
+                <div class="card-body">
+                    <div class="mb-3 col-12 mb-0">
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading fw-bold mb-1">Sunteti sigur ca doriti sa stergeti acest cont?</h6>
+                            <p class="mb-0">O data ce contul dumneavoastra este sters, acesta nu se va mai putea recupera.</p>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-danger deactivate-account">Sterge cont</button>
-                </form>
+                    <form id="formAccountDeactivation" onsubmit="return false">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
+                            <label class="form-check-label" for="accountActivation">Confirm stergerea contului</label>
+                        </div>
+                        <button type="submit" class="btn btn-danger deactivate-account">Sterge cont</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 
 <script>
-    $('#card1').on('click', function(){
-        window.location.href="{{route('home')}}";
+    $('#card1').on('click', function() {
+        window.location.href = "{{route('home')}}";
     });
 
-    $('#card2').on('click', function(){
-        window.location.href="{{route('home')}}";
+    $('#card2').on('click', function() {
+        window.location.href = "{{route('home')}}";
     });
 </script>
