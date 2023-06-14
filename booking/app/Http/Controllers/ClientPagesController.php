@@ -63,4 +63,21 @@ class ClientPagesController extends Controller {
 
         return $days;
     }
+
+    public static function is_date_in($date, $start, $end) {
+        if(($date['year'] >= $start['year'] && $date['year'] <= $end['year']) && ($date['month'] >= $start['month'] && $date['month'] <= $end['month']) && ($date['day'] >= $start['day'] && $date['day'] <= $end['day'])) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function convert_date($start, $end) {
+        $data = explode('-', $start);
+        $startFin = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+        $data = explode('-', $end);
+        $endFin = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+        return ['start' => $startFin, 'end' => $endFin];
+    }
 }

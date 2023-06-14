@@ -62,36 +62,12 @@
                                 <div class="tab-para">
 
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-4 col-sm-12">
-                                            <div class="single-tab-select-box">
-
-                                                <h2>tip camera</h2>
-
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
-
-                                                          <option value="default">alege tipul de camera</option><!-- /.option-->
-
-                                                          <option value="turkey">studio</option><!-- /.option-->
-
-                                                          <option value="russia">camera single</option><!-- /.option-->
-                                                          <option value="egept">camera dubla</option><!-- /.option-->
-                                                          <option value="">camera tripla</option>
-                                                          <option value="">apartament</option>
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
-
-                                            </div><!--/.single-tab-select-box-->
-                                        </div><!--/.col-->
 
                                         <div class="col-lg-2 col-md-3 col-sm-4">
                                             <div class="single-tab-select-box">
                                                 <h2>check in</h2>
                                                 <div class="travel-check-icon">
-                                                    <form action="#">
-                                                        <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
-                                                    </form>
+                                                    <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
@@ -100,76 +76,53 @@
                                             <div class="single-tab-select-box">
                                                 <h2>check out</h2>
                                                 <div class="travel-check-icon">
-                                                    <form action="#">
                                                         @php
                                                             $datet = explode("/", date('m/d/Y'));
                                                             //echo "<script>alert(" . print_r($datet) . ")</script>";
                                                             $datet[1] = intval($datet[1]) + 1;    
                                                         @endphp
-                                                        <input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
-                                                    </form>
+                                                    <input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
 
-                                        <div class="col-lg-2 col-md-1 col-sm-4">
+                                        @php
+                                            use App\Models\RoomType;
+                                            $roomtypes = RoomType::all();
+                                        @endphp
+
+                                        <div class="col-lg-3 col-md-2 col-sm-5">
                                             <div class="single-tab-select-box">
-                                                <h2>numar adulti</h2>
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
-
-                                                          <option value="default">5</option><!-- /.option-->
-
-                                                          <option value="10">10</option><!-- /.option-->
-
-                                                          <option value="15">15</option><!-- /.option-->
-                                                          <option value="20">20</option><!-- /.option-->
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
+                                                <h2>Tip camera</h2>
+                                                <select name='type' class="form-control" style="height: 48px">
+                                                    @foreach ($roomtypes as $roomtype)
+                                                        <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                                                    @endforeach
+                                                    <option value="no" selected>Selecteaza tipul</option>
+                                                </select>
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
 
-                                        <div class="col-lg-2 col-md-1 col-sm-4">
-                                            <div class="single-tab-select-box">
-                                                <h2>numar copii</h2>
-                                                <div class="travel-select-icon">
-                                                    <select class="form-control ">
-
-                                                          <option value="default">1</option><!-- /.option-->
-
-                                                          <option value="2">2</option><!-- /.option-->
-
-                                                          <option value="4">4</option><!-- /.option-->
-                                                          <option value="8">8</option><!-- /.option-->
-
-                                                    </select><!-- /.select-->
-                                                </div><!-- /.travel-select-icon -->
-                                            </div><!--/.single-tab-select-box-->
-                                        </div><!--/.col-->
+                                        <div class="col-lg-4 col-md-1 col-sm-4">
+                                            <div class="single-tab-select-box" style="text-align: center">
+                                                <h2>Pret</h2>
+                                                <div class="travel-filter">
+                                                    <div class="info_widget">
+                                                        <div class="price_filter">
+                                                            
+                                                            <input type="text" id="rangePrimary" name="rangePrimary" value="" />
+                                                            <p id="priceRangeSelected"></P>
+                                                        </div><!--/.price-filter-->
+                                                    </div><!--/.info_widget-->
+                                                </div><!--/.travel-filter-->
+                                            </div><!--/.col-->
+                                        </div>
 
                                     </div><!--/.row-->
 
                                     <div class="row">
-                                        <div class="col-sm-5">
-                                            <div class="travel-budget">
-                                                <div class="row">
-                                                    <div class="co-md-9 col-sm-8">
-                                                        <div class="travel-filter">
-                                                            <div class="info_widget">
-                                                                <div class="price_filter">
-                                                                    
-                                                                    <input type="text" id="rangePrimary" name="rangePrimary" value="" />
-                                                                    <p id="priceRangeSelected"></P>
-                                                                </div><!--/.price-filter-->
-                                                            </div><!--/.info_widget-->
-                                                        </div><!--/.travel-filter-->
-                                                    </div><!--/.col-->
-                                                </div><!--/.row-->
-                                            </div><!--/.travel-budget-->
-                                        </div><!--/.col-->
-                                        <div class="clo-sm-7">
-                                            <div class="about-btn travel-mrt-0 pull-right">
+                                        <div class="col-sm-7">
+                                            <div class="about-btn travel-mrt-0 pull-left">
                                                 <button  class="about-view travel-btn">
                                                     cauta	
                                                 </button><!--/.travel-btn-->
@@ -258,16 +211,15 @@
         <div class="gallery-details">
             <div class="gallary-header text-center">
                 <h2>
-                    top destination
+                    Destinatie de top
                 </h2>
                 <p>
-                    Where do you wanna go? How much you wanna explore?  
+                    Alege una dintre camerele noastre  
                 </p>
             </div><!--/.gallery-header-->
             <div class="owl-carousel owl-theme" id="testemonial-carousel">
                 @php
                     use App\Models\Room;
-                    use App\Models\RoomType;
                     $rooms = Room::all();
                 @endphp
 

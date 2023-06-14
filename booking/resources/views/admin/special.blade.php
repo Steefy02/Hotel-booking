@@ -3,171 +3,68 @@
 @section('title', 'Perioade Speciale')
 
 @section('content')
+
+@php
+    use App\Models\SpecialDate;
+    use App\Models\RoomType;
+
+    $specials = SpecialDate::all();
+@endphp
+
 <div class="row">
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Striped Table</h4>
-        <p class="card-description">
-          Add class <code>.table-striped</code>
-        </p>
+        <h4 class="card-title">Perioade cu pret special</h4>
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped" style="text-align: center">
             <thead>
               <tr>
                 <th>
-                  User
+                  Data Start
                 </th>
                 <th>
-                  First name
+                  Data Final
                 </th>
                 <th>
-                  Progress
+                  Pret
                 </th>
                 <th>
-                  Amount
+                  Tipul de Camera
                 </th>
                 <th>
-                  Deadline
+                  Actiuni
                 </th>
               </tr>
             </thead>
             <tbody>
+              @foreach($specials as $special)
+
+              @php
+                  $type = RoomType::find($special->id_RoomType);
+              @endphp
+
               <tr>
                 <td class="py-1">
-                  <img src="../../images/faces/face1.jpg" alt="image"/>
+                  {{$special->dateStart}}
                 </td>
                 <td>
-                  Herman Beck
+                  {{$special->dateEnd}}
                 </td>
                 <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                  {{$special->price}} RON
                 </td>
                 <td>
-                  $ 77.99
+                  {{$type->type}}
                 </td>
                 <td>
-                  May 15, 2015
+                  <a href="{{route('admin-edit-special', ['id' => $special->id_HistoryPrice])}}"><button class="dri-btn">Edit</button></a>
                 </td>
               </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face2.jpg" alt="image"/>
-                </td>
-                <td>
-                  Messsy Adam
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $245.30
-                </td>
-                <td>
-                  July 1, 2015
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face3.jpg" alt="image"/>
-                </td>
-                <td>
-                  John Richards
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $138.00
-                </td>
-                <td>
-                  Apr 12, 2015
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face4.jpg" alt="image"/>
-                </td>
-                <td>
-                  Peter Meggik
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $ 77.99
-                </td>
-                <td>
-                  May 15, 2015
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face5.jpg" alt="image"/>
-                </td>
-                <td>
-                  Edward
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $ 160.25
-                </td>
-                <td>
-                  May 03, 2015
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face6.jpg" alt="image"/>
-                </td>
-                <td>
-                  John Doe
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $ 123.21
-                </td>
-                <td>
-                  April 05, 2015
-                </td>
-              </tr>
-              <tr>
-                <td class="py-1">
-                  <img src="../../images/faces/face7.jpg" alt="image"/>
-                </td>
-                <td>
-                  Henry Tom
-                </td>
-                <td>
-                  <div class="progress">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </td>
-                <td>
-                  $ 150.00
-                </td>
-                <td>
-                  June 16, 2015
-                </td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
+          <a href="{{route('admin-add-special')}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Perioada</button></a>
         </div>
       </div>
     </div>
