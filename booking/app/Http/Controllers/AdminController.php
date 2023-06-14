@@ -8,9 +8,12 @@ use Session;
 use App\Models\User;
 use App\Models\Room;
 use App\Models\RoomType;
+use App\Models\SpecialDate;
+use App\Models\Facility;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\ClientPagesController;
 
 class AdminController extends Controller {
 
@@ -83,7 +86,7 @@ class AdminController extends Controller {
     public function get_packages_page() {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
-                return view('admin.packages');
+                return view('admin.facilities');
             }else{
                 return redirect()->back();
             }
@@ -194,6 +197,78 @@ class AdminController extends Controller {
                 $roomtype->capacity = $request->capacity;
                 $roomtype->save();
                 return redirect()->route('admin-rooms');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_add_special_page() {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                return view('admin.addspecial');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_special(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $data = explode('-', $request->dateStart);
+                $start = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+                $data = explode('-', $request->dateEnd);
+                $end = ['year' => intval($data[0]), 'month' => intval($data[1]), 'day' => intval($data[2])];
+
+                //dd($start);
+                if($request->type != 'no' && ClientPagesController::validate_dates($start, $end)) {
+                    $special = new SpecialDate;
+                    $special->dateStart = $request->dateStart;
+                    $special->dateEnd = $request->dateEnd;
+                    $special->price = $request->price;
+                    $special->id_RoomType = $request->type;
+                    $special->save();
+                    return redirect()->route('admin-specials');
+                }else {
+                    return redirect()->back()->with('errMsg', 'no');
+                }
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_edit_special_page($id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $special = SpecialDate::find($id);
+                return view('admin.singlespecial')->with('special', $special);
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function edit_special(Request $request, $id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $special = SpecialDate::find($id);
+                $data = ClientPagesController::convert_date($request->dateStart, $request->dateEnd);
+                if(ClientPagesController::validate_dates($data['start'], $data['end'])) {
+                    $special->update(['dateStart' => $request->dateStart, 'dateEnd' => $request->dateEnd, 'price' => $request->price, 'id_RoomType' => $request->type]);
+                    return redirect()->back()->with('message', 'yes');
+                }
+                return redirect()->back()->with('errMsg', 'no');
             }else{
                 return redirect()->back();
             }

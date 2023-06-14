@@ -30,7 +30,10 @@ class CustomAuthController extends Controller {
     }
 
     public function get_account() {
-        return view('auth.account');
+        if(Session::has('user')) {
+            return view('auth.account');
+        }
+        return view('home');
     }
 
     public function get_settings() {

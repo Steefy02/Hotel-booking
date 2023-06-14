@@ -50,3 +50,7 @@ Route::post('/admin/add-roomtype/add', [AdminController::class, 'add_roomtype'])
 Route::get('/admin/bookings', [AdminController::class, 'get_bookings_page'])->name('admin-bookings');
 Route::get('/admin/packages', [AdminController::class, 'get_packages_page'])->name('admin-packages');
 Route::get('/admin/specials', [AdminController::class, 'get_specials_page'])->name('admin-specials');
+Route::get('/admin/add-special', [AdminController::class, 'get_add_special_page'])->name('admin-add-special');
+Route::post('/admin/add-new-special', [AdminController::class, 'add_special'])->name('admin-add-special-post');
+Route::get('/admin/specials/{id}', [AdminController::class, 'get_edit_special_page'])->name('admin-edit-special');
+Route::post('/admin/specials/update/{id}', [AdminController::class, 'edit_special'])->name('admin-edit-special-post');

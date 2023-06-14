@@ -270,9 +270,10 @@
 
         @php
             use App\Http\Controllers\ClientPagesController;
+            use App\Models\SpecialDate;
 
-            $start = ['day' => 20, 'month' => 12, 'year' => 2002];
-            $end = ['day' => 10, 'month' => 1, 'year' => 2003];
+            $start = ['day' => 20, 'month' => 12, 'year' => 2023];
+            $end = ['day' => 10, 'month' => 1, 'year' => 2024];
         @endphp
 
 		<div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
@@ -285,7 +286,43 @@
                             <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>{{$start['day']}}.{{$start['month']}}.{{$start['year']}} - {{$end['day']}}.{{$end['month']}}.{{$end['year']}}</b></p>
                         </li>
                         <li class="list-group-item"  style="text-align: center;">
+                            @php
+                                
+                            $specials = SpecialDate::all();
+                            //dd($specials);
+                            $price = 0;
+                            $is_in_range = false;
+
+                            foreach($specials as $special) {
+                                if($special->id_RoomType == $roomtype->id_RoomType) {
+                                    $dates = ClientPagesController::convert_date($special->dateStart, $special->dateEnd);
+
+                                    $startSpec = $dates['start'];
+                                    $endSpec = $dates['end'];
+
+                                    if(ClientPagesController::is_date_in($start, $startSpec, $endSpec) && ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                                        $price = $special->price * ClientPagesController::calc_days($start, $end);
+                                        $is_in_range = true;
+                                    }else if(ClientPagesController::is_date_in($start, $startSpec, $endSpec)) {
+                                        $price = $special->price * ClientPagesController::calc_days($start, $endSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end);
+                                        $is_in_range = true;
+                                    }else if(ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                                        $price = $special->price * ClientPagesController::calc_days($startSpec, $end) + $roomtype->price * ClientPagesController::calc_days($start, $startSpec);
+                                        $is_in_range = true;
+                                    }else if(ClientPagesController::is_date_in($startSpec, $start, $end) && ClientPagesController::is_date_in($endSpec, $start, $end)) {
+                                        $price = $roomtype->price * ClientPagesController::calc_days($start, $startSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end) + $special->price * ClientPagesController::calc_days($startSpec, $endSpec);
+                                        $is_in_range = true;
+                                    }
+                                }
+                            }
+
+                            @endphp
+
+                            @if($is_in_range)
+                            <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$price}} Lei</p>
+                            @else
                             <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$roomtype->price * ClientPagesController::calc_days($start, $end)}} Lei</p>
+                            @endif
                         </li>
                         @else
                         <li class="list-group-item"  style="text-align: center;">

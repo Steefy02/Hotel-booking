@@ -143,6 +143,12 @@
 
 <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/>
 
+@php
+    use App\Models\User;
+
+    $user = Session::get('user');
+@endphp
+
 <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
     <div class="col-md-12">
         <div class="card mb-4">
@@ -171,28 +177,20 @@
                 <form id="formAccountSettings" method="POST" onsubmit="return false">
                     <div class="row">
                         <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">Nume</label>
-                            <input class="form-control" type="text" id="firstName" name="firstName" value="nume" autofocus="">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Prenume</label>
-                            <input class="form-control" type="text" name="lastName" id="lastName" value="prenume">
+                            <label for="firstName" class="form-label">Numele Complet</label>
+                            <input class="form-control" type="text" id="name" name="firstName" placeholder="nume" value="{{$user['name']}}" autofocus="">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control" type="text" id="email" name="email" value="john.doe@example.com" placeholder="email">
+                            <input class="form-control" type="text" id="email" name="email" value="{{$user['email']}}" placeholder="email">
                         </div>
                         <div class="mb-3 col-md-6">
                             <label class="form-label" for="phoneNumber">Numar de telefon</label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="0769 420 696" placeholder="0769 420 696">
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="{{$user['phoneNumber']}}" placeholder="0769 420 696">
                         </div>    
                         <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Adresa</label>
-                            <input class="form-control" type="text" id="adress" name="adress" value="adresa" placeholder="adresa">
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">Sex</label>
-                            <input class="form-control" type="text" id="sex" name="sex" value="sex" placeholder="sex">
+                            <label for="email" class="form-label">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="username" value="{{$user['username']}}">
                         </div>
                     </div>
                     <div class="mt-2">
