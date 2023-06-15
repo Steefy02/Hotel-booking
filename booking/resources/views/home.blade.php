@@ -31,131 +31,140 @@
         </div><!--/.about-us-content-->
     </div><!--/.container-->
 
+    <div id="description" style="margin-top: 550px;"></div>
 </section><!--/.about-us-->
 <!--about-us end -->
 
-<div class="row" style="background-color: white;">
-    <p>
-        Bucură-te de o escapadă relaxantă la munte! Hotelul nostru este o oază de liniște și confort,
-        situat în inima peisajelor pitorești ale munților. Aici vei găsi o combinație perfectă între lux și natură,
-        unde te poți relaxa în camere spațioase și elegante, înconjurate de aerul proaspăt al munților.
-    </p>
+
+
+<div class="row" style="background-color: white; height: 400px; padding-left: 100px; padding-right: 100px; text-align: center;">
+    <h3 style="margin-top: 70px; margin-bottom: 30px;">
+        <b>Hotel Perla Somesului - cazare de 5 stele si servicii de top</b>
+    </h3>
+    <hr style="width: 400px; border-width: 2px; margin: 0 auto; margin-bottom: 40px; border-color: darkgray;">
+    <h4 style="line-height: 2">
+        Bucură-te de o escapadă relaxantă la munte într-unul dintre cele mai rafinate și primitoare hoteluri din zonă!
+        Situat în inima peisajelor pitorești ale munților, hotelul nostru este o oază de liniște și confort,
+        unde fiecare moment se transformă într-o experiență memorabilă. Fie că ești în căutarea unei evadări romantice
+        sau a unei vacanțe de relaxare în familie, aici vei găsi o combinație perfectă între lux și natură.
+
+        Camerele noastre spațioase și elegante te așteaptă să te relaxezi și să te destindă într-un decor de vis.
+        Indiferent că privești pe fereastra către vârfurile înzăpezite ale munților sau că te bucuri de priveliștea
+        îmbietoare a pădurilor de conifere, vei fi învăluit de o atmosferă de liniște și armonie.
+    </h4>
 </div>
 
-<!--travel-box start-->
-<section class="travel-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="single-travel-boxes" style="margin-top: 300px; margin-bottom: 50px;">
-                    <div id="desc-tabs" class="desc-tabs">
-
-                        <ul class="nav nav-tabs" role="tablist">
-
-                            <li role="presentation" class="active">
-                                <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
-                                    <i class="fas fa-bed"></i>
-                                    Camere
-                                </a>
-                            </li>
-
-                        </ul>
-
-                        <!-- Tab panes -->
-                        <div class="tab-content">
-
-                            <div role="tabpanel" class="tab-pane active fade in" id="tours">
-                                <div class="tab-para">
-                                    <form method="post" action="{{route('search')}}">
-                                        @csrf
-
-                                        <div class="row">
-
-                                            <div class="col-lg-2 col-md-3 col-sm-4">
-                                                <div class="single-tab-select-box">
-                                                    <h2>check in</h2>
-                                                    <div class="travel-check-icon">
-                                                        <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="{{date('m/d/Y')}}">
-                                                    </div><!-- /.travel-check-icon -->
-                                                </div><!--/.single-tab-select-box-->
-                                            </div><!--/.col-->
-
-                                            <div class="col-lg-2 col-md-3 col-sm-4">
-                                                <div class="single-tab-select-box">
-                                                    <h2>check out</h2>
-                                                    <div class="travel-check-icon">
-                                                        @php
-                                                        $datet = explode("/", date('m/d/Y'));
-                                                        $datet[1] = intval($datet[1]) + 1;
-                                                        @endphp
-                                                        <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
-                                                    </div><!-- /.travel-check-icon -->
-                                                </div><!--/.single-tab-select-box-->
-                                            </div><!--/.col-->
-
-                                            @php
-                                            use App\Models\RoomType;
-                                            $roomtypes = RoomType::all();
-                                            @endphp
-
-                                            <div class="col-lg-3 col-md-2 col-sm-5">
-                                                <div class="single-tab-select-box">
-                                                    <h2>Tip camera</h2>
-                                                    <select name='type' class="form-control" style="height: 48px">
-                                                        @foreach ($roomtypes as $roomtype)
-                                                        <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
-                                                        @endforeach
-                                                        <option value="no" selected>Selecteaza tipul</option>
-                                                    </select>
-                                                </div><!--/.single-tab-select-box-->
-                                            </div><!--/.col-->
-
-                                            <div class="col-lg-4 col-md-1 col-sm-4">
-                                                <div class="single-tab-select-box" style="text-align: center">
-                                                    <h2>Pret</h2>
-                                                    <div class="travel-filter">
-                                                        <div class="info_widget">
-                                                            <div class="price_filter">
-                                                                <input type="text" id="rangePrimary" name="rangePrimary" value="" />
-                                                                <p id="priceRangeSelected"></P>
-                                                            </div><!--/.price-filter-->
-                                                        </div><!--/.info_widget-->
-                                                    </div><!--/.travel-filter-->
-                                                </div><!--/.col-->
-                                            </div>
-                                        </div><!--/.row-->
-
-                                        <div class="row">
-                                            <div class="col-sm-7">
-                                                <div class="about-btn travel-mrt-0 pull-left">
-                                                    <button class="about-view travel-btn">
-                                                        cauta
-                                                    </button><!--/.travel-btn-->
-                                                </div><!--/.about-btn-->
-                                            </div><!--/.col-->
-                                        </div><!--/.row-->
-                                    </form>
-                                </div><!--/.tab-para-->
-                            </div><!--/.tabpannel-->
-                        </div><!--/.tab content-->
-                    </div><!--/.desc-tabs-->
-                </div><!--/.single-travel-box-->
-            </div><!--/.col-->
-        </div><!--/.row-->
-    </div><!--/.container-->
-
-</section><!--/.travel-box-->
-<!--travel-box end-->
-
 <!--galley start-->
-<section id="gallery" class="gallery" style="background-color: rgba(0,0,0,0.4);">
+<section class="gallery" style="background-color: rgba(0,0,0,0.4);">
+    <!--travel-box start-->
+    <section class="travel-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="single-travel-boxes" style="margin-top: 200px; margin-bottom: 50px;">
+                        <div id="desc-tabs" class="desc-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab" style="border-top-left-radius: 0px; border-top-right-radius: 0px;">
+                                        <i class="fas fa-bed"></i>
+                                        Camere
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+                                <div role="tabpanel" class="tab-pane active fade in" id="tours">
+                                    <div class="tab-para">
+                                        <form method="post" action="{{route('search')}}">
+                                            @csrf
+
+                                            <div class="row">
+
+                                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                                    <div class="single-tab-select-box">
+                                                        <h2>check in</h2>
+                                                        <div class="travel-check-icon">
+                                                            <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="{{date('m/d/Y')}}">
+                                                        </div><!-- /.travel-check-icon -->
+                                                    </div><!--/.single-tab-select-box-->
+                                                </div><!--/.col-->
+
+                                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                                    <div class="single-tab-select-box">
+                                                        <h2>check out</h2>
+                                                        <div class="travel-check-icon">
+                                                            @php
+                                                            $datet = explode("/", date('m/d/Y'));
+                                                            $datet[1] = intval($datet[1]) + 1;
+                                                            @endphp
+                                                            <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
+                                                        </div><!-- /.travel-check-icon -->
+                                                    </div><!--/.single-tab-select-box-->
+                                                </div><!--/.col-->
+
+                                                @php
+                                                use App\Models\RoomType;
+                                                $roomtypes = RoomType::all();
+                                                @endphp
+
+                                                <div class="col-lg-3 col-md-2 col-sm-5">
+                                                    <div class="single-tab-select-box">
+                                                        <h2>Tip camera</h2>
+                                                        <select name='type' class="form-control" style="height: 48px">
+                                                            @foreach ($roomtypes as $roomtype)
+                                                            <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                                                            @endforeach
+                                                            <option value="no" selected>Selecteaza tipul</option>
+                                                        </select>
+                                                    </div><!--/.single-tab-select-box-->
+                                                </div><!--/.col-->
+
+                                                <div class="col-lg-4 col-md-1 col-sm-4">
+                                                    <div class="single-tab-select-box" style="text-align: center">
+                                                        <h2>Pret</h2>
+                                                        <div class="travel-filter">
+                                                            <div class="info_widget">
+                                                                <div class="price_filter">
+                                                                    <input type="text" id="rangePrimary" name="rangePrimary" value="" />
+                                                                    <p id="priceRangeSelected"></P>
+                                                                </div><!--/.price-filter-->
+                                                            </div><!--/.info_widget-->
+                                                        </div><!--/.travel-filter-->
+                                                    </div><!--/.col-->
+                                                </div>
+                                            </div><!--/.row-->
+
+                                            <div class="row">
+                                                <div class="col-sm-7">
+                                                    <div class="about-btn travel-mrt-0 pull-left">
+                                                        <button class="about-view travel-btn">
+                                                            cauta
+                                                        </button><!--/.travel-btn-->
+                                                    </div><!--/.about-btn-->
+                                                </div><!--/.col-->
+                                            </div><!--/.row-->
+                                        </form>
+                                    </div><!--/.tab-para-->
+                                </div><!--/.tabpannel-->
+                            </div><!--/.tab content-->
+                        </div><!--/.desc-tabs-->
+                    </div><!--/.single-travel-box-->
+                </div><!--/.col-->
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/.travel-box-->
+    <!--travel-box end-->
+
+    <div id="gallery" style="margin-bottom: 20px;"></div>
+
     <div class="container">
         <div class="gallery-details" style="margin-top: 74px;">
             <div class="gallary-header text-center">
-                <h2>
+                <h2 style="color: white;">
                     Exploreaza
                 </h2>
-                <p>
+                <p style="color: white;">
                     Alege una dintre camerele noastre
                 </p>
             </div><!--/.gallery-header-->

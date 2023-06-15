@@ -93,6 +93,7 @@
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="smooth-menu"><a href="#home" style="bottom:0px;">Acasa</a></li>
+                                    <li class="smooth-menu"><a href="#description" style="bottom:0px;">Descriere</a></li>
                                     <li class="smooth-menu"><a href="#gallery">Camere</a></li>
                                     @if(!Session::has('user'))
                                     <a href="{{route('login')}}" class="my-buttons">
@@ -156,7 +157,7 @@
                         </div><!--/.single-footer-item-->
                         <div class="single-footer-item text-center">
                             <div class="single-footer-txt text-left">
-                                <p><b> Contacte:</b></p>
+                                <h5 style="color: #565a5c;"><b> Contacte:</b></h5>
                                 <div style="margin-left: 15px; margin-top: 15px;">
                                     <p>+40 748 024 111</p>
                                     <p>guta.regele.manelelor@gmail.com</p>
@@ -166,7 +167,7 @@
                     </div><!--/.col-->
                     <div class="col-sm-2" style="padding-top: 11rem;"></div>
                     <div class="col-sm-5">
-                        <h3 style="margin-bottom: 20px;"><b>Locatia noastra</b></h3>
+                        <h3 style="margin-bottom: 20px; color: #565a5c;"><b>Locatia noastra</b></h3>
                         <iframe style="height: 300px; width: 500px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
