@@ -414,6 +414,41 @@
             card_panel.style.display = "flex";
         }
     });
+
+    $("#pay_cash").on('click', function () {
+
+        var month_in = @if($search_data['check_in']['month'] < 10) "0" + @endif "{{$search_data['check_in']['month']}}";
+        var month_out = @if($search_data['check_out']['month'] < 10) "0" + @endif "{{$search_data['check_out']['month']}}";
+
+        var checkIn = "{{$search_data['check_in']['year']}}-" + month_in + "-{{$search_data['check_in']['day']}}";
+        var checkOut = "{{$search_data['check_out']['year']}}-" + month_out + "-{{$search_data['check_out']['day']}}";
+
+        var adults = document.getElementById('adulti').value;
+        var children = document.getElementById('copii').value;
+
+        if(adults != '' && children != '' && parseInt(adults) + parseInt(children) <= {{$roomtype->capacity + 1}}) {
+            $.ajax({
+                url: "{{route('make-reservation')}}",
+                type: "POST",
+                data: { '_token': "{{csrf_token()}}", 
+                        'paymentType': "cash",
+                        'fullName': "{{$user['name']}}",
+                        'checkIn': checkIn,
+                        'checkOut': checkOut,
+                        'roomNumber': {{$room->roomNumber}},
+                        'adults': adults,
+                        'children': children,
+                        'id_Room': {{$room->id_Room}},
+                        'id_User': {{$user['id_User']}}},
+                success: function(data, xhr, status) {
+                    alert('yes');
+                }
+            });
+        }
+
+    });
+
+
 </script>
 
 

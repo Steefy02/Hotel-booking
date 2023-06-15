@@ -8,6 +8,9 @@ use DB;
 use Session;
 use App\Models\User;
 use App\Models\RoomType;
+use App\Models\Booking;
+use App\Models\Payment;
+use Mail;
 
 class ClientPagesController extends Controller {
 
@@ -154,5 +157,39 @@ class ClientPagesController extends Controller {
             return true;
         }
         return false;
+    }
+
+    public function create_reservation(Request $request) {
+
+        $payment = new Payment;
+        $payment->typePayment = $request->paymentType;
+        $payment->dateOfPay = date('Y-m-d');
+        $payment->save();
+
+        $booking = new Booking;
+        $booking->fullName = $request->fullName;
+        $booking->checkIn = $request->checkIn;
+        $booking->checkOut = $request->checkOut;
+        $booking->status = "confirmed";
+        $booking->roomsBooked = $request->roomNumber;
+        $booking->numberAdults = $request->adults;
+        $booking->numberChildren = $request->children;
+        $booking->id_Room = $request->id_Room;
+        $booking->id_User = $request->id_User;
+        $booking->id_Payment = $payment->id_Payment;
+        $booking->save();
+
+        return response()->json(['success' => 'success'], 200);
+    }
+
+    public function send_mail() {
+        $data = array('name'=>"Virat Gandhi");
+   
+        Mail::send(['text'=>'mail'], $data, function($message) {
+            $message->to('abc@gmail.com', 'Tutorials Point')->subject
+                ('Laravel Basic Testing Mail');
+            $message->from('xyz@gmail.com','Virat Gandhi');
+        });
+        return view('dbtest');
     }
 }

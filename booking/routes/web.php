@@ -31,6 +31,7 @@ Route::get('/checkout', [ClientPagesController::class, 'get_checkout'])->name('c
 Route::post('/checkout/set', [ClientPagesController::class, 'set_checkout_params'])->name('set-checkout-post');
 Route::post('/search', [ClientPagesController::class, 'get_search'])->name('search');
 Route::post('/account/update', [ClientPagesController::class, 'save_client_data'])->name('update-client');
+Route::post('/checkout/make', [ClientPagesController::class, 'create_reservation'])->name('make-reservation');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
@@ -62,3 +63,6 @@ Route::post('/admin/specials/update/{id}', [AdminController::class, 'edit_specia
 //Admin ajax routes
 Route::post('/admin/facility-room-add', [AdminController::class, 'add_facility_to_room'])->name('admin-add-facility-to-room');
 Route::post('/admin/facility-room-remove', [AdminController::class, 'remove_facility_from_room'])->name('admin-remove-facility-from-room');
+
+//testing
+Route::get('/test', [ClientPagesController::class, 'send_mail']);
