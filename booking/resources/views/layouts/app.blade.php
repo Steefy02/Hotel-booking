@@ -62,7 +62,7 @@
 
 </head>
 
-<body>
+<body style="background-image: url('{{asset('images/room-bg.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: top;">>
     <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience and security.</p>
@@ -77,7 +77,7 @@
                     <div class="col-sm-2">
                         <div class="logo">
                             <a href="{{route('home')}}">
-                                Mountain<span>Hotel</span>
+                                Perla<span>Somesului</span>
                             </a>
                         </div><!-- /.logo-->
                     </div><!-- /.col-->
@@ -94,7 +94,6 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="smooth-menu"><a href="#home" style="bottom:0px;">Acasa</a></li>
                                     <li class="smooth-menu"><a href="#gallery">Camere</a></li>
-                                    <li class="smooth-menu"><a href="#pack">Pachete</a></li>
                                     @if(!Session::has('user'))
                                     <a href="{{route('login')}}" class="my-buttons">
                                         <li>
@@ -142,57 +141,39 @@
     <div class="container-fluid">@yield('content')</div>
 
     <!-- footer-copyright start -->
-    <footer class="footer-copyright">
+    <footer class="footer-copyright" style="padding-bottom: 50px;">
+        <hr>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content" style="padding-bottom: 0px; padding-top: 20px;">
                 <div class="row">
 
-                    <div class="col-sm-3">
-                        <div class="single-footer-item">
+                    <div class="col-sm-5">
+                        <div class="single-footer-item" style="margin-bottom: 50px;">
                             <div class="footer-logo">
-                                <a href="index.html">
-                                    Mountain<span>Hotel</span>
-                                </a>
-                                <p>
-                                    best travel agency
-                                </p>
+                                <a>Perla<span>Somesului</span></a>
+                                <p>Bistrita-Nasaud, Valea Mare, 69</p>
                             </div>
                         </div><!--/.single-footer-item-->
-                    </div><!--/.col-->
-
-                    <div class="col-sm-3" style="padding-top: 11rem;">
                         <div class="single-footer-item text-center">
-                            <h2 class="text-left">contacts</h2>
                             <div class="single-footer-txt text-left">
-                                <p>+40 748 024 111</p>
-                                <p>guta.regele.manelelor@gmail.com</p>
-                                <p>Valea Mare, 69</p>
-                                <p>Bistrita-Nasaud</p>
-                                <a href="{{route('contact')}}">
-                                    <p><b>Contacteaza-ne</b></p>
-                                </a>
+                                <p><b> Contacte:</b></p>
+                                <div style="margin-left: 15px; margin-top: 15px;">
+                                    <p>+40 748 024 111</p>
+                                    <p>guta.regele.manelelor@gmail.com</p>
+                                </div>
                             </div><!--/.single-footer-txt-->
                         </div><!--/.single-footer-item-->
                     </div><!--/.col-->
-
-                    <div class="col-sm-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    <div class="col-sm-2" style="padding-top: 11rem;"></div>
+                    <div class="col-sm-5">
+                        <h3 style="margin-bottom: 20px;"><b>Locatia noastra</b></h3>
+                        <iframe style="height: 300px; width: 500px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
 
                 </div><!--/.row-->
 
             </div><!--/.footer-content-->
-            <hr>
-            <div class="foot-icons ">
-                <ul class="footer-social-links list-inline list-unstyled">
-                    <li><a href="#" target="_blank" class="foot-icon-bg-1"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#" target="_blank" class="foot-icon-bg-2"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" target="_blank" class="foot-icon-bg-3"><i class="fa fa-instagram"></i></a></li>
-                </ul>
-                <p>&copy; 2017 <a href="https://www.themesine.com">ThemeSINE</a>. All Right Reserved</p>
-
-            </div><!--/.foot-icons-->
             <div id="scroll-Top">
                 <i class="fa fa-angle-double-up return-to-top" id="scroll-top" data-toggle="tooltip" data-placement="top" title="" data-original-title="Back to Top" aria-hidden="true"></i>
             </div><!--/.scroll-Top-->

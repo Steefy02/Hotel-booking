@@ -141,111 +141,64 @@
     {{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
     @php
-        use App\Models\RoomType;
-        
-        $room = Session::get('room');
-        $price = Session::get('final_price');
-        $days = Session::get('days');
-        $search_data = Session::get('search');
-        $roomtype = RoomType::find($room->id_RoomType);
-        $user = Session::get('user');
+    use App\Models\RoomType;
+
+    $room = Session::get('room');
+    $price = Session::get('final_price');
+    $days = Session::get('days');
+    $search_data = Session::get('search');
+    $roomtype = RoomType::find($room->id_RoomType);
+    $user = Session::get('user');
     @endphp
 
     <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
         <div class="col-md-7">
-            <div class="card mb-4" style="height: 887px;">
+            <div class="card mb-4" style="height: 420px;">
                 <h5 class="card-header"><i class="fa-solid fa-suitcase"></i> Detalii rezervare</h5>
                 <hr class="my-0">
                 <div class="card-body">
-                    <div class="mb-3 col-12 mb-0">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item mb-4">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="{{asset('/images/' . $room->image)}}">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4><b>{{$roomtype->type}}, {{$room->roomNumber}}</b></h4>
-                                                <h6><i class="fa-solid fa-location-dot"></i> Valea mare, jud Bistrita-Nasaud</h6>
-                                            </div>
-                                            <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
-                                                <h4><b>{{$roomtype->price}} lei/noapte</b></h4>
-                                            </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="{{asset('/images/' . $room->image)}}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h4><b>{{$roomtype->type}}, {{$room->roomNumber}}</b></h4>
+                                            <h6><i class="fa-solid fa-location-dot"></i> Valea mare, jud Bistrita-Nasaud</h6>
                                         </div>
-                                        <hr class="my-0 mb-4 mt-2">
-                                        <div class="row mb-4">
-                                            <div class="col-md-5">
-                                                <h5>Check-in</h5>
-                                                <h6 style="color: black;"><b>{{$search_data['check_in']['day']}}-{{$search_data['check_in']['month']}}-{{$search_data['check_in']['year']}}</b></h6>
-                                                <h6>Incepand cu 07:00</h6>
-                                            </div>
-                                            <div class="col-md-1" style="padding: 0;">
-                                                <div style="border-left:1px solid #ccd0d5; height:100px"></div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <h5>Check-out</h5>
-                                                <h6 style="color: black;"><b>{{$search_data['check_out']['day']}}-{{$search_data['check_out']['month']}}-{{$search_data['check_out']['year']}}</b></h6>
-                                                <h6>Pana la 12:00</h6>
-                                            </div>
-                                            <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">{{$days}} zile</span></b></h5>
+                                        <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
+                                            <h4><b>{{$roomtype->price}} lei/noapte</b></h4>
                                         </div>
                                     </div>
+                                    <hr class="my-0 mb-4 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h5>Check-in</h5>
+                                            <h6 style="color: black;"><b>{{$search_data['check_in']['day']}}-{{$search_data['check_in']['month']}}-{{$search_data['check_in']['year']}}</b></h6>
+                                            <h6>Incepand cu 07:00</h6>
+                                        </div>
+                                        <div class="col-md-1" style="padding: 0;">
+                                            <div style="border-left:1px solid #ccd0d5; height:100px"></div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <h5>Check-out</h5>
+                                            <h6 style="color: black;"><b>{{$search_data['check_out']['day']}}-{{$search_data['check_out']['month']}}-{{$search_data['check_out']['year']}}</b></h6>
+                                            <h6>Pana la 12:00</h6>
+                                        </div>
+                                        <h5 class="mt-4" style="color: black; margin-bottom: 0px;"><b>Durata totala: <span style="text-transform: lowercase;">{{$days}} zile</span></b></h5>
+                                    </div>
                                 </div>
-                            </li>
-                            <li class="list-group-item mt-4">
-                                <div class="col-md-6">
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: {{$roomtype->capacity}} pers</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-bed fa-xl"></i>&ensp; Pat dublu</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-wifi fa-xl"></i>&ensp; Wifi gratuit</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-square-parking fa-xl"></i>&emsp; Parcare</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-5">
-            <div class="card mb-4">
-                <h5 class="card-header"><i class="fa-solid fa-circle-info"></i> Detalii de facturare</h5>
-                <!-- Billing details -->
-                <hr class="my-0">
-                <div class="card-body">
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" value="{{$user['email']}}">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Numar Adulti <i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="adulti" name="adulti">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Numar Copii <i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="copii" name="copii">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- /Billing details -->
-            </div>
-
-            <div class="card mb-4">
+            <div class="card mb-4" style="height: 230px;">
                 <h5 class="card-header"><i class="fa-solid fa-wallet"></i></i> Modalitati de plata</h5>
                 <hr class="my-0">
                 <div class="card-body" style="padding-top: 0px;">
@@ -263,19 +216,53 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="card mb-4" id="cash_pay" style="display: none">
+        <div class="col-md-5">
+            <div class="card mb-4" style="height: 420px;">
+                <h5 class="card-header"><i class="fa-solid fa-circle-info"></i> Detalii de facturare</h5>
+                <!-- Billing details -->
+                <hr class="my-0">
+                <div class="card-body">
+                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Numar Adulti <i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="number" min="0" id="adulti" name="adulti">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" value="{{$user['email']}}">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Numar Copii <i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="number" min="0" id="copii" name="copii">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /Billing details -->
+            </div>
+
+            <div class="card mb-4" id="cash_pay" style="display: none; height: 230px;">
                 <h5 class="card-header"><i class="fa-solid fa-money-bill-wave"></i> Plata cash</h5>
                 <hr class="my-0">
                 <div class="card-body">
                     <div class="col-md-6">
-                        <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
+                        <h5 style="margin: 0px; margin-left: 50px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
                     <div class="col-md-6">
                         <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
                     </div>
                 </div>
-                <hr class="my-0">
                 <div class="card-body" style="margin: 0 auto;">
                     <div class="row">
                         <button type="submit" class="btn btn-danger" style="width: fit-content;">Finalizare rezervare</button>
@@ -319,7 +306,7 @@
                 <hr class="my-0">
                 <div class="card-body">
                     <div class="col-md-6">
-                        <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
+                        <h5 style="margin: 0px; margin-left: 50px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
                     <div class="col-md-6">
                         <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
@@ -403,32 +390,30 @@
 </script>
 
 <script>
-    
     var card_inp = document.getElementById('card_inp');
     var cash_inp = document.getElementById('cash_inp');
     var card_panel = document.getElementById('card_pay');
     var cash_panel = document.getElementById('cash_pay');
 
     card_inp.addEventListener('change', function() {
-        if(this.checked) {
+        if (this.checked) {
             card_panel.style.display = "flex";
             cash_panel.style.display = "none";
-        }else {
+        } else {
             card_panel.style.display = "none";
             cash_panel.style.display = "flex";
         }
     });
 
     cash_inp.addEventListener('change', function() {
-        if(this.checked) {
+        if (this.checked) {
             cash_panel.style.display = "flex";
             card_panel.style.display = "none";
-        }else {
+        } else {
             cash_panel.style.display = "none";
             card_panel.style.display = "flex";
         }
     });
-
 </script>
 
 

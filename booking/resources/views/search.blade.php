@@ -9,6 +9,8 @@
 
     <meta name="description" content="">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
+
     <!--animate.css-->
     <link rel="stylesheet" href="{{asset('css/animate.css')}}" />
 
@@ -73,13 +75,15 @@
 </head>
 
 @php
-    use App\Models\Room;
-    use App\Models\RoomType;
-    use App\Http\Controllers\ClientPagesController;
+use App\Models\Room;
+use App\Models\RoomType;
+use App\Models\Facility;
+use App\Http\Controllers\ClientPagesController;
 
-    $rooms = Room::all();
-    $search_res = Session::get('search');
-    $k = 0;
+$rooms = Room::all();
+$roomtypes = RoomType::all();
+$search_res = Session::get('search');
+$k = 0;
 @endphp
 
 <body style="background-image: url('{{asset('images/room-bg.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: top;">
@@ -150,14 +154,78 @@
 
     {{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
-    <div class="container-fluid" style="margin-top: 70px;">
+    <div class="container-fluid">
+
+        <div class="tab-para mb-4" style="background-color: white; opacity: 0.9">
+            <div class="row">
+                <form method="post" action="{{route('search')}}">
+                    @csrf
+                    <div class="col-lg-2 col-md-3 col-sm-4">
+                        <div class="single-tab-select-box">
+                            <h2>check in</h2>
+                            <div class="travel-check-icon">
+                                <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="06/15/2023">
+                            </div><!-- /.travel-check-icon -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-4">
+                        <div class="single-tab-select-box">
+                            <h2>check out</h2>
+                            <div class="travel-check-icon">
+                                @php
+                                $datet = explode("/", date('m/d/Y'));
+                                $datet[1] = intval($datet[1]) + 1;
+                                @endphp
+                                <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="06/16/2023">
+                            </div><!-- /.travel-check-icon -->
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-2 col-sm-5">
+                        <div class="single-tab-select-box">
+                            <h2>Tip camera</h2>
+                            <select name='type' class="form-control" style="height: 48px">
+                                @foreach ($roomtypes as $roomtype)
+                                <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                                @endforeach
+                                <option value="no" selected>Selecteaza tipul</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-1 col-sm-4">
+                        <div class="single-tab-select-box" style="text-align: center">
+                            <h2>Pret</h2>
+                            <div class="travel-filter">
+                                <div class="info_widget">
+                                    <div class="price_filter">
+                                        <input style="display: none;" type="text" id="rangePrimary" name="rangePrimary" value="" class="irs-hidden-input" tabindex="-1" readonly="">
+                                        <p id="priceRangeSelected"></p>
+                                    </div><!--/.price-filter-->
+                                </div><!--/.info_widget-->
+                            </div><!--/.travel-filter-->
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="about-btn travel-mrt-0 pull-left">
+                        <button class="about-view travel-btn">
+                            cauta
+                        </button><!--/.travel-btn-->
+                    </div><!--/.about-btn-->
+                </div><!--/.col-->
+            </div><!--/.row-->
+            </form>
+        </div>
 
         @foreach($rooms as $room)
 
         @if(ClientPagesController::validate_room_from_search($room->id_Room, $search_res))
         @php
-            $roomtype = RoomType::find($room->id_RoomType);
-            $k++;
+        $roomtype = RoomType::find($room->id_RoomType);
+        $k++;
         @endphp
 
         <div class="card mb-4 my-search-room-card">
@@ -178,9 +246,20 @@
                         <a href="{{route('room', ['id' => $room->id_Room])}}"><button class="btn btn-primary">Vizualizeaza</button></a>
                         <h5>{{$roomtype->price}} lei/noapte</h5>
                         <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
+                            @php
+                            $facilities = ClientPagesController::get_facilities_for_room($room->id_Room);
+                            $f = 0;
+                            @endphp
+
+                            @foreach ($facilities as $facility)
+                            @php
+                            $fac = Facility::find($facility->id_Facility);
+                            @endphp
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> {{$fac->name}}</p>
+                            @php
+                            $f++;
+                            @endphp
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -190,7 +269,9 @@
         @endforeach
 
         @if($k == 0)
-        <div style="margin: 0 auto; padding: 20px; background-color: white; max-width: 600px; border-radius: 10px; text-align: center"><h2>Nu avem camere disponibile!</h2></div>
+        <div style="margin: 0 auto; padding: 20px; background-color: white; max-width: 600px; border-radius: 10px; text-align: center">
+            <h2>Nu avem camere disponibile!</h2>
+        </div>
         @endif
 </body>
 
@@ -313,3 +394,17 @@
     })
 </script>
 <script src="{{asset('js/event-handler.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+<script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
+
+<script>
+    $("#rangePrimary").ionRangeSlider({
+        type: "double",
+        grid: true,
+        min: 0,
+        max: 1000,
+        from: 200,
+        to: 800,
+        prefix: "RON"
+    });
+</script>

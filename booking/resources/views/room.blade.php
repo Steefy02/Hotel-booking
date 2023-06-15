@@ -351,7 +351,7 @@
                             @if(Session::has('search'))
                             <li class="list-group-item" style="display: flex; justify-content: center;">
                                 <a href="{{route('checkout')}}">
-                                    <div class="btn btn-primary my-book-buttons" id="reserva" style="color: white; width: 250px; margin-top: 10px;">
+                                    <div class="btn btn-primary my-book-buttons" id="rezerva" style="color: white; width: 250px; margin-top: 10px;">
                                         Rezerva acum
                                     </div>
                                 </a>
@@ -592,7 +592,7 @@
 @if(Session::has('search'))
 <script>
 
-    $('#reserva').on('click', function () {
+    $('#rezerva').on('click', function () {
 
         $.ajax({
             url: "{{route('set-checkout-post')}}",
