@@ -31,6 +31,10 @@ class ClientPagesController extends Controller {
         return view('checkout');
     }
 
+    public function get_search() {
+        return view('search');
+    }
+
     public static function validate_dates($start, $end) {
         if($start['year'] > $end['year']) {
             return false;

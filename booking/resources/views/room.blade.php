@@ -176,13 +176,6 @@
                     </div>
 
                     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#myCarousel" data-slide-to="1"></li>
-                            <li data-target="#myCarousel" data-slide-to="2"></li>
-                        </ol>
-
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner" style="background-color: #365566;">
                             <div class="item active">
@@ -191,16 +184,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <!-- Left and right shadows -->
+                        <a class="left carousel-control" style="opacity: 0.5;"></a>
+                        <a class="right carousel-control" style="opacity: 0.5;"></a>
                     </div>
 
 
@@ -434,7 +420,7 @@
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
-                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <img src="{{asset('images/profile-pic-1.jpg')}}" class="user-picture">
                                     <h6 class="review-user-name">Simona</h6>
                                     <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Apartament</h7>
                                     <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;6 Nopti</h7>
@@ -491,7 +477,7 @@
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
-                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <img src="{{asset('images/profile-pic-2.jpg')}}" class="user-picture">
                                     <h6 class="review-user-name">Mihai</h6>
                                     <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera single</h7>
                                     <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;2 Nopti</h7>

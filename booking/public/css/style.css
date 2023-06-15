@@ -122,7 +122,34 @@ body {
     opacity: 0;
 }
 
-/* MODAL  */
+/* Room */
+
+.my-search-room-card {
+    max-width: 1000px; 
+    margin: 0 auto;
+}
+
+.my-search-room-image {
+    height: 200px;
+    width: 280px;
+    object-fit: cover;
+}
+
+.float-bottom-parent {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.my-search-room-text {
+    padding-top: 5px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+/* Room */
+
+/* MODAL */
 
 .my-page-wrapper {
     width: 100%;
@@ -217,7 +244,7 @@ body {
 
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
 }
 
 .review-button {

@@ -140,185 +140,131 @@
 
     {{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
-    <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
-        <div class="col-md-7">
-            <div class="card mb-4" style="height: 887px;">
-                <h5 class="card-header"><i class="fa-solid fa-suitcase"></i> Detalii rezervare</h5>
-                <hr class="my-0">
-                <div class="card-body">
-                    <div class="mb-3 col-12 mb-0">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item mb-4">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="http://127.0.0.1:8000/images/r1.jpg">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h4><b>Camera Hotel69</b></h4>
-                                                <h6><i class="fa-solid fa-location-dot"></i> Strada Matii Nr 420</h6>
-                                            </div>
-                                            <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
-                                                <h4><b>420 lei/noapte</b></h4>
-                                            </div>
-                                        </div>
-                                        <hr class="my-0 mb-4 mt-2">
-                                        <div class="row mb-4">
-                                            <div class="col-md-5">
-                                                <h5>Check-in</h5>
-                                                <h6 style="color: black;"><b>luni 31 feb. 2025</b></h6>
-                                                <h6>Incepand cu 12:00</h6>
-                                            </div>
-                                            <div class="col-md-1" style="padding: 0;">
-                                                <div style="border-left:1px solid #ccd0d5; height:100px"></div>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <h5>Check-out</h5>
-                                                <h6 style="color: black;"><b>luni 34 feb. 2025</b></h6>
-                                                <h6>Pana la 12:00</h6>
-                                            </div>
-                                            <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">*** zile</span></b></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item mt-4">
-                                <div class="col-md-6">
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: 2 pers</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-bed fa-xl"></i>&ensp; Pat dublu</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-wifi fa-xl"></i>&ensp; Wifi gratuit</p>
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-square-parking fa-xl"></i>&emsp; Parcare</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            </li>
-                        </ul>
+    <div class="container-fluid" style="margin-top: 70px;">
+
+        <div class="card mb-4 my-search-room-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 mt-3 col-md-4">
+                        <img class="my-search-room-image" src="{{asset('images/r5.jpg')}}">
+                    </div>
+                    <div class="mb-3 mt-3 col-md-6">
+                        <h4>Tip camera</h4>
+                        <div class="my-search-room-text">
+                            <p style="text-align: justify;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
+                        <button class="btn btn-primary">Vizualizeaza</button>
+                        <h5>-pret- lei/noapte</h5>
+                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-5">
-            <div class="card mb-4">
-                <h5 class="card-header"><i class="fa-solid fa-circle-info"></i> Detalii de facturare</h5>
-                <!-- Billing details -->
-                <hr class="my-0">
-                <div class="card-body">
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Adresa <i id="address-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="adress" name="adress" placeholder="adresa">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- /Billing details -->
-            </div>
-
-            <div class="card mb-4">
-                <h5 class="card-header"><i class="fa-solid fa-wallet"></i></i> Modalitati de plata</h5>
-                <hr class="my-0">
-                <div class="card-body" style="padding-top: 0px;">
-                    <div class="demo-inline-spacing mt-3">
-                        <div class="list-group">
-                            <label class="list-group-item" style="border: 0px;">
-                                <input class="form-check-input me-1" type="radio" name="choose-payment">
-                                Plata cu cardul
-                            </label>
-                            <label class="list-group-item" style="border: 0px;">
-                                <input class="form-check-input me-1" type="radio" name="choose-payment">
-                                Plata cash la locatie
-                            </label>
+        <div class="card mb-4 my-search-room-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 mt-3 col-md-4">
+                        <img class="my-search-room-image" src="{{asset('images/r1.jpg')}}">
+                    </div>
+                    <div class="mb-3 mt-3 col-md-6">
+                        <h4>Tip camera</h4>
+                        <div class="my-search-room-text">
+                            <p style="text-align: justify;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <h5 class="card-header"><i class="fa-solid fa-money-bill-wave"></i> Plata cash</h5>
-                <hr class="my-0">
-                <div class="card-body">
-                    <div class="col-md-6">
-                        <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 style="margin: 0px;"><b>*****&emsp;LEI</b></h5>
-                    </div>
-                </div>
-                <hr class="my-0">
-                <div class="card-body" style="margin: 0 auto;">
-                    <div class="row">
-                        <button type="submit" class="btn btn-danger" style="width: fit-content;">Finalizare rezervare</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mb-4">
-                <h5 class="card-header"><i class="fa-solid fa-credit-card"></i> Detalii de plata</h5>
-                <hr class="my-0">
-                <div class="card-body" style="margin: 0 auto;">
-                    <div class="my-credit-card">
-                        <div class="card-content">
-                            <div class="row">
-                                <h5 class="card-label mb-3">Numar card</h5>
-                                <h6 id="card-number" class="card-input mb-4">0000 0000 0000 0000</h6>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <h5 class="card-label mb-3">Data expirare</h5>
-                                    <h6 id="card-expiration" class="card-input mb-4">00 / 00</h6>
-                                </div>
-                                <div class="col-md-3">
-                                    <h5 class="card-label">CVC</h5>
-                                    <h6 id="card-cvc" class="card-input">000</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <h5 class="card-label mb-3">Nume detinator</h5>
-                                <h6 id="card-owner" class="card-input mb-4">Nume Prenume</h6>
-                            </div>
+                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
+                        <button class="btn btn-primary">Vizualizeaza</button>
+                        <h5>-pret- lei/noapte</h5>
+                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
                         </div>
-                        <div class="wave"></div>
-                    </div>
-                    <form action="{{ route('login') }}" method="POST" id="card-form">
-                        <div id="card-row" class="row" style="margin: 0 auto; margin-top: 30px;">
-                            <div id="card" style="width: 400px; border: 3px solid #00d8ff; padding: 5px; border-radius:10px;"></div>
-                        </div>
-                    </form>
-                </div>
-                <hr class="my-0">
-                <div class="card-body">
-                    <div class="col-md-6">
-                        <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 style="margin: 0px;"><b>*****&emsp;LEI</b></h5>
-                    </div>
-                </div>
-                <hr class="my-0">
-                <div class="card-body" style="margin: 0 auto;">
-                    <div class="row">
-                        <button type="submit" class="btn btn-danger" style="width: fit-content;">Efectueaza plata</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="card mb-4 my-search-room-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 mt-3 col-md-4">
+                        <img class="my-search-room-image" src="{{asset('images/r2.jpg')}}">
+                    </div>
+                    <div class="mb-3 mt-3 col-md-6">
+                        <h4>Tip camera</h4>
+                        <div class="my-search-room-text">
+                            <p style="text-align: justify;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
+                        <button class="btn btn-primary">Vizualizeaza</button>
+                        <h5>-pret- lei/noapte</h5>
+                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 my-search-room-card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 mt-3 col-md-4">
+                        <img class="my-search-room-image" src="{{asset('images/r3.jpg')}}">
+                    </div>
+                    <div class="mb-3 mt-3 col-md-6">
+                        <h4>Tip camera</h4>
+                        <div class="my-search-room-text">
+                            <p style="text-align: justify;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
+                        <button class="btn btn-primary">Vizualizeaza</button>
+                        <h5>-pret- lei/noapte</h5>
+                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
+                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 <script src="{{asset('/js/jquery.js')}}"></script>
