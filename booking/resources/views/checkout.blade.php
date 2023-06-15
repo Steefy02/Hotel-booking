@@ -140,6 +140,17 @@
 
     {{-- <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);"/> --}}
 
+    @php
+        use App\Models\RoomType;
+        
+        $room = Session::get('room');
+        $price = Session::get('final_price');
+        $days = Session::get('days');
+        $search_data = Session::get('search');
+        $roomtype = RoomType::find($room->id_RoomType);
+        $user = Session::get('user');
+    @endphp
+
     <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
         <div class="col-md-7">
             <div class="card mb-4" style="height: 887px;">
@@ -151,47 +162,47 @@
                             <li class="list-group-item mb-4">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="http://127.0.0.1:8000/images/r1.jpg">
+                                        <img src="{{asset('/images/' . $room->image)}}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h4><b>Camera Hotel69</b></h4>
-                                                <h6><i class="fa-solid fa-location-dot"></i> Strada Matii Nr 420</h6>
+                                                <h4><b>{{$roomtype->type}}, {{$room->roomNumber}}</b></h4>
+                                                <h6><i class="fa-solid fa-location-dot"></i> Valea mare, jud Bistrita-Nasaud</h6>
                                             </div>
                                             <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
-                                                <h4><b>420 lei/noapte</b></h4>
+                                                <h4><b>{{$roomtype->price}} lei/noapte</b></h4>
                                             </div>
                                         </div>
                                         <hr class="my-0 mb-4 mt-2">
                                         <div class="row mb-4">
                                             <div class="col-md-5">
                                                 <h5>Check-in</h5>
-                                                <h6 style="color: black;"><b>luni 31 feb. 2025</b></h6>
-                                                <h6>Incepand cu 12:00</h6>
+                                                <h6 style="color: black;"><b>{{$search_data['check_in']['day']}}-{{$search_data['check_in']['month']}}-{{$search_data['check_in']['year']}}</b></h6>
+                                                <h6>Incepand cu 07:00</h6>
                                             </div>
                                             <div class="col-md-1" style="padding: 0;">
                                                 <div style="border-left:1px solid #ccd0d5; height:100px"></div>
                                             </div>
                                             <div class="col-md-5">
                                                 <h5>Check-out</h5>
-                                                <h6 style="color: black;"><b>luni 34 feb. 2025</b></h6>
+                                                <h6 style="color: black;"><b>{{$search_data['check_out']['day']}}-{{$search_data['check_out']['month']}}-{{$search_data['check_out']['year']}}</b></h6>
                                                 <h6>Pana la 12:00</h6>
                                             </div>
-                                            <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">*** zile</span></b></h5>
+                                            <h5 class="mt-4" style="color: black;"><b>Durata totala: <span style="text-transform: lowercase;">{{$days}} zile</span></b></h5>
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item mt-4">
                                 <div class="col-md-6">
-                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: 2 pers</p>
+                                    <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-person fa-xl"></i><i class="fa-solid fa-person-dress fa-xl"></i>&ensp;Capacitate: {{$roomtype->capacity}} pers</p>
                                     <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-bed fa-xl"></i>&ensp; Pat dublu</p>
                                     <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-wifi fa-xl"></i>&ensp; Wifi gratuit</p>
                                     <p style="font-size:large; color: #3e4d5d;"><i class="fa-solid fa-square-parking fa-xl"></i>&emsp; Parcare</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.647604180104!2d23.584550576162478!3d46.77184217112552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9c5afb3b75%3A0xe7ec93bc1284d8d5!2sThe%20Cock%20Pub!5e0!3m2!1sen!2sro!4v1686339017228!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    <iframe style="width: 100%; height: 300px; margin: 0 auto; border-radius: 10px;" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4561.4582683909075!2d24.948108235177255!3d47.46534799024697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDfCsDI3JzUwLjgiTiAyNMKwNTYnNTkuOCJF!5e1!3m2!1sen!2sro!4v1686534136756!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </li>
                         </ul>
@@ -210,19 +221,23 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****">
+                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com">
+                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" value="{{$user['email']}}">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***">
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}">
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Adresa <i id="address-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="adress" name="adress" placeholder="adresa">
+                                <label for="email" class="form-label">Numar Adulti <i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="number" min="0" id="adulti" name="adulti">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label for="email" class="form-label">Numar Copii <i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
+                                <input class="form-control" type="number" min="0" id="copii" name="copii">
                             </div>
                         </div>
                     </form>
@@ -237,11 +252,11 @@
                     <div class="demo-inline-spacing mt-3">
                         <div class="list-group">
                             <label class="list-group-item" style="border: 0px;">
-                                <input class="form-check-input me-1" type="radio" name="choose-payment">
+                                <input class="form-check-input me-1" type="radio" id="card_inp" name="choose-payment" checked>
                                 Plata cu cardul
                             </label>
                             <label class="list-group-item" style="border: 0px;">
-                                <input class="form-check-input me-1" type="radio" name="choose-payment">
+                                <input class="form-check-input me-1" type="radio" id="cash_inp" name="choose-payment">
                                 Plata cash la locatie
                             </label>
                         </div>
@@ -249,7 +264,7 @@
                 </div>
             </div>
 
-            <div class="card mb-4">
+            <div class="card mb-4" id="cash_pay" style="display: none">
                 <h5 class="card-header"><i class="fa-solid fa-money-bill-wave"></i> Plata cash</h5>
                 <hr class="my-0">
                 <div class="card-body">
@@ -257,7 +272,7 @@
                         <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
                     <div class="col-md-6">
-                        <h5 style="margin: 0px;"><b>*****&emsp;LEI</b></h5>
+                        <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
                     </div>
                 </div>
                 <hr class="my-0">
@@ -268,7 +283,7 @@
                 </div>
             </div>
 
-            <div class="card mb-4">
+            <div class="card mb-4" id="card_pay">
                 <h5 class="card-header"><i class="fa-solid fa-credit-card"></i> Detalii de plata</h5>
                 <hr class="my-0">
                 <div class="card-body" style="margin: 0 auto;">
@@ -307,7 +322,7 @@
                         <h5 style="margin: 0px; margin-left:38px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
                     <div class="col-md-6">
-                        <h5 style="margin: 0px;"><b>*****&emsp;LEI</b></h5>
+                        <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
                     </div>
                 </div>
                 <hr class="my-0">
@@ -331,8 +346,10 @@
     var email_input = document.getElementById('email');
     var tel_bouncy = document.getElementById('tel-bouncy');
     var tel_input = document.getElementById('phoneNumber');
-    var address_bouncy = document.getElementById('address-bouncy');
-    var address_input = document.getElementById('adress');
+    var adulti_bouncy = document.getElementById('adulti-bouncy');
+    var adulti_input = document.getElementById('adulti');
+    var copii_bouncy = document.getElementById('copii-bouncy');
+    var copii_input = document.getElementById('copii');
 
     name_input.onkeyup = function(event) {
         if (name_input.value == "") {
@@ -364,25 +381,54 @@
         }
     };
 
-    address_input.onkeyup = function(event) {
-        if (address_input.value == "") {
-            if (!address_bouncy.classList.contains('fa-bounce')) {
-                address_bouncy.classList.add('fa-bounce')
+    adulti_input.onkeyup = function(event) {
+        if (adulti_input.value == "") {
+            if (!adulti_bouncy.classList.contains('fa-bounce')) {
+                adulti_bouncy.classList.add('fa-bounce')
             }
         } else {
-            address_bouncy.classList.remove('fa-bounce');
+            adulti_bouncy.classList.remove('fa-bounce');
+        }
+    };
+
+    copii_input.onkeyup = function(event) {
+        if (copii_input.value == "") {
+            if (!copii_bouncy.classList.contains('fa-bounce')) {
+                copii_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            copii_bouncy.classList.remove('fa-bounce');
         }
     };
 </script>
 
 <script>
-    $('#card1').on('click', function() {
-        window.location.href = "{{route('home')}}";
+    
+    var card_inp = document.getElementById('card_inp');
+    var cash_inp = document.getElementById('cash_inp');
+    var card_panel = document.getElementById('card_pay');
+    var cash_panel = document.getElementById('cash_pay');
+
+    card_inp.addEventListener('change', function() {
+        if(this.checked) {
+            card_panel.style.display = "flex";
+            cash_panel.style.display = "none";
+        }else {
+            card_panel.style.display = "none";
+            cash_panel.style.display = "flex";
+        }
     });
 
-    $('#card2').on('click', function() {
-        window.location.href = "{{route('home')}}";
+    cash_inp.addEventListener('change', function() {
+        if(this.checked) {
+            cash_panel.style.display = "flex";
+            card_panel.style.display = "none";
+        }else {
+            cash_panel.style.display = "none";
+            card_panel.style.display = "flex";
+        }
     });
+
 </script>
 
 

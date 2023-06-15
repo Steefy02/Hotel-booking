@@ -72,6 +72,16 @@
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
+@php
+    use App\Models\Room;
+    use App\Models\RoomType;
+    use App\Http\Controllers\ClientPagesController;
+
+    $rooms = Room::all();
+    $search_res = Session::get('search');
+    $k = 0;
+@endphp
+
 <body style="background-image: url('{{asset('images/room-bg.jpg')}}'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: top;">
     <!-- main-menu Start -->
     <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
@@ -142,58 +152,31 @@
 
     <div class="container-fluid" style="margin-top: 70px;">
 
-        <div class="card mb-4 my-search-room-card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="mb-3 mt-3 col-md-4">
-                        <img class="my-search-room-image" src="{{asset('images/r5.jpg')}}">
-                    </div>
-                    <div class="mb-3 mt-3 col-md-6">
-                        <h4>Tip camera</h4>
-                        <div class="my-search-room-text">
-                            <p style="text-align: justify;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
-                        <button class="btn btn-primary">Vizualizeaza</button>
-                        <h5>-pret- lei/noapte</h5>
-                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @foreach($rooms as $room)
+
+        @if(ClientPagesController::validate_room_from_search($room->id_Room, $search_res))
+        @php
+            $roomtype = RoomType::find($room->id_RoomType);
+            $k++;
+        @endphp
 
         <div class="card mb-4 my-search-room-card">
             <div class="card-body">
                 <div class="row">
                     <div class="mb-3 mt-3 col-md-4">
-                        <img class="my-search-room-image" src="{{asset('images/r1.jpg')}}">
+                        <img class="my-search-room-image" src="{{asset('images/' . $room->image)}}">
                     </div>
                     <div class="mb-3 mt-3 col-md-6">
-                        <h4>Tip camera</h4>
+                        <h4>{{$roomtype->type}}</h4>
                         <div class="my-search-room-text">
                             <p style="text-align: justify;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {{$roomtype->description}}
                             </p>
                         </div>
                     </div>
                     <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
-                        <button class="btn btn-primary">Vizualizeaza</button>
-                        <h5>-pret- lei/noapte</h5>
+                        <a href="{{route('room', ['id' => $room->id_Room])}}"><button class="btn btn-primary">Vizualizeaza</button></a>
+                        <h5>{{$roomtype->price}} lei/noapte</h5>
                         <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
                             <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
                             <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
@@ -203,68 +186,12 @@
                 </div>
             </div>
         </div>
+        @endif
+        @endforeach
 
-        <div class="card mb-4 my-search-room-card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="mb-3 mt-3 col-md-4">
-                        <img class="my-search-room-image" src="{{asset('images/r2.jpg')}}">
-                    </div>
-                    <div class="mb-3 mt-3 col-md-6">
-                        <h4>Tip camera</h4>
-                        <div class="my-search-room-text">
-                            <p style="text-align: justify;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
-                        <button class="btn btn-primary">Vizualizeaza</button>
-                        <h5>-pret- lei/noapte</h5>
-                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-4 my-search-room-card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="mb-3 mt-3 col-md-4">
-                        <img class="my-search-room-image" src="{{asset('images/r3.jpg')}}">
-                    </div>
-                    <div class="mb-3 mt-3 col-md-6">
-                        <h4>Tip camera</h4>
-                        <div class="my-search-room-text">
-                            <p style="text-align: justify;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-3 mt-3 col-md-2 float-bottom-parent">
-                        <button class="btn btn-primary">Vizualizeaza</button>
-                        <h5>-pret- lei/noapte</h5>
-                        <div class="my-search-room-text" style="display: block; margin-bottom: 50px;">
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 1</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 2</p>
-                            <p style="margin-bottom: 2px;"><i class="fa-solid fa-check"></i> Facilitate 3</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @if($k == 0)
+        <div style="margin: 0 auto; padding: 20px; background-color: white; max-width: 600px; border-radius: 10px; text-align: center"><h2>Nu avem camere disponibile!</h2></div>
+        @endif
 </body>
 
 <script src="{{asset('/js/jquery.js')}}"></script>

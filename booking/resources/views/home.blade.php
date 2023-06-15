@@ -60,6 +60,8 @@
 
                             <div role="tabpanel" class="tab-pane active fade in" id="tours">
                                 <div class="tab-para">
+                                <form method="post" action="{{route('search')}}">
+                                    @csrf
 
                                     <div class="row">
 
@@ -67,7 +69,7 @@
                                             <div class="single-tab-select-box">
                                                 <h2>check in</h2>
                                                 <div class="travel-check-icon">
-                                                    <input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="{{date('m/d/Y')}}">
+                                                    <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="{{date('m/d/Y')}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
@@ -80,7 +82,7 @@
                                                     $datet = explode("/", date('m/d/Y'));
                                                     $datet[1] = intval($datet[1]) + 1;
                                                     @endphp
-                                                    <input type="text" name="check_out" class="form-control" data-toggle="datepicker" placeholder="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
+                                                    <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
                                                 </div><!-- /.travel-check-icon -->
                                             </div><!--/.single-tab-select-box-->
                                         </div><!--/.col-->
@@ -130,6 +132,7 @@
 
                                     </div><!--/.row-->
 
+                                </form>
                                 </div><!--/.tab-para-->
 
                             </div><!--/.tabpannel-->

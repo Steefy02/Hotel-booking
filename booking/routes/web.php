@@ -28,7 +28,9 @@ Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms')
 Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
 Route::get('/room/{id}', [ClientPagesController::class, 'get_room'])->name('room');
 Route::get('/checkout', [ClientPagesController::class, 'get_checkout'])->name('checkout');
-Route::get('/search', [ClientPagesController::class, 'get_search'])->name('search');
+Route::post('/checkout/set', [ClientPagesController::class, 'set_checkout_params'])->name('set-checkout-post');
+Route::post('/search', [ClientPagesController::class, 'get_search'])->name('search');
+Route::post('/account/update', [ClientPagesController::class, 'save_client_data'])->name('update-client');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');

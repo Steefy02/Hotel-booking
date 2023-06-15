@@ -166,11 +166,12 @@
                 <hr class="my-0">
 
                 <div class="card-body">
-                    <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    <form id="formAccountSettings" method="POST" action="{{route('update-client')}}">
+                        @csrf
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="firstName" class="form-label">Nume Complet</label>
-                                <input class="form-control" type="text" id="firstName" name="firstName" value="{{$user['name']}}" autofocus="">
+                                <input class="form-control" type="text" id="firstName" name="name" value="{{$user['name']}}" autofocus="">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail</label>
@@ -188,6 +189,9 @@
                         <div class="mt-2">
                             <button type="submit" class="btn btn-primary me-2">Salveaza modificarile</button>
                         </div>
+                        @if(Session::has('message'))
+                            <p style="color: green;">Datele au fost modificate cu succes</p>
+                        @endif
                     </form>
                 </div>
                 <!-- /Account -->

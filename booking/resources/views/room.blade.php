@@ -266,15 +266,21 @@
             @php
             use App\Models\SpecialDate;
 
-            $start = ['day' => 20, 'month' => 6, 'year' => 2023];
-            $end = ['day' => 22, 'month' => 6, 'year' => 2023];
+            if(Session::has('search')) {
+                $search_res = Session::get('search');
+
+                $start = $search_res['check_in'];
+                $end = $search_res['check_out'];
+
+                //dd($start);
+            }
             @endphp
 
             <div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
                 <div class="card" style="opacity: 0.85;">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            @if(Session::has('data-start') && Session::has('data-end') || true)
+                            @if(Session::has('search'))
                             <li class="list-group-item" style="text-align: center;">
                                 <h4 style="margin-bottom: 5px;">Tarif pentru perioada selectata</h4>
                                 <p style="font-size:larger; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;"><b>{{$start['day']}}.{{$start['month']}}.{{$start['year']}} - {{$end['day']}}.{{$end['month']}}.{{$end['year']}}</b></p>
@@ -316,7 +322,12 @@
                                 @if($is_in_range)
                                 <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$price}} Lei</p>
                                 @else
-                                <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$roomtype->price * ClientPagesController::calc_days($start, $end)}} Lei</p>
+
+                                @php
+                                    $price = $roomtype->price * ClientPagesController::calc_days($start, $end);
+                                @endphp
+
+                                <p style="font-size:x-large; margin-top: 10px; margin-bottom: 5px; color: #3e4d5d;">{{$price}} Lei</p>
                                 @endif
                             </li>
 
@@ -337,10 +348,10 @@
                             </li>
 
 
-                            @if(Session::has('data-start') && Session::has('data-end') || true)
+                            @if(Session::has('search'))
                             <li class="list-group-item" style="display: flex; justify-content: center;">
                                 <a href="{{route('checkout')}}">
-                                    <div class="btn btn-primary my-book-buttons" style="color: white; width: 250px; margin-top: 10px;">
+                                    <div class="btn btn-primary my-book-buttons" id="reserva" style="color: white; width: 250px; margin-top: 10px;">
                                         Rezerva acum
                                     </div>
                                 </a>
@@ -575,6 +586,25 @@
             }
         });
     });
+</script>
+@endif
+
+@if(Session::has('search'))
+<script>
+
+    $('#reserva').on('click', function () {
+
+        $.ajax({
+            url: "{{route('set-checkout-post')}}",
+            type: "POST",
+            data: {'_token': "{{csrf_token()}}", 'id': {{$room->id_Room}}, 'price': {{$price}}, 'days': {{ClientPagesController::calc_days($start, $end)}}},
+            success: function(data, xhr, status) {
+                window.location.href = "{{route('checkout')}}";
+            }
+        });
+
+    })
+
 </script>
 @endif
 
