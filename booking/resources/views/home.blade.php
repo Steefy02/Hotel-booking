@@ -181,7 +181,7 @@
                 <div class="home1-testm item">
                     <div class="home1-testm-single text-center">
                         <div class="home1-testm-img">
-                            <a href="{{route('room', ['id' => $room->id_Room])}}"><img src="{{asset('/images/' . $room->image)}}" alt="img" /></a>
+                            <a href="{{route('room', ['id' => $room->id_Room])}}"><img src="{{asset('/images/' . $room->image)}}" alt="img" style="height: 350px" /></a>
                         </div><!--/.home1-testm-img-->
                         <div class="home1-testm-txt">
                             <h3>

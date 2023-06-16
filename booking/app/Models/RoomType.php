@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  
 class RoomType extends Model
 {
+
     protected $table = "TypeRoom";
     protected $primaryKey = 'id_RoomType';
 

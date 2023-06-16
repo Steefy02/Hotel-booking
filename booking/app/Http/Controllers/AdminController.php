@@ -10,6 +10,8 @@ use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\SpecialDate;
 use App\Models\Facility;
+use App\Models\Booking;
+use App\Models\Payment;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -139,8 +141,53 @@ class AdminController extends Controller {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
                 $room = Room::find($id);
-                $room->update(['roomNumber' => $request->number, 'status' => $request->status, 'id_RoomType' => $request->type]);
-                return redirect()->back()->with('message', 'yes');
+                if($request->check == 'ok') {
+                    $room->update(['roomNumber' => $request->number, 'status' => $request->status, 'id_RoomType' => $request->type]);
+                    return redirect()->back()->with('message', 'yes');
+                }else {
+                    $room->delete();
+                    return redirect()->route('admin-rooms');
+                }
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_new_room_page() {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                return view('admin.addroom');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_room(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                if($request->type == 'no') {
+                    return redirect()->back()->with('err', 'no');
+                }else {
+                    //dd($request);
+                    $file = $request->file('image');
+                    $filename = $file->getClientOriginalName();
+                    $file->move("images/", $filename);
+
+                    $room = new Room;
+                    $room->roomNumber = $request->roomNumber;
+                    $room->id_RoomType = $request->type;
+                    $room->status = "visible";
+                    $room->image = $filename;
+                    $room->save();
+
+                    return redirect()->route('admin-rooms');
+                }
             }else{
                 return redirect()->back();
             }
@@ -166,8 +213,18 @@ class AdminController extends Controller {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
                 $roomtype = RoomType::find($id);
-                $roomtype->update(['type' => $request->type, 'description' => $request->description, 'price' => $request->price, 'capacity' => $request->capacity]);
-                return redirect()->back()->with('message', 'yes');
+                if($request->check == 'ok') {
+                    $roomtype->update(['type' => $request->type, 'description' => $request->description, 'price' => $request->price, 'capacity' => $request->capacity]);
+                    return redirect()->back()->with('message', 'yes');
+                }else {
+                    $rms = DB::select('select * from Room where id_RoomType = ' . $roomtype->id_RoomType);
+                    if(sizeof($rms) > 0) {
+                        return redirect()->back()->with('roomtype_used', 'yes');
+                    }else {
+                        $roomtype->delete();
+                        return redirect()->route('admin-rooms');
+                    }
+                }   
             }else{
                 return redirect()->back();
             }
@@ -264,12 +321,18 @@ class AdminController extends Controller {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
                 $special = SpecialDate::find($id);
-                $data = ClientPagesController::convert_date($request->dateStart, $request->dateEnd);
-                if(ClientPagesController::validate_dates($data['start'], $data['end'])) {
-                    $special->update(['dateStart' => $request->dateStart, 'dateEnd' => $request->dateEnd, 'price' => $request->price, 'id_RoomType' => $request->type]);
-                    return redirect()->back()->with('message', 'yes');
+                if($request->check == 'ok') {
+                    $data = ClientPagesController::convert_date($request->dateStart, $request->dateEnd);
+                    if(ClientPagesController::validate_dates($data['start'], $data['end'])) {
+                        $special->update(['dateStart' => $request->dateStart, 'dateEnd' => $request->dateEnd, 'price' => $request->price, 'id_RoomType' => $request->type]);
+                        return redirect()->back()->with('message', 'yes');
+                    }
+                    return redirect()->back()->with('errMsg', 'no');
+                }else {
+                    $special = SpecialDate::find($id);
+                    $special->delete();
+                    return redirect()->route('admin-specials');
                 }
-                return redirect()->back()->with('errMsg', 'no');
             }else{
                 return redirect()->back();
             }
@@ -297,8 +360,14 @@ class AdminController extends Controller {
         if(Session::has('user')) {
             if(Session::get('user')['userType'] === 'admin') {
                 $facility = Facility::find($id);
-                $facility->update(['name' => $request->name]);
-                return redirect()->back();
+                if($request->check == 'ok') {
+                    $facility->update(['name' => $request->name]);
+                    return redirect()->back();
+                }else {
+                    DB::delete("delete from AssociationFacility where id_Facility = " . $facility->id_Facility);
+                    $facility->delete();
+                    return redirect()->route('admin-facilities');
+                }
             }else{
                 return redirect()->back();
             }
@@ -324,6 +393,86 @@ class AdminController extends Controller {
             return true;
         }
         return false;
+    }
+
+    public function get_edit_reservation_page($id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $booking = Booking::find($id);
+                return view('admin.singlereservation')->with('booking', $booking);
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function update_reservation(Request $request, $id) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $booking = Booking::find($id);
+                $user = User::find($request->client);
+                $room = Room::find($request->room);
+
+                if($request->check == 'ok') {
+
+                    $booking->update(['fullName' => $user->name, 'checkIn' => $request->checkIn, 'checkOut' => $request->checkOut, 'status' => $request->status, 'roomsBooked' => $room->roomNumber, 'numberAdults' => $request->adults, 'numberChildren' => $request->children, 'id_Room' => $room->id_Room, 'id_User' => $user->id_User]);
+                    return redirect()->back()->with('message', 'yes');
+                }else {
+                    $booking->delete();
+                    return redirect()->route('admin-bookings');
+                }
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function get_add_reservation_page() {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                return view('admin.addreservation');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
+    }
+
+    public function add_reservation(Request $request) {
+        if(Session::has('user')) {
+            if(Session::get('user')['userType'] === 'admin') {
+                $booking = new Booking;
+                $user = User::find($request->client);
+                $room = Room::find($request->room);
+
+                $payment = new Payment;
+                $payment->typePayment = $request->payment;
+                $payment->dateOfPay = date('Y-m-d');
+                $payment->save();
+
+                $booking->fullName = $user->name;
+                $booking->checkIn = $request->checkIn;
+                $booking->checkOut = $request->checkOut;
+                $booking->status = "confirmed";
+                $booking->roomsBooked = $room->roomNumber;
+                $booking->numberAdults = $request->adults;
+                $booking->numberChildren = $request->numberChildren;
+                $booking->id_Room = $room->id_Room;
+                $booking->id_User = $user->id_User;
+                $booking->id_Payment = $payment->id_Payment;
+                $booking->save();
+                return redirect()->route('admin-bookings');
+            }else{
+                return redirect()->back();
+            }
+        }else {
+            return redirect()->back();
+        }
     }
 
 }

@@ -88,7 +88,9 @@
           <img src="{{asset('/images/' . $room->image)}}" class="img-fluid" style="border-radius: 10px">
         </div>
       </div>
+      <input type="hidden" name="check" id="check" value="ok">
     <button type='submit' class='btn' style='background-color: #4e73df;color:white;'>Salveaza</button>
+    <button type='submit' id="del" class='btn' style='background-color: red;color:white;'>Sterge</button>
     @if(Session::get('message'))
     <p style='color: green; margin-top: 15px;'>Camera a fost actualizata</p>
     @endif
@@ -142,6 +144,10 @@ function upload_changes(elem) {
     });
   }
 }
+
+$('#del').on('click', function() {
+  document.getElementById('check').value = "delete";
+})
 
 </script>
 @endsection

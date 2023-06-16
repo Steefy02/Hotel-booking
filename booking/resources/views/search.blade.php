@@ -19,6 +19,7 @@
 
     <!-- range css-->
     <link rel="stylesheet" href="{{asset('/css/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('/css/datepicker.css')}}">
 
     <!--bootstrap.min.css-->
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}" />
@@ -160,64 +161,73 @@ $k = 0;
             <div class="row">
                 <form method="post" action="{{route('search')}}">
                     @csrf
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="single-tab-select-box">
-                            <h2>check in</h2>
-                            <div class="travel-check-icon">
-                                <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="06/15/2023">
-                            </div><!-- /.travel-check-icon -->
-                        </div>
-                    </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-4">
-                        <div class="single-tab-select-box">
-                            <h2>check out</h2>
-                            <div class="travel-check-icon">
-                                @php
-                                $datet = explode("/", date('m/d/Y'));
-                                $datet[1] = intval($datet[1]) + 1;
-                                @endphp
-                                <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="06/16/2023">
-                            </div><!-- /.travel-check-icon -->
-                        </div>
-                    </div>
+                    <div class="row">
 
-                    <div class="col-lg-3 col-md-2 col-sm-5">
-                        <div class="single-tab-select-box">
-                            <h2>Tip camera</h2>
-                            <select name='type' class="form-control" style="height: 48px">
-                                @foreach ($roomtypes as $roomtype)
-                                <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
-                                @endforeach
-                                <option value="no" selected>Selecteaza tipul</option>
-                            </select>
-                        </div>
-                    </div>
+                        <div class="col-lg-2 col-md-3 col-sm-4">
+                            <div class="single-tab-select-box">
+                                <h2>check in</h2>
+                                <div class="travel-check-icon">
+                                    <input type="text" name="check_in" class="form-control" data-toggle="datepicker" value="{{date('m/d/Y')}}">
+                                </div><!-- /.travel-check-icon -->
+                            </div><!--/.single-tab-select-box-->
+                        </div><!--/.col-->
 
-                    <div class="col-lg-4 col-md-1 col-sm-4">
-                        <div class="single-tab-select-box" style="text-align: center">
-                            <h2>Pret</h2>
-                            <div class="travel-filter">
-                                <div class="info_widget">
-                                    <div class="price_filter">
-                                        <input style="display: none;" type="text" id="rangePrimary" name="rangePrimary" value="" class="irs-hidden-input" tabindex="-1" readonly="">
-                                        <p id="priceRangeSelected"></p>
-                                    </div><!--/.price-filter-->
-                                </div><!--/.info_widget-->
-                            </div><!--/.travel-filter-->
+                        <div class="col-lg-2 col-md-3 col-sm-4">
+                            <div class="single-tab-select-box">
+                                <h2>check out</h2>
+                                <div class="travel-check-icon">
+                                    @php
+                                    $datet = explode("/", date('m/d/Y'));
+                                    $datet[1] = intval($datet[1]) + 1;
+                                    @endphp
+                                    <input type="text" name="check_out" class="form-control" data-toggle="datepicker" value="{{$datet[0] . '/' . $datet[1] . '/'. $datet[2]}}">
+                                </div><!-- /.travel-check-icon -->
+                            </div><!--/.single-tab-select-box-->
+                        </div><!--/.col-->
+
+                        @php
+                        $roomtypes = RoomType::all();
+                        @endphp
+
+                        <div class="col-lg-3 col-md-2 col-sm-5">
+                            <div class="single-tab-select-box">
+                                <h2>Tip camera</h2>
+                                <select name='type' class="form-control" style="height: 48px">
+                                    @foreach ($roomtypes as $roomtype)
+                                    <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                                    @endforeach
+                                    <option value="no" selected>Selecteaza tipul</option>
+                                </select>
+                            </div><!--/.single-tab-select-box-->
+                        </div><!--/.col-->
+
+                        <div class="col-lg-4 col-md-1 col-sm-4">
+                            <div class="single-tab-select-box" style="text-align: center">
+                                <h2>Pret</h2>
+                                <div class="travel-filter">
+                                    <div class="info_widget">
+                                        <div class="price_filter">
+                                            <input type="text" id="rangePrimary" name="rangePrimary" value="" />
+                                            <p id="priceRangeSelected"></P>
+                                        </div><!--/.price-filter-->
+                                    </div><!--/.info_widget-->
+                                </div><!--/.travel-filter-->
+                            </div><!--/.col-->
                         </div>
+
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div class="about-btn travel-mrt-0 pull-left">
+                                <button class="about-view travel-btn">
+                                    cauta
+                                </button><!--/.travel-btn-->
+                            </div><!--/.about-btn-->
+                        </div><!--/.col-->
+                    </div><!--/.row-->
                     </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-sm-7">
-                    <div class="about-btn travel-mrt-0 pull-left">
-                        <button class="about-view travel-btn">
-                            cauta
-                        </button><!--/.travel-btn-->
-                    </div><!--/.about-btn-->
-                </div><!--/.col-->
-            </div><!--/.row-->
-            </form>
         </div>
 
         @foreach($rooms as $room)
@@ -277,123 +287,38 @@ $k = 0;
 
 <script src="{{asset('/js/jquery.js')}}"></script>
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
 
-<script>
-    var name_bouncy = document.getElementById('name-bouncy');
-    var name_input = document.getElementById('card-name');
-    var email_bouncy = document.getElementById('email-bouncy');
-    var email_input = document.getElementById('email');
-    var tel_bouncy = document.getElementById('tel-bouncy');
-    var tel_input = document.getElementById('phoneNumber');
-    var address_bouncy = document.getElementById('address-bouncy');
-    var address_input = document.getElementById('adress');
+    <!--modernizr.min.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-    name_input.onkeyup = function(event) {
-        if (name_input.value == "") {
-            if (!name_bouncy.classList.contains('fa-bounce')) {
-                name_bouncy.classList.add('fa-bounce')
-            }
-        } else {
-            name_bouncy.classList.remove('fa-bounce');
-        }
-    };
+    <!-- bootsnav js -->
+    <script src="{{asset('/js/bootsnav.js')}}"></script>
 
-    email_input.onkeyup = function(event) {
-        if (email_input.value == "") {
-            if (!email_bouncy.classList.contains('fa-bounce')) {
-                email_bouncy.classList.add('fa-bounce')
-            }
-        } else {
-            email_bouncy.classList.remove('fa-bounce');
-        }
-    };
+    <!-- jquery.filterizr.min.js -->
+    <script src="{{asset('/js/jquery.filterizr.min.js')}}"></script>
 
-    tel_input.onkeyup = function(event) {
-        if (tel_input.value == "") {
-            if (!tel_bouncy.classList.contains('fa-bounce')) {
-                tel_bouncy.classList.add('fa-bounce')
-            }
-        } else {
-            tel_bouncy.classList.remove('fa-bounce');
-        }
-    };
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
-    address_input.onkeyup = function(event) {
-        if (address_input.value == "") {
-            if (!address_bouncy.classList.contains('fa-bounce')) {
-                address_bouncy.classList.add('fa-bounce')
-            }
-        } else {
-            address_bouncy.classList.remove('fa-bounce');
-        }
-    };
-</script>
+    <!--jquery-ui.min.js-->
+    <script src="{{asset('/js/jquery-ui.min.js')}}"></script>
 
-<script>
-    $('#card1').on('click', function() {
-        window.location.href = "{{route('home')}}";
-    });
+    <!-- counter js -->
+    <script src="{{asset('/js/jquery.counterup.min.js')}}"></script>
+    <script src="{{asset('/js/waypoints.min.js')}}"></script>
 
-    $('#card2').on('click', function() {
-        window.location.href = "{{route('home')}}";
-    });
-</script>
+    <!--owl.carousel.js-->
+    <script src="{{asset('/js/owl.carousel.min.js')}}"></script>
 
+    <!-- jquery.sticky.js -->
+    <script src="{{asset('/js/jquery.sticky.js')}}"></script>
 
-<script>
-    let stripe = Stripe('{{ env("STRIPE_KEY") }}');
-    const elements = stripe.elements();
-    const cardElement = elements.create('card', {
-        hidePostalCode: true,
-        style: {
-            base: {
-                color: '#32325d',
-                lineHeight: '18px',
-                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-                fontSmoothing: 'antialiased',
-                fontSize: '16px',
-                '::placeholder': {
-                    color: '#aab7c4'
-                },
-            },
-            invalid: {
-                color: '#fa755a',
-                iconColor: '#fa755a',
-            }
-        }
-    });
-    const cardForm = document.getElementById('card-form');
-    const cardName = document.getElementById('card-name');
-    cardElement.mount('#card');
+    <!--datepicker.js-->
+    <script src="{{asset('/js/datepicker.js')}}"></script>
 
+    <!--Custom JS-->
+    <script src="{{asset('/js/custom.js')}}"></script>
 
-    cardForm.addEventListener('submit', async (e) => {
-
-        e.preventDefault()
-        const {
-            paymentMethod,
-            error
-        } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: cardElement,
-            billing_details: {
-                name: cardName.value
-            }
-        })
-        if (error) {
-            console.log(error)
-            console.log(my_border)
-        } else {
-            let input = document.createElement('input')
-            input.setAttribute('type', 'hidden')
-            input.setAttribute('name', 'payment_method')
-            input.setAttribute('value', paymentMethod.id)
-            cardForm.appendChild(input)
-            cardForm.submit()
-        }
-    })
-</script>
-<script src="{{asset('js/event-handler.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
 <script src="https://kit.fontawesome.com/045d1ece88.js" crossorigin="anonymous"></script>
 

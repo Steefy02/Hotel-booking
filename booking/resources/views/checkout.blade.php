@@ -237,23 +237,23 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}">
+                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}" required>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">Numar Adulti <i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="adulti" name="adulti">
+                                <input class="form-control" type="number" min="0" id="adulti" name="adulti" required>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" value="{{$user['email']}}">
+                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" required value="{{$user['email']}}">
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label for="email" class="form-label">Numar Copii <i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="copii" name="copii">
+                                <input class="form-control" type="number" min="0" id="copii" name="copii" required>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}">
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}" required>
                             </div>
                         </div>
                     </form>
@@ -313,12 +313,16 @@
                         </div>
                         <div class="wave"></div>
                     </div>
-                    <form action="{{ route('login') }}" method="POST" id="card-form">
                         <div id="card-row" class="row" style="margin: 0 auto; margin-top: 30px;">
                             <div id="card" style="width: 400px; border: 3px solid #00d8ff; padding: 5px; border-radius:10px;"></div>
                         </div>
-                    </form>
+
+                        @if(Session::has('stripe_error'))
+                        <p style="color: red">Plata nu a putut fi efectuata!</p>
+                        @endif
                 </div>
+                <form method="POST" action="{{route('stripe.store')}}" id="stripe_submit">
+                    @csrf
                 <hr class="my-0">
                 <div class="card-body">
                     <div class="col-md-6">
@@ -328,12 +332,15 @@
                         <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
                     </div>
                 </div>
+                <input type="hidden" name="stripe_email" value="{{$user['email']}}">
+                <input type="hidden" name="price_stripe" value="{{$price}}">">
                 <hr class="my-0">
                 <div class="card-body" style="margin: 0 auto;">
                     <div class="row">
                         <button type="submit" class="btn btn-danger" style="width: fit-content;">Efectueaza plata</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -343,6 +350,37 @@
 <script src="{{asset('/js/bootstrap.min.js')}}"></script>
 
 <script>
+
+    @if(Session::has('stripe_success'))
+
+    var month_in = @if($search_data['check_in']['month'] < 10) "0" + @endif "{{$search_data['check_in']['month']}}";
+    var month_out = @if($search_data['check_out']['month'] < 10) "0" + @endif "{{$search_data['check_out']['month']}}";
+
+    var checkIn = "{{$search_data['check_in']['year']}}-" + month_in + "-{{$search_data['check_in']['day']}}";
+    var checkOut = "{{$search_data['check_out']['year']}}-" + month_out + "-{{$search_data['check_out']['day']}}";
+
+    var adults = "{{Session::get('adults')}}";
+    var children = "{{Session::get('children')}}";
+
+    $.ajax({
+        url: "{{route('make-reservation')}}",
+        type: "POST",
+        data: { '_token': "{{csrf_token()}}", 
+                'paymentType': "card",
+                'fullName': "{{$user['name']}}",
+                'checkIn': checkIn,
+                'checkOut': checkOut,
+                'roomNumber': {{$room->roomNumber}},
+                'adults': adults,
+                'children': children,
+                'id_Room': {{$room->id_Room}},
+                'id_User': {{$user['id_User']}}},
+        success: function(data, xhr, status) {
+            window.location.href = "{{route('clear-reservation-cache')}}";
+        }
+    });
+    @endif
+
     var name_bouncy = document.getElementById('name-bouncy');
     var name_input = document.getElementById('card-name');
     var email_bouncy = document.getElementById('email-bouncy');
@@ -494,7 +532,7 @@
             }
         }
     });
-    const cardForm = document.getElementById('card-form');
+    const cardForm = document.getElementById('stripe_submit');
     const cardName = document.getElementById('card-name');
     cardElement.mount('#card');
 
@@ -502,26 +540,45 @@
     cardForm.addEventListener('submit', async (e) => {
 
         e.preventDefault()
-        const {
-            paymentMethod,
-            error
-        } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: cardElement,
-            billing_details: {
-                name: cardName.value
+
+        var adults = document.getElementById('adulti').value;
+        var children = document.getElementById('copii').value;
+
+        if(adults != '' && children != '' && parseInt(adults) + parseInt(children) <= {{$roomtype->capacity + 1}} && once) {
+            const {
+                paymentMethod,
+                error
+            } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details: {
+                    name: cardName.value
+                }
+            })
+            if (error) {
+                console.log(error)
+                console.log(my_border)
+            } else {
+                let input = document.createElement('input')
+                input.setAttribute('type', 'hidden')
+                input.setAttribute('name', 'payment_method')
+                input.setAttribute('value', paymentMethod.id)
+                cardForm.appendChild(input)
+
+                let ad = document.createElement('input')
+                ad.setAttribute('type', 'hidden')
+                ad.setAttribute('name', 'adults')
+                ad.setAttribute('value', adulti_input.value)
+                cardForm.appendChild(ad)
+
+                let ch = document.createElement('input')
+                ch.setAttribute('type', 'hidden')
+                ch.setAttribute('name', 'children')
+                ch.setAttribute('value', copii_input.value)
+                cardForm.appendChild(ch)
+
+                cardForm.submit()
             }
-        })
-        if (error) {
-            console.log(error)
-            console.log(my_border)
-        } else {
-            let input = document.createElement('input')
-            input.setAttribute('type', 'hidden')
-            input.setAttribute('name', 'payment_method')
-            input.setAttribute('value', paymentMethod.id)
-            cardForm.appendChild(input)
-            cardForm.submit()
         }
     })
 </script>

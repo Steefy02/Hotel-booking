@@ -48,8 +48,9 @@
           </select>
         </div>
       </div>
+      <input type="hidden" name="check" value="ok" id="check">
     <button type='submit' class='btn' style='background-color: #4e73df;color:white;'>Salveaza</button>
-    <button type='submit' class='btn btn-danger' style="margin-left: 15px">Sterge</button> //TODO: deletion
+    <button type='submit' class='btn btn-danger' style="margin-left: 15px" id="del">Sterge</button>
     @if(Session::get('message'))
     <p style='color: green; margin-top: 15px;'>Tipul de camera a fost actualizat</p>
     @endif
@@ -58,4 +59,14 @@
     @endif
   </form>
 
+@endsection
+
+@section('scripts')
+<script>
+
+$("#del").on('click', function() {
+  document.getElementById('check').value = "delete";
+});
+
+</script>
 @endsection

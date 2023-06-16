@@ -156,8 +156,23 @@ class ClientPagesController extends Controller {
     public static function validate_room_from_search($id_room, $search) {
         $room = Room::find($id_room);
         $roomtype = RoomType::find($room->id_RoomType);
+        $bookings = Booking::all();
+        $okay = true;
+        $search_res = Session::get('search');
+        $start = $search_res['check_in'];
+        $end = $search_res['check_out'];
 
-        if($room->id_RoomType == $search['type'] && $roomtype->price >= $search['min_price'] && $roomtype->price <= $search['max_price']) {
+        foreach($bookings as $booking) {
+            if($booking->id_Room == $room->id_Room) {
+                $dates = self::convert_date($booking->checkIn, $booking->checkOut);
+                if(self::is_date_in($start, $dates['start'], $dates['end']) || self::is_date_in($end, $dates['start'], $dates['end'])) {
+                    $okay = false;
+                }
+            }
+        }
+
+
+        if($room->id_RoomType == $search['type'] && $roomtype->price >= $search['min_price'] && $roomtype->price <= $search['max_price'] && $okay) {
             return true;
         }
         return false;

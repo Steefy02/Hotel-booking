@@ -52,28 +52,30 @@ class CustomAuthController extends Controller {
     }
 
     public function process_register(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:50',
-            'username' => 'required|max:50',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
+        if($request->terms == 'on') {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|max:50',
+                'username' => 'required|max:50',
+                'email' => 'required|email',
+                'password' => 'required|min:6',
+            ]);
 
-        $user = User::create([
-            'name' => trim($request->name),
-            'username' => trim($request->username),
-            'email' => strtolower($request->email),
-            'password' => bcrypt($request->password),
-            'userType' => "client"
-        ]);
+            $user = User::create([
+                'name' => trim($request->name),
+                'username' => trim($request->username),
+                'email' => strtolower($request->email),
+                'password' => bcrypt($request->password),
+                'userType' => "client"
+            ]);
 
-        $credentials = $request->only(['email', 'password']);
-        if(Auth::attempt($credentials)) {
-            $user = Auth::user();
-            Session::put('user', $user);
-            return redirect()->route('home');
+            $credentials = $request->only(['email', 'password']);
+            if(Auth::attempt($credentials)) {
+                $user = Auth::user();
+                Session::put('user', $user);
+                return redirect()->route('home');
+            }
         }
-        return redirect()->back()->with("error", "Some error occured (CustomAuthController line 64)");
+        return redirect()->back()->with("errmsg", "no");
     }
 
     public function logout(Request $request)

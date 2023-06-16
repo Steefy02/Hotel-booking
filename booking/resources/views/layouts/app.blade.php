@@ -159,8 +159,8 @@
                             <div class="single-footer-txt text-left">
                                 <h5 style="color: #565a5c;"><b> Contacte:</b></h5>
                                 <div style="margin-left: 15px; margin-top: 15px;">
-                                    <p>+40 748 024 111</p>
-                                    <p>guta.regele.manelelor@gmail.com</p>
+                                    <p>+40 735 403 250</p>
+                                    <p>sorinatreitel@yahoo.ro</p>
                                 </div>
                             </div><!--/.single-footer-txt-->
                         </div><!--/.single-footer-item-->

@@ -68,15 +68,16 @@ style="justify-content: flex-start!important"
                   {{$booking->status}}
                 </td>
                 <td>
-                  HAUAUA
+                  {{$booking->roomsBooked}}
                 </td>
                 <td>
-                  HAUAUA
+                  <a href="{{route('admin-edit-reservation', ['id' => $booking->id_Reservation])}}"><button class="dri-btn">Edit</button></a>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
+          <a href="{{route('admin-add-reservation')}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Rezervare</button></a>
         </div>
       </div>
     </div>

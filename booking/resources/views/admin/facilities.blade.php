@@ -38,8 +38,9 @@ style="justify-content: flex-start!important"
                 <input type="text" class="form-control" name='name' value="{{$facility->name}}" required>
               </div>
             </div>
+            <input type="hidden" id="check" name="check" value="ok">
             <button type='submit' class='btn' style='background-color: #4e73df;color:white;'>Salveaza</button>
-            <button type='submit' class='btn' style='background-color: red; color:white;'>Sterge</button>
+            <button type='submit' id="del" class='btn' style='background-color: red; color:white;'>Sterge</button>
           </form>
         </li>
 
@@ -107,6 +108,10 @@ function open_fac(id) {
     document.getElementById(id).style.display = 'none';
   }
 }
+
+$("#del").on('click', function() {
+  document.getElementById('check').value = "delete";
+});
 
 </script>
 @endsection

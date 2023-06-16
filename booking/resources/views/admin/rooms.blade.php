@@ -64,7 +64,7 @@
               @endforeach
             </tbody>
           </table>
-          <a href="{{route('admin-roomtype-edit', ['id' => $roomtype->id_RoomType])}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Camera</button></a>
+          <a href="{{route('admin-add-room')}}"><button class="btn btn-primary"  style='margin-top: 15px'>Adauga Camera</button></a>
         </div>
       </div>
     </div>

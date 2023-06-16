@@ -368,10 +368,10 @@
                                 <h5 class="card-title" style="margin-bottom: 5px; color: white;">Contact</h5>
                             </li>
                             <li class="list-group-item" style="padding-left: 0px;">
-                                <p style="font-size:medium; margin-top: 10px; margin-bottom: 5px; color: black;"> Esti prost si ai nevoie de ajutor?</p>
+                                <p style="font-size:medium; margin-top: 10px; margin-bottom: 5px; color: black;"> Ai nevoie de ajutor?</p>
                                 <p style="font-size:medium; color: black;"> Contacteaza-ne la:</p>
-                                <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-phone"></i>&emsp;0769 420 mortii matii</p>
-                                <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-envelope"></i>&emsp;guta.regele.manelelor@gmail.com</p>
+                                <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-phone"></i>&emsp;0735 403 250</p>
+                                <p style="margin-bottom: 5px; padding-left: 10px; color: white;"><i class="fa-solid fa-envelope"></i>&emsp;sorinatreitel@yahoo.ro</p>
                             </li>
                         </ul>
                     </div>
@@ -387,7 +387,7 @@
             <div class="card" style="background-color: #02B884; margin-top: 70px; opacity: 0.85;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
+                        {{-- <li class="list-group-item">
                             <button id="review-modal-button" class="btn my-buttons review-button trigger">Adauga o recenzie!</button>
                             <h5 class="card-title" style="margin-bottom: 5px; color: white;">Recenzii</h5>
                             <div class="stars">
@@ -404,7 +404,7 @@
                                     <label class="star star-1" for="star-1-2" style="padding-left: 0px;"></label>
                                 </form>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">

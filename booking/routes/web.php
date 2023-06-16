@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClientPagesController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::post('/account/update', [ClientPagesController::class, 'save_client_data'
 Route::post('/checkout/make', [ClientPagesController::class, 'create_reservation'])->name('make-reservation');
 Route::get('/finalise', [ClientPagesController::class, 'finalise_reservation'])->name('clear-reservation-cache');
 Route::post('/account/delete', [ClientPagesController::class, 'delete_account'])->name('del-current-account');
+Route::post('stripe', [StripeController::class, 'store'])->name('stripe.store');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
@@ -46,6 +48,8 @@ Route::get('/admin/users', [AdminController::class, 'get_users_page'])->name('ad
 Route::get('/admin/users/{id}', [AdminController::class, 'get_users_edit_page'])->name('admin-users-edit');
 Route::post('/admin/users/update/{id}', [AdminController::class, 'edit_user'])->name('admin-edit-user-post');
 Route::get('/admin/rooms', [AdminController::class, 'get_rooms_page'])->name('admin-rooms');
+Route::get('/admin/add-room', [AdminController::class, 'get_new_room_page'])->name('admin-add-room');
+Route::post('/admin/add-room/add', [AdminController::class, 'add_room'])->name('admin-add-room-post');
 Route::get('/admin/rooms/{id}', [AdminController::class, 'get_room_edit_page'])->name('admin-rooms-edit');
 Route::post('/admin/rooms/update/{id}', [AdminController::class, 'edit_room'])->name('admin-edit-room-post');
 Route::get('/admin/roomtypes/{id}', [AdminController::class, 'get_roomtype_edit_page'])->name('admin-roomtype-edit');
@@ -61,6 +65,10 @@ Route::get('/admin/add-special', [AdminController::class, 'get_add_special_page'
 Route::post('/admin/add-new-special', [AdminController::class, 'add_special'])->name('admin-add-special-post');
 Route::get('/admin/specials/{id}', [AdminController::class, 'get_edit_special_page'])->name('admin-edit-special');
 Route::post('/admin/specials/update/{id}', [AdminController::class, 'edit_special'])->name('admin-edit-special-post');
+Route::get('/admin/reservation/{id}', [AdminController::class, 'get_edit_reservation_page'])->name('admin-edit-reservation');
+Route::post('/admin/update-reservation/{id}', [AdminController::class, 'update_reservation'])->name('admin-edit-reservation-post');
+Route::get('/admin/add-reservation', [AdminController::class, 'get_add_reservation_page'])->name('admin-add-reservation');
+Route::post('/admin/add-new-reservation', [AdminController::class, 'add_reservation'])->name('admin-add-reservation-post');
 
 //Admin ajax routes
 Route::post('/admin/facility-room-add', [AdminController::class, 'add_facility_to_room'])->name('admin-add-facility-to-room');
