@@ -74,7 +74,7 @@
                 <div class="mb-2">
                     <div class="logo" style="text-align: center; margin-bottom: 50px; ">
                         <a href="{{route('home')}}" style="color: black;">
-                        Mountain<span>Hotel</span>
+                        Perla<span>Somesului</span>
                         </a>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                         <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                         <label class="form-check-label" for="terms-conditions">
                         Accept
-                        <a href="{{route('terms')}}">termenii si conditiile</a>
+                        <a href="{{route('terms')}}" target="_blank">termenii si conditiile</a>
                         </label>
                     </div>
                     </div>

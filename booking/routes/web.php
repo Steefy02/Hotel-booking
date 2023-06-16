@@ -25,7 +25,6 @@ Route::get('/forgotPassword', [CustomAuthController::class, 'forgot_password'])-
 Route::get('/account', [CustomAuthController::class, 'get_account'])->name('account');
 Route::get('/db', [ClientPagesController::class, 'db_test'])->name('db_test');
 Route::get('/terms', [ClientPagesController::class, 'get_terms'])->name('terms');
-Route::get('/contact', [ClientPagesController::class, 'get_contact'])->name('contact');
 Route::get('/room/{id}', [ClientPagesController::class, 'get_room'])->name('room');
 Route::get('/checkout', [ClientPagesController::class, 'get_checkout'])->name('checkout');
 Route::post('/checkout/set', [ClientPagesController::class, 'set_checkout_params'])->name('set-checkout-post');

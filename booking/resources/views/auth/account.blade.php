@@ -80,7 +80,7 @@
                     <div class="col-sm-2">
                         <div class="logo">
                             <a href="{{route('home')}}">
-                                Mountain<span>Hotel</span>
+                                Perla<span>Somesului</span>
                             </a>
                         </div><!-- /.logo-->
                     </div><!-- /.col-->
