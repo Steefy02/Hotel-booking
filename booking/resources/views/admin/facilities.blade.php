@@ -7,6 +7,7 @@
 @endsection
 
 @section('title', 'Facilitati')
+@section('subtitle', "Gestioneaza facilitatile")
 
 @section('custom-style-div')
 

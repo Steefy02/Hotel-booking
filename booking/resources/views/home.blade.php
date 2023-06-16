@@ -185,7 +185,7 @@
                         </div><!--/.home1-testm-img-->
                         <div class="home1-testm-txt">
                             <h3>
-                                <a href="#">
+                                <a href="{{route('room', ['id' => $room->id_Room])}}">
                                     {{$data->type}}
                                 </a>
                             </h3>

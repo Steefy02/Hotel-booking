@@ -152,7 +152,7 @@
                         <div class="single-footer-item" style="margin-bottom: 50px;">
                             <div class="footer-logo">
                                 <a>Perla<span>Somesului</span></a>
-                                <p>Bistrita-Nasaud, Valea Mare, 69</p>
+                                <p>Bistrita-Nasaud, Valea Mare, 54</p>
                             </div>
                         </div><!--/.single-footer-item-->
                         <div class="single-footer-item text-center">
@@ -160,7 +160,7 @@
                                 <h5 style="color: #565a5c;"><b> Contacte:</b></h5>
                                 <div style="margin-left: 15px; margin-top: 15px;">
                                     <p>+40 735 403 250</p>
-                                    <p>sorinatreitel@yahoo.ro</p>
+                                    <p style="text-transform: lowercase;">sorinatreitel@yahoo.ro</p>
                                 </div>
                             </div><!--/.single-footer-txt-->
                         </div><!--/.single-footer-item-->

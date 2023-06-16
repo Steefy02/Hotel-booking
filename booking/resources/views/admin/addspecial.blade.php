@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Adauga Data Speciala')
+@section('subtitle', "Gestioneaza datele speciale");
 
 @section('content')
 

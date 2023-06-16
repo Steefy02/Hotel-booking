@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Adauga Facilitate Noua')
+@section('subtitle', "Gestioneaza facilitatile")
 
 @section('content')
 

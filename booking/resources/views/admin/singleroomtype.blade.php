@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Editeaza Tipul de Camera')
+@section('subtitle', "Gestioneaza camerele")
 
 @section('content')
 

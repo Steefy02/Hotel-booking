@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Perioade Speciale')
+@section('subtitle', "Gestioneaza perioadele speciale")
 
 @section('content')
 

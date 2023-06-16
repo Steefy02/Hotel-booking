@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Rezervari')
+@section('subtitle', "Gestioneaza rezervarile")
 
 @section('custom-style-div')
 

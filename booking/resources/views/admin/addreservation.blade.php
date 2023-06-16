@@ -1,6 +1,7 @@
 @extends('admin.template')
 
 @section('title', 'Adauga Rezervare')
+@section('subtitle', "Gestioneaza rezervarile")
 
 @section('content')
 
