@@ -132,7 +132,19 @@
                                     6. Limitarea responsabilității:
                                 </b>
                                 <br>
-                                Hotelul nostru nu își asumă nicio responsabilitate pentru orice daune directe, indirecte, accidentale sau de orice natură
+                                Hotelul nostru nu își asumă nicio responsabilitate pentru orice daune directe, indirecte, accidentale sau de orice natură rezultate din utilizarea sau imposibilitatea utilizării acestui site sau a informațiilor și serviciilor furnizate prin intermediul acestuia.
+                                <br>
+                                <br>
+                                <b>
+                                    7. Modificări ale termenilor și condițiilor:
+                                </b>
+                                <br>
+                                Ne rezervăm dreptul de a modifica acești termeni și condiții în orice moment, fără o notificare prealabilă. Vă recomandăm să verificați periodic această pagină pentru a fi la curent cu eventualele modificări.
+                                <br>
+                                <br>
+                                <b>
+                                    Prin utilizarea site-ului nostru, sunteți de acord să respectați acești termeni și condiții. Dacă nu sunteți de acord cu acești termeni și condiții, vă rugăm să nu utilizați acest site.
+                                </b>
                             </P>
                         </div>
                     </li>
