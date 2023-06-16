@@ -242,4 +242,8 @@ class ClientPagesController extends Controller {
             return redirect()->back()->with('errmsg', 'no');
         }
     }
+
+    public function save_testimonial(Request $request) {
+        dd($request);
+    }
 }

@@ -35,6 +35,7 @@ Route::post('/checkout/make', [ClientPagesController::class, 'create_reservation
 Route::get('/finalise', [ClientPagesController::class, 'finalise_reservation'])->name('clear-reservation-cache');
 Route::post('/account/delete', [ClientPagesController::class, 'delete_account'])->name('del-current-account');
 Route::post('stripe', [StripeController::class, 'store'])->name('stripe.store');
+Route::post('/save-testimonial', [ClientPagesController::class, 'save_testimonial'])->name('save-testimonial');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');

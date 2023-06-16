@@ -48,11 +48,7 @@
               <h5 style="margin-right: 50px">{{$user['name']}}</h5>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Setari Cont
-              </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="{{route('manual-logout')}}">
                 <i class="ti-power-off text-primary"></i>
                 Log out
               </a>

@@ -45,12 +45,20 @@ style="justify-content: flex-start!important"
                   Camera
                 </th>
                 <th>
+                  Modalitate plata
+                </th>
+                <th>
                   Actiuni
                 </th>
               </tr>
             </thead>
             <tbody>
               @foreach($bookings as $booking)
+
+              @php
+                  $payment = Payment::find($booking->id_Payment);
+              @endphp
+
               <tr>
                 <td class="py-1">
                   {{$booking->id_Reservation}}
@@ -69,6 +77,9 @@ style="justify-content: flex-start!important"
                 </td>
                 <td>
                   {{$booking->roomsBooked}}
+                </td>
+                <td>
+                  {{$payment->typePayment}}
                 </td>
                 <td>
                   <a href="{{route('admin-edit-reservation', ['id' => $booking->id_Reservation])}}"><button class="dri-btn">Edit</button></a>

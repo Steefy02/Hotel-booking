@@ -75,9 +75,9 @@
 <body>
 
     <!-- main-menu Start -->
-    <header class="top-area" style="position: relative; background-color: #4d4e54; height: 77px;">
-        <div class="header-area" style="height: 77px;">
-            <div class="container" style="max-height: 77px;">
+    <header class="top-area" style="position: fixed; z-index: 999; background-color: #4d4e54; height: 77px;">
+        <div class="header-area" style="height: 77px; position:fixed; z-index: 999; left: 12%">
+            <div class="container" style="max-height: 77px; position: fixed; z-index: 999">
                 <div class="row" style="max-width: 76vw; max-height: 77px; margin: 0 auto;">
                     <div class="col-sm-2">
                         <div class="logo">
@@ -145,12 +145,25 @@
     use App\Models\Room;
     use App\Models\RoomType;
     use App\Models\Facility;
+    use App\Models\SpecialDate;
     use App\Http\Controllers\ClientPagesController;
 
     $roomtype = RoomType::find($room->id_RoomType);
     @endphp
 
-    <div class="container-fluid" style="margin: 0 auto; padding-top: 50px; background-color: transparent;">
+    @php
+
+    if(Session::has('search')) {
+        $search_res = Session::get('search');
+
+        $start = $search_res['check_in'];
+        $end = $search_res['check_out'];
+
+        //dd($start);
+    }
+    @endphp
+
+    <div class="container-fluid" style="margin: 0 auto; background-color: transparent; padding-top: 150px">
 
         <div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #02B884; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center; opacity: 0.70;">
             <a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
@@ -159,6 +172,39 @@
             <span style="color: black"><b> | </b></span>
             <a href="#servicii_masa" class="py-1 px-3" style="color: black"><b>Servicii masa</b></a>
         </div>
+
+        @php
+            $specials_stand = SpecialDate::all();
+            $is_in_range = false;
+            $spec_sel;
+
+            foreach($specials_stand as $special) {
+                if($special->id_RoomType == $roomtype->id_RoomType) {
+                    $dates = ClientPagesController::convert_date($special->dateStart, $special->dateEnd);
+
+                    $startSpec = $dates['start'];
+                    $endSpec = $dates['end'];
+
+                    if(ClientPagesController::is_date_in($start, $startSpec, $endSpec) && ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                    $price = $special->price * ClientPagesController::calc_days($start, $end);
+                    $is_in_range = true;
+                    $spec_sel = $special;
+                    }else if(ClientPagesController::is_date_in($start, $startSpec, $endSpec)) {
+                    $price = $special->price * ClientPagesController::calc_days($start, $endSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end);
+                    $is_in_range = true;
+                    $spec_sel = $special;
+                    }else if(ClientPagesController::is_date_in($end, $startSpec, $endSpec)) {
+                    $price = $special->price * ClientPagesController::calc_days($startSpec, $end) + $roomtype->price * ClientPagesController::calc_days($start, $startSpec);
+                    $is_in_range = true;
+                    $spec_sel = $special;
+                    }else if(ClientPagesController::is_date_in($startSpec, $start, $end) && ClientPagesController::is_date_in($endSpec, $start, $end)) {
+                    $price = $roomtype->price * ClientPagesController::calc_days($start, $startSpec) + $roomtype->price * ClientPagesController::calc_days($endSpec, $end) + $special->price * ClientPagesController::calc_days($startSpec, $endSpec);
+                    $is_in_range = true;
+                    $spec_sel = $special;
+                    }
+                }
+            }
+        @endphp
 
         <div class="row justify-content-center" style="margin: 0 auto; margin-top: 50px; margin-bottom: 50px;">
             <div class="col-md-6 col-lg-6 mb-3">
@@ -169,8 +215,12 @@
                                 <h4 class="card-title">{{$roomtype->type}}, {{$room->roomNumber}}</h4>
                                 <h6 class="card-subtitle text-muted" style="margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> Valea mare, jud Bistrita-Nasaud</h6>
                             </div>
-                            <div class="col-md-6" style="display: flex; justify-content: center; align-items: center;">
-                                <h4 class="card-title">{{$roomtype->price}} Lei/Noapte</h4>
+                            <div class="col-md-6" style="text-align: center">
+                                <h5 class="card-title">{{$roomtype->price}} Lei/Noapte, Standard</h5>
+                                @if($is_in_range)
+                                <h5 class="card-title">{{$spec_sel->price}} Lei/Noapte
+                                ({{$spec_sel->dateStart}} -> {{$spec_sel->dateEnd}})</h5>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -262,19 +312,6 @@
                     </div>
                 </div>
             </div>
-
-            @php
-            use App\Models\SpecialDate;
-
-            if(Session::has('search')) {
-                $search_res = Session::get('search');
-
-                $start = $search_res['check_in'];
-                $end = $search_res['check_out'];
-
-                //dd($start);
-            }
-            @endphp
 
             <div class="col-md-6 col-lg-4 mb-6" style="margin-left: 70px;">
                 <div class="card" style="opacity: 0.85;">
@@ -387,7 +424,8 @@
             <div class="card" style="background-color: #02B884; margin-top: 70px; opacity: 0.85;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        {{-- <li class="list-group-item">
+                        @if(Session::has('user'))
+                        <li class="list-group-item">
                             <button id="review-modal-button" class="btn my-buttons review-button trigger">Adauga o recenzie!</button>
                             <h5 class="card-title" style="margin-bottom: 5px; color: white;">Recenzii</h5>
                             <div class="stars">
@@ -404,7 +442,8 @@
                                     <label class="star star-1" for="star-1-2" style="padding-left: 0px;"></label>
                                 </form>
                             </div>
-                        </li> --}}
+                        </li>
+                        @endif
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
@@ -519,6 +558,10 @@
 
     <!--Modal-->
 
+    @php
+        $roomtypes = RoomType::all();
+    @endphp
+
     <div class="my-modal-wrapper">
         <div class="my-modal">
             <div class="my-head">
@@ -526,22 +569,21 @@
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>
             </div>
+            <form method="post" action="{{route('save-testimonial')}}">
             <div class="my-content">
                 <div class="row" style="margin-bottom: 90px;">
                     <div class="col-md-6">
                         <label>Alege tipul de camera</label>
-                        <select id="selectRoomType" class="form-select color-dropdown" style="max-width: 200px;" autofocus>
-                            <option selected="">Studio</option>
-                            <option>Camera Single</option>
-                            <option>Camera Double</option>
-                            <option>Camera Triple</option>
-                            <option>Apartament</option>
+                        <select id="selectRoomType" class="form-select color-dropdown" name="type" style="max-width: 200px;" autofocus>
+                            @foreach ($roomtypes as $roomtype)
+                                <option value="{{$roomtype->id_RoomType}}">{{$roomtype->type}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label>Cum ti s-a parut sederea?</label>
                         <div class="stars">
-                            <form class="my-stars-form" action="" style="float: left;">
+                            <div class="my-stars-form" style="float: left;">
                                 <input class="star star-5" id="star-5-1" type="radio" name="star" />
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-5" for="star-5-1"></label>
                                 <input class="star star-4" id="star-4-1" type="radio" name="star" />
@@ -552,16 +594,17 @@
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-2" for="star-2-1"></label>
                                 <input class="star star-1" id="star-1-1" type="radio" name="star" />
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-1" for="star-1-1" style="padding-left: 0px;"></label>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <label>Impartaseste-ne experienta ta in cateva cuvinte</label>
-                    <textarea type="text" class="form-control" style="height: 150px; margin-bottom: 20px;"></textarea>
+                    <textarea type="text" name="content" class="form-control" style="height: 150px; margin-bottom: 20px;"></textarea>
                 </div>
-                <button id="review-modal-button" class="btn my-buttons review-button trigger">Salveaza</button>
+                <input id="review-modal-button" type="submit" class="btn my-buttons review-button trigger" value="Salveaza">
             </div>
+            </form>
         </div>
     </div>
 
