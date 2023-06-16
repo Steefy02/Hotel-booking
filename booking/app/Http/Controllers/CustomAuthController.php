@@ -86,4 +86,12 @@ class CustomAuthController extends Controller {
         return redirect()->route('home');
     }
 
+    public function manual_logout() {
+        Session::forget('user');
+        Session::invalidate();
+        Session::regenerateToken();
+
+        return redirect()->route('home');
+    }
+
 }

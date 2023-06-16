@@ -11,6 +11,7 @@ use App\Models\RoomType;
 use App\Models\Booking;
 use App\Models\Payment;
 use Mail;
+use App\Http\Controllers\CustomAuthController;
 
 class ClientPagesController extends Controller {
 
@@ -35,7 +36,10 @@ class ClientPagesController extends Controller {
 
     public function get_checkout() {
         if(Session::has('room')) {
-            return view('checkout');
+            if(Session::has('user')) {
+                return view('checkout');
+            }
+            return redirect()->route('login');
         }
         return redirect()->route('home');
     }
@@ -211,5 +215,16 @@ class ClientPagesController extends Controller {
         Session::flash('res-success', 'yes');
 
         return redirect()->back();
+    }
+
+    public function delete_account(Request $request) {
+        if($request->accountActivation == 'on') {
+            $user = User::find(Session::get('user')['id_User']);
+            $user->delete();
+
+            return redirect()->route('manual-logout');
+        }else {
+            return redirect()->back()->with('errmsg', 'no');
+        }
     }
 }

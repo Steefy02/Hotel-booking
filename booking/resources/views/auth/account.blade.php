@@ -205,10 +205,11 @@
                             <p class="mb-0">O data ce contul dumneavoastra este sters, acesta nu se va mai putea recupera.</p>
                         </div>
                     </div>
-                    <form id="formAccountDeactivation" onsubmit="return false">
+                    <form id="formAccountDeactivation" method="POST" action="{{route('del-current-account')}}">
+                        @csrf
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation">
-                            <label class="form-check-label" for="accountActivation">Confirm stergerea contului</label>
+                            <label class="form-check-label" for="accountActivation" @if(Session::has('errmsg')) style="color: red" @endif>Confirm stergerea contului</label>
                         </div>
                         <button type="submit" class="btn btn-danger deactivate-account">Sterge cont</button>
                     </form>

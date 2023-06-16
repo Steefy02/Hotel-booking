@@ -33,11 +33,13 @@ Route::post('/search', [ClientPagesController::class, 'get_search'])->name('sear
 Route::post('/account/update', [ClientPagesController::class, 'save_client_data'])->name('update-client');
 Route::post('/checkout/make', [ClientPagesController::class, 'create_reservation'])->name('make-reservation');
 Route::get('/finalise', [ClientPagesController::class, 'finalise_reservation'])->name('clear-reservation-cache');
+Route::post('/account/delete', [ClientPagesController::class, 'delete_account'])->name('del-current-account');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
 Route::post('register',[CustomAuthController::class,'process_register'])->name('registerPost');
 Route::post('logout', [CustomAuthController::class, 'logout'])->name('logout');
+Route::get('/manlogout', [CustomAuthController::class, 'manual_logout'])->name('manual-logout');
 
 //Admin
 Route::get('/admin', [AdminController::class, 'get_admin_dashboard'])->name('admin-home');
