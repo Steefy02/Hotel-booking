@@ -32,6 +32,7 @@ Route::post('/checkout/set', [ClientPagesController::class, 'set_checkout_params
 Route::post('/search', [ClientPagesController::class, 'get_search'])->name('search');
 Route::post('/account/update', [ClientPagesController::class, 'save_client_data'])->name('update-client');
 Route::post('/checkout/make', [ClientPagesController::class, 'create_reservation'])->name('make-reservation');
+Route::get('/finalise', [ClientPagesController::class, 'finalise_reservation'])->name('clear-reservation-cache');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');

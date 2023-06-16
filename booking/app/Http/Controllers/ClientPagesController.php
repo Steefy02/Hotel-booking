@@ -192,4 +192,24 @@ class ClientPagesController extends Controller {
         });
         return view('dbtest');
     }
+
+    public function finalise_reservation() {
+        $room = Session::get('room');
+        $price = Session::get('final_price');
+        $days = Session::get('days');
+        $search_data = Session::get('search');
+
+        Session::forget('room');
+        Session::forget('final_price');
+        Session::forget('days');
+        Session::forget('search');
+
+        Session::flash('room', $room);
+        Session::flash('final_price', $price);
+        Session::flash('days', $days);
+        Session::flash('search', $search_data);
+        Session::flash('res-success', 'yes');
+
+        return redirect()->back();
+    }
 }

@@ -152,6 +152,15 @@
     @endphp
 
     <div class="container-fluid" style="margin-top: 70px; opacity: 0.90;">
+
+        @if(Session::has('res-success'))
+        <div class="row">
+            <div class="col-12" style="margin: 0 auto; width: 50%; text-align: center; margin-bottom: 40px; background-color: white; border: 3px solid green; border-radius: 10px; padding-top: 10px; padding-bottom: 10px; color: green">
+                <h5 style="margin-bottom: 0px; color: green">Rezervarea a fost inregistrata cu succes</h5>
+            </div>
+        </div>
+        @endif
+
         <div class="col-md-7">
             <div class="card mb-4" style="height: 420px;">
                 <h5 class="card-header"><i class="fa-solid fa-suitcase"></i> Detalii rezervare</h5>
@@ -198,7 +207,7 @@
                 </div>
             </div>
 
-            <div class="card mb-4" style="height: 230px;">
+            <div class="card mb-4" style="height: 230px; @if(Session::has('res-success')) display: none @endif" >
                 <h5 class="card-header"><i class="fa-solid fa-wallet"></i></i> Modalitati de plata</h5>
                 <hr class="my-0">
                 <div class="card-body" style="padding-top: 0px;">
@@ -249,10 +258,17 @@
                         </div>
                     </form>
                 </div>
+                @if(Session::has('res-success'))
+                <div class="card-body" style="padding-top: 0px">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h5 style="margin: 0px;"><b>TOTAL REZERVARE:&emsp;{{$price}}&emsp;LEI</b></h5>
+                    </div>
+                </div>
+                @endif
                 <!-- /Billing details -->
             </div>
 
-            <div class="card mb-4" id="cash_pay" style="display: none; height: 230px;">
+            <div class="card mb-4" id="cash_pay" style="display: none; height: 230px; @if(Session::has('res-success')) display: none @endif">
                 <h5 class="card-header"><i class="fa-solid fa-money-bill-wave"></i> Plata cash</h5>
                 <hr class="my-0">
                 <div class="card-body">
@@ -265,12 +281,12 @@
                 </div>
                 <div class="card-body" style="margin: 0 auto;">
                     <div class="row">
-                        <button type="submit" class="btn btn-danger" style="width: fit-content;">Finalizare rezervare</button>
+                        <button type="submit" id="pay_cash" class="btn btn-danger" style="width: fit-content;">Finalizare rezervare</button>
                     </div>
                 </div>
             </div>
 
-            <div class="card mb-4" id="card_pay">
+            <div class="card mb-4" id="card_pay" @if(Session::has('res-success')) style="display: none" @endif>
                 <h5 class="card-header"><i class="fa-solid fa-credit-card"></i> Detalii de plata</h5>
                 <hr class="my-0">
                 <div class="card-body" style="margin: 0 auto;">
@@ -394,6 +410,7 @@
     var cash_inp = document.getElementById('cash_inp');
     var card_panel = document.getElementById('card_pay');
     var cash_panel = document.getElementById('cash_pay');
+    var once = true;
 
     card_inp.addEventListener('change', function() {
         if (this.checked) {
@@ -426,7 +443,8 @@
         var adults = document.getElementById('adulti').value;
         var children = document.getElementById('copii').value;
 
-        if(adults != '' && children != '' && parseInt(adults) + parseInt(children) <= {{$roomtype->capacity + 1}}) {
+        if(adults != '' && children != '' && parseInt(adults) + parseInt(children) <= {{$roomtype->capacity + 1}} && once) {
+            once = false;
             $.ajax({
                 url: "{{route('make-reservation')}}",
                 type: "POST",
@@ -441,9 +459,11 @@
                         'id_Room': {{$room->id_Room}},
                         'id_User': {{$user['id_User']}}},
                 success: function(data, xhr, status) {
-                    alert('yes');
+                    window.location.href = "{{route('clear-reservation-cache')}}";
                 }
             });
+        }else if(!once) {
+            alert('Rezervarea este in curs de inregistrare');
         }
 
     });
