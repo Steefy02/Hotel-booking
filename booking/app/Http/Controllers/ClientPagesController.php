@@ -255,5 +255,7 @@ class ClientPagesController extends Controller {
         $testimonial->content = $request->content;
 
         $testimonial->save();
+
+        return redirect()->back();
     }
 }

@@ -31,18 +31,19 @@
         </div><!--/.about-us-content-->
     </div><!--/.container-->
 
-    <div id="description" style="margin-top: 550px;"></div>
+    <div id="description" style="margin-top: 850px;"></div>
+    
 </section><!--/.about-us-->
 <!--about-us end -->
 
 
 
-<div class="row" style="background-color: white; height: 400px; padding-left: 100px; padding-right: 100px; text-align: center;">
+<div class="row" style="background-color: white; padding-left: 100px; padding-right: 100px; text-align: center;">
     <h3 style="margin-top: 70px; margin-bottom: 30px;">
-        <b>Hotel Perla Somesului - cazare de 5 stele si servicii de top</b>
+        <b>Hotel Perla Somesului - cazare de 3 stele si servicii de top</b>
     </h3>
     <hr style="width: 400px; border-width: 2px; margin: 0 auto; margin-bottom: 40px; border-color: darkgray;">
-    <h4 style="line-height: 2">
+    <h4 style="line-height: 2;">
         Bucură-te de o escapadă relaxantă la munte într-unul dintre cele mai rafinate și primitoare hoteluri din zonă!
         Situat în inima peisajelor pitorești ale munților, hotelul nostru este o oază de liniște și confort,
         unde fiecare moment se transformă într-o experiență memorabilă. Fie că ești în căutarea unei evadări romantice
@@ -51,7 +52,29 @@
         Camerele noastre spațioase și elegante te așteaptă să te relaxezi și să te destindă într-un decor de vis.
         Indiferent că privești pe fereastra către vârfurile înzăpezite ale munților sau că te bucuri de priveliștea
         îmbietoare a pădurilor de conifere, vei fi învăluit de o atmosferă de liniște și armonie.
+        <br>
+        <br>
     </h4>
+    <div class="col-md-4" style="margin-bottom: 50px;">
+    <img src="{{asset('images/hotel.jpg')}}">
+    </div>
+    <div class="col-md-8" style="margin-bottom: 50px;">
+        <h5 style="line-height: 2; text-align: justify;">
+            Fiecare weekend este dedicat drumetiilor pe munte, oferindu-va oportunitatea de a descoperi peisaje unice, 
+            cascade ascunse si trasee spectaculoase. Ghizii nostri experimentati va vor insoti pe cele mai captivante 
+            trasee si va vor impartasi secretele acestor locuri fermecatoare.
+            <br>
+            Pentru cei pasionati de adrenalina, avem ATV-uri moderne de inchiriat, pregatite sa va ofere o experienta de neuitat. 
+            Explorati padurile inconjuratoare pe patru roti, simtind rafalele de vant si privind privelistile panoramice. 
+            Fie ca sunteti un incepator entuziasmat sau un expert experimentat, hotelul va ofera oportunitati nelimitate 
+            de distractie si aventura.
+            <br>
+            <br>
+            Pentru cei care doresc sa se bucure de meci de fotbal, avem un teren special amenajat, perfect pentru a va 
+            testa abilitatile si a va distra alaturi de prieteni sau familie. Puteti organiza turnee amicale sau 
+            antrenamente intense, avand garantia unor momente de competitie si distractie.
+        </h5>
+    </div>
 </div>
 
 <!--galley start-->

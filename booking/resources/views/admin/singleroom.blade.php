@@ -130,18 +130,12 @@ function upload_changes(elem) {
       type: "POST",
       url: "{{route('admin-add-facility-to-room')}}",
       data: {'_token': '{{ csrf_token() }}', 'id_Room': room_id, 'id_Facility': fac_id},
-      success: function(data, xhr, status) {
-        alert('yes');
-      }
     });
   }else {
     $.ajax({
       type: "POST",
       url: "{{route('admin-remove-facility-from-room')}}",
       data: {'_token': '{{ csrf_token() }}', 'id_Room': room_id, 'id_Facility': fac_id},
-      success: function(data, xhr, status) {
-        alert('yes');
-      }
     });
   }
 }

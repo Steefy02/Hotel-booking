@@ -246,6 +246,7 @@ $k = 0;
                     </div>
                     <div class="mb-3 mt-3 col-md-6">
                         <h4>{{$roomtype->type}}</h4>
+                        <h4>Numar camera {{$room->roomNumber}}</h4>
                         <div class="my-search-room-text">
                             <p style="text-align: justify;">
                                 {{$roomtype->description}}

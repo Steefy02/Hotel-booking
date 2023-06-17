@@ -324,20 +324,20 @@
                 <form method="POST" action="{{route('stripe.store')}}" id="stripe_submit">
                     @csrf
                 <hr class="my-0">
-                <div class="card-body">
+                <div class="card-body" style="margin-bottom: 15px;">
                     <div class="col-md-6">
                         <h5 style="margin: 0px; margin-left: 50px;"><b>TOTAL REZERVARE:</b></h5>
                     </div>
                     <div class="col-md-6">
-                        <h5 style="margin: 0px;"><b>{{$price}}&emsp;LEI</b></h5>
+                        <h5 style="margin: 0px;"><b>{{$price}}&ensp;LEI</b></h5>
                     </div>
                 </div>
                 <input type="hidden" name="stripe_email" value="{{$user['email']}}">
-                <input type="hidden" name="price_stripe" value="{{$price}}">">
+                <input type="hidden" name="price_stripe" value="{{$price}}">
                 <hr class="my-0">
                 <div class="card-body" style="margin: 0 auto;">
                     <div class="row">
-                        <button type="submit" class="btn btn-danger" style="width: fit-content;">Efectueaza plata</button>
+                        <button type="submit" class="btn btn-danger" style="width: fit-content; margin: 0 auto;">Efectueaza plata</button>
                     </div>
                 </div>
                 </form>
