@@ -453,6 +453,7 @@ class AdminController extends Controller {
                 $payment = new Payment;
                 $payment->typePayment = $request->payment;
                 $payment->dateOfPay = date('Y-m-d');
+                $payment->ammount = $request->ammount;
                 $payment->save();
 
                 $booking->fullName = $user->name;

@@ -121,7 +121,7 @@
                                                         Admin</a>
                                                 </li>
                                                 @endif
-                                                <li><a id='logout' href="#" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
+                                                <li><a id='logout' href="{{route('manual-logout')}}" style="color:red; height:20px; padding-top:0px;">Log out</a></li>
                                             </ul>
                                         </div>
                                         <!--button class="book-btn" id="logout"><i class="fa-solid fa-circle-user"></i>

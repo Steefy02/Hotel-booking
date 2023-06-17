@@ -60,19 +60,24 @@ class CustomAuthController extends Controller {
                 'password' => 'required|min:6',
             ]);
 
-            $user = User::create([
-                'name' => trim($request->name),
-                'username' => trim($request->username),
-                'email' => strtolower($request->email),
-                'password' => bcrypt($request->password),
-                'userType' => "client"
-            ]);
+            if(!$validator->fails()) {
 
-            $credentials = $request->only(['email', 'password']);
-            if(Auth::attempt($credentials)) {
-                $user = Auth::user();
-                Session::put('user', $user);
-                return redirect()->route('home');
+                $user = User::create([
+                    'name' => trim($request->name),
+                    'username' => trim($request->username),
+                    'email' => strtolower($request->email),
+                    'password' => bcrypt($request->password),
+                    'userType' => "client"
+                ]);
+
+                $credentials = $request->only(['email', 'password']);
+                if(Auth::attempt($credentials)) {
+                    $user = Auth::user();
+                    Session::put('user', $user);
+                    return redirect()->route('home');
+                }
+            }else {
+                return redirect()->back()->withErrors($validator);
             }
         }
         return redirect()->back()->with("errmsg", "no");

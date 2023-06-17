@@ -49,6 +49,9 @@ style="justify-content: flex-start!important"
                   Modalitate plata
                 </th>
                 <th>
+                  Suma
+                </th>
+                <th>
                   Actiuni
                 </th>
               </tr>
@@ -81,6 +84,9 @@ style="justify-content: flex-start!important"
                 </td>
                 <td>
                   {{$payment->typePayment}}
+                </td>
+                <td>
+                  {{$payment->ammount}} Lei
                 </td>
                 <td>
                   <a href="{{route('admin-edit-reservation', ['id' => $booking->id_Reservation])}}"><button class="dri-btn">Edit</button></a>

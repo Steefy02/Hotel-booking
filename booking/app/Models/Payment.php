@@ -11,7 +11,8 @@ class Payment extends Model
 
     protected $fillable = [
         'typePayment',
-        'dateOfPay'
+        'dateOfPay',
+        'ammount'
     ];
 }
 

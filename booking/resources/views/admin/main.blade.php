@@ -18,7 +18,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Taskuri Administrator</h4>
                             <div class="add-items">
-                              <input type="text" class="form-control todo-list-input"  placeholder="Adauga nou task">
+                              <input type="text" class="form-control todo-list-input"  placeholder="Adauga nou tasks">
                               <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent" id="add_todo"><i class="icon-circle-plus"></i></button>
                           </div>
                             <div class="list-wrapper pt-2">

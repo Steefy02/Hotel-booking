@@ -87,7 +87,7 @@
                 <form id="formAuthentication" class="mb-3" action="{{route('registerPost')}}" method="POST">
                     @csrf
                     <div class="mb-3">
-                    <label for="username" class="form-label">Nume complet</label>
+                    <label for="username" class="form-label">Nume complet<span style="color: red"> * </span></label>
                     <input
                         type="text"
                         class="form-control"
@@ -99,7 +99,7 @@
                     />
                     </div>
                     <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username<span style="color: red"> * </span></label>
                     <input
                         type="text"
                         class="form-control"
@@ -111,11 +111,14 @@
                     />
                     </div>
                     <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email<span style="color: red"> * </span></label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required/>
+                    @if($errors->has('email'))
+                    <p style="color: red">Nu ati introdus adresa de email intr-un format valid!</p>
+                    @endif
                     </div>
                     <div class="mb-3 form-password-toggle">
-                    <label class="form-label" for="password">Parola</label>
+                    <label class="form-label" for="password">Parola<span style="color: red"> * </span></label>
                     <div class="input-group input-group-merge">
                         <input
                         type="password"
@@ -128,6 +131,9 @@
                         />
                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                     </div>
+                    @if($errors->has('password'))
+                    <p style="color: red">Parola trebuie sa aiba minim 6 caractere!</p>
+                    @endif
                     </div>
 
                     <div class="mb-3">

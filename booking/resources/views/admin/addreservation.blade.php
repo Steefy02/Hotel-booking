@@ -71,6 +71,12 @@
             </select>
         </div>
     </div>
+    <div class="form-group row">
+      <label for="inputCapacity" class="col-sm-4 col-form-label">Suma Plata</label>
+      <div class="col-sm-8">
+          <input type="number" class="form-control" name='ammount'>
+      </div>
+  </div>
       <input type="hidden" id="check" name="check" value="ok">
     <button type='submit' class='btn' style='background-color: #4e73df;color:white;'>Salveaza</button>
   </form>

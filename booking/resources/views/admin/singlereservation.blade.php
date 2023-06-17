@@ -83,6 +83,12 @@
             <input type="text" name='typePayment' class="form-control-plaintext" id="inputcapacity" readonly value="{{$payment->typePayment}}">
         </div>
     </div>
+    <div class="form-group row">
+      <label for="inputCapacity" class="col-sm-4 col-form-label">suma Plata</label>
+      <div class="col-sm-8">
+          <input type="text" name='typePayment' class="form-control-plaintext" id="inputcapacity" readonly value="{{$payment->ammount}} Lei">
+      </div>
+    </div>
       <input type="hidden" id="check" name="check" value="ok">
     <button type='submit' class='btn' style='background-color: #4e73df;color:white;'>Salveaza</button>
     <button type='submit' id="del" class='btn btn-danger' style="margin-left: 15px">Sterge</button>

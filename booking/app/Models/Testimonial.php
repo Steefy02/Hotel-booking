@@ -12,6 +12,7 @@ class Testimonial extends Model
     protected $fillable = [
         'id_User',
         'content',
-        'rating'
+        'rating',
+        'id_RoomType'
     ];
 }

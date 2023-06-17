@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\RoomType;
 use App\Models\Booking;
 use App\Models\Payment;
+use App\Models\Testimonial;
 use Mail;
 use App\Http\Controllers\CustomAuthController;
 
@@ -183,6 +184,7 @@ class ClientPagesController extends Controller {
         $payment = new Payment;
         $payment->typePayment = $request->paymentType;
         $payment->dateOfPay = date('Y-m-d');
+        $payment->ammount = Session::get('final_price');
         $payment->save();
 
         $booking = new Booking;
@@ -244,6 +246,14 @@ class ClientPagesController extends Controller {
     }
 
     public function save_testimonial(Request $request) {
-        dd($request);
+        //dd($request);
+        $user = Session::get('user');
+        $testimonial = new Testimonial;
+        $testimonial->id_User = $user['id_User'];
+        $testimonial->rating = $request->star;
+        $testimonial->id_RoomType = $request->type;
+        $testimonial->content = $request->content;
+
+        $testimonial->save();
     }
 }

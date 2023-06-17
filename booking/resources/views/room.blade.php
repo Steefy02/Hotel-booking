@@ -421,6 +421,12 @@
                 </div>
             </div>
 
+            @php
+                use App\Models\Testimonial;
+
+                $testimonials = Testimonial::all();
+            @endphp
+
             <div class="card" style="background-color: #02B884; margin-top: 70px; opacity: 0.85;">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
@@ -428,7 +434,7 @@
                         <li class="list-group-item">
                             <button id="review-modal-button" class="btn my-buttons review-button trigger">Adauga o recenzie!</button>
                             <h5 class="card-title" style="margin-bottom: 5px; color: white;">Recenzii</h5>
-                            <div class="stars">
+                            {{-- <div class="stars">
                                 <form action="" style="float: left;">
                                     <input class="star star-5" id="star-5-2" type="radio" name="star" />
                                     <label class="star star-5" for="star-5-2"></label>
@@ -441,16 +447,53 @@
                                     <input class="star star-1" id="star-1-2" type="radio" name="star" />
                                     <label class="star star-1" for="star-1-2" style="padding-left: 0px;"></label>
                                 </form>
+                            </div> --}}
+                        </li>
+                        @endif
+
+                        @php
+                            use App\Models\User;
+                        @endphp
+
+                        @foreach ($testimonials as $item)
+
+                        @php
+                            $test_user = User::find($item->id_User);
+                            $test_roomtype = RoomType::find($item->id_RoomType);
+                        @endphp
+
+                        @if($test_roomtype->id_RoomType == $roomtype->id_RoomType)
+                            
+                        <li class="list-group-item" style="padding-left: 0px;">
+                            <div class="row mt-4">
+                                <div class="col-md-2">
+                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <h6 class="review-user-name">{{$test_user->name}}</h6>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;{{$test_roomtype->type}}</h7>
+                                </div>
+                                <div class="col-md-10">
+                                    <i class="@if($item->rating >= 1) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="@if($item->rating >= 2) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="@if($item->rating >= 3) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="@if($item->rating >= 4) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="@if($item->rating == 5) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <div class="review-text">
+                                        {{$item->content}}
+                                    </div>
+                                </div>
                             </div>
                         </li>
                         @endif
+
+                        @endforeach
+
+                        @if($roomtype->type == 'Camera Single')
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
                                     <img src="{{asset('images/profile.png')}}" class="user-picture">
                                     <h6 class="review-user-name">Alexandru</h6>
-                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Studio</h7>
-                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;1 Noapte</h7>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera Single</h7>
                                 </div>
                                 <div class="col-md-10">
                                     <h6 class="review-date">04 aprilie 2023</h6>
@@ -467,6 +510,8 @@
                                 </div>
                             </div>
                         </li>
+                        @endif
+                        @if($roomtype->type == "Apartament")
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
@@ -502,13 +547,14 @@
                                 </div>
                             </div>
                         </li>
+                        @endif
+                        @if($roomtype->type == "Camera Double")
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
                                     <img src="{{asset('images/profile.png')}}" class="user-picture">
                                     <h6 class="review-user-name">Raluca</h6>
                                     <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera double</h7>
-                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;4 Nopti</h7>
                                 </div>
                                 <div class="col-md-10">
                                     <h6 class="review-date">17 august 2020</h6>
@@ -524,13 +570,14 @@
                                 </div>
                             </div>
                         </li>
+                        @endif
+                        @if($roomtype == "Camera Triple")
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
                                     <img src="{{asset('images/profile-pic-2.jpg')}}" class="user-picture">
                                     <h6 class="review-user-name">Mihai</h6>
-                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera single</h7>
-                                    <h7 class="review-room-info"><i class="fa-regular fa-calendar" style="color: #ffffff;"></i>&ensp;2 Nopti</h7>
+                                    <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;Camera Triple</h7>
                                 </div>
                                 <div class="col-md-10">
                                     <h6 class="review-date">13 septembrie 2021</h6>
@@ -550,6 +597,7 @@
                                 </div>
                             </div>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -570,6 +618,7 @@
                 </a>
             </div>
             <form method="post" action="{{route('save-testimonial')}}">
+                @csrf
             <div class="my-content">
                 <div class="row" style="margin-bottom: 90px;">
                     <div class="col-md-6">
@@ -584,15 +633,15 @@
                         <label>Cum ti s-a parut sederea?</label>
                         <div class="stars">
                             <div class="my-stars-form" style="float: left;">
-                                <input class="star star-5" id="star-5-1" type="radio" name="star" />
+                                <input class="star star-5" id="star-5-1" type="radio" name="star" value="5"/>
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-5" for="star-5-1"></label>
-                                <input class="star star-4" id="star-4-1" type="radio" name="star" />
+                                <input class="star star-4" id="star-4-1" type="radio" name="star" value="4"/>
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-4" for="star-4-1"></label>
-                                <input class="star star-3" id="star-3-1" type="radio" name="star" />
+                                <input class="star star-3" id="star-3-1" type="radio" name="star" value="3"/>
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-3" for="star-3-1"></label>
-                                <input class="star star-2" id="star-2-1" type="radio" name="star" />
+                                <input class="star star-2" id="star-2-1" type="radio" name="star" value="2"/>
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-2" for="star-2-1"></label>
-                                <input class="star star-1" id="star-1-1" type="radio" name="star" />
+                                <input class="star star-1" id="star-1-1" type="radio" name="star" value="1"/>
                                 <label style="font-size: 16px; margin-bottom: 0px;" class="star star-1" for="star-1-1" style="padding-left: 0px;"></label>
                             </div>
                         </div>
@@ -602,7 +651,7 @@
                     <label>Impartaseste-ne experienta ta in cateva cuvinte</label>
                     <textarea type="text" name="content" class="form-control" style="height: 150px; margin-bottom: 20px;"></textarea>
                 </div>
-                <input id="review-modal-button" type="submit" class="btn my-buttons review-button trigger" value="Salveaza">
+                <input id="review-modal-button" type="submit" class="btn my-buttons review-button" value="Salveaza">
             </div>
             </form>
         </div>
@@ -629,6 +678,9 @@
             }
         });
     });
+
+
+
 </script>
 @endif
 
