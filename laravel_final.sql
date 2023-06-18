@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 16, 2023 at 09:33 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 18, 2023 at 02:46 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -63,6 +63,16 @@ CREATE TABLE `Booking` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Booking`
+--
+
+INSERT INTO `Booking` (`id_Reservation`, `fullName`, `checkIn`, `checkOut`, `status`, `roomsBooked`, `numberAdults`, `numberChildren`, `id_Room`, `id_User`, `id_Payment`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(12, 'Dari', '2023-06-17 00:00:00', '2023-06-18 00:00:00', 'confirmed', 433, 1, 1, 3, 1, 12, '2023-06-17 13:01:25', '2023-06-17 13:01:25', NULL),
+(17, 'Tanasescu Darius', '2023-06-18 00:00:00', '2023-06-19 00:00:00', 'confirmed', 725, 1, 1, 4, 1, 17, '2023-06-18 03:06:15', '2023-06-18 03:06:15', NULL),
+(18, 'Dari', '2023-06-18 00:00:00', '2023-06-19 00:00:00', 'confirmed', 100, 1, 0, 1, 1, 18, '2023-06-18 03:08:35', '2023-06-18 03:08:35', NULL),
+(19, 'Tanasescu Darius', '2023-06-18 00:00:00', '2023-06-19 00:00:00', 'confirmed', 233, 1, 1, 2, 1, 19, '2023-06-18 03:09:42', '2023-06-18 03:09:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -184,6 +194,7 @@ CREATE TABLE `Payment` (
   `id_Payment` int(11) NOT NULL,
   `typePayment` varchar(20) DEFAULT NULL,
   `dateOfPay` date DEFAULT NULL,
+  `ammount` int(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -193,18 +204,26 @@ CREATE TABLE `Payment` (
 -- Dumping data for table `Payment`
 --
 
-INSERT INTO `Payment` (`id_Payment`, `typePayment`, `dateOfPay`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'cash', '2023-06-15', '2023-06-15 05:32:52', '2023-06-15 05:32:52', NULL),
-(2, 'cash', '2023-06-15', '2023-06-15 20:18:43', '2023-06-15 20:18:43', NULL),
-(3, 'cash', '2023-06-15', '2023-06-15 20:18:45', '2023-06-15 20:18:45', NULL),
-(4, 'cash', '2023-06-15', '2023-06-15 20:18:49', '2023-06-15 20:18:49', NULL),
-(5, 'cash', '2023-06-15', '2023-06-15 20:23:50', '2023-06-15 20:23:50', NULL),
-(6, 'cash', '2023-06-16', '2023-06-15 21:37:59', '2023-06-15 21:37:59', NULL),
-(7, 'card', '2023-06-16', '2023-06-16 08:38:03', '2023-06-16 08:38:03', NULL),
-(8, 'card', '2023-06-16', '2023-06-16 08:57:38', '2023-06-16 08:57:38', NULL),
-(9, 'card', '2023-06-16', '2023-06-16 13:01:01', '2023-06-16 13:01:01', NULL),
-(10, 'cash', '2023-06-16', '2023-06-16 13:02:33', '2023-06-16 13:02:33', NULL),
-(11, 'cash', '2023-06-16', '2023-06-16 14:15:00', '2023-06-16 14:15:00', NULL);
+INSERT INTO `Payment` (`id_Payment`, `typePayment`, `dateOfPay`, `ammount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'cash', '2023-06-15', 0, '2023-06-15 05:32:52', '2023-06-15 05:32:52', NULL),
+(2, 'cash', '2023-06-15', 0, '2023-06-15 20:18:43', '2023-06-15 20:18:43', NULL),
+(3, 'cash', '2023-06-15', 0, '2023-06-15 20:18:45', '2023-06-15 20:18:45', NULL),
+(4, 'cash', '2023-06-15', 0, '2023-06-15 20:18:49', '2023-06-15 20:18:49', NULL),
+(5, 'cash', '2023-06-15', 0, '2023-06-15 20:23:50', '2023-06-15 20:23:50', NULL),
+(6, 'cash', '2023-06-16', 0, '2023-06-15 21:37:59', '2023-06-15 21:37:59', NULL),
+(7, 'card', '2023-06-16', 0, '2023-06-16 08:38:03', '2023-06-16 08:38:03', NULL),
+(8, 'card', '2023-06-16', 0, '2023-06-16 08:57:38', '2023-06-16 08:57:38', NULL),
+(9, 'card', '2023-06-16', 0, '2023-06-16 13:01:01', '2023-06-16 13:01:01', NULL),
+(10, 'cash', '2023-06-16', 0, '2023-06-16 13:02:33', '2023-06-16 13:02:33', NULL),
+(11, 'cash', '2023-06-16', 0, '2023-06-16 14:15:00', '2023-06-16 14:15:00', NULL),
+(12, 'cash', '2023-06-17', 600, '2023-06-17 13:01:25', '2023-06-17 13:01:25', NULL),
+(13, 'cash', '2023-06-18', 400, '2023-06-17 21:30:06', '2023-06-17 21:30:06', NULL),
+(14, 'cash', '2023-06-18', 250, '2023-06-17 21:34:07', '2023-06-17 21:34:07', NULL),
+(15, 'cash', '2023-06-18', 250, '2023-06-17 21:36:53', '2023-06-17 21:36:53', NULL),
+(16, 'card', '2023-06-18', 400, '2023-06-17 21:40:24', '2023-06-17 21:40:24', NULL),
+(17, 'cash', '2023-06-18', 250, '2023-06-18 03:06:15', '2023-06-18 03:06:15', NULL),
+(18, 'cash', '2023-06-18', 200, '2023-06-18 03:08:35', '2023-06-18 03:08:35', NULL),
+(19, 'cash', '2023-06-18', 400, '2023-06-18 03:09:42', '2023-06-18 03:09:42', NULL);
 
 -- --------------------------------------------------------
 
@@ -263,7 +282,11 @@ CREATE TABLE `Testimonials` (
   `id_Testimonial` int(11) NOT NULL,
   `id_User` int(11) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `rating` int(5) NOT NULL
+  `rating` int(5) NOT NULL,
+  `id_RoomType` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -307,6 +330,7 @@ CREATE TABLE `UserAccount` (
   `password` varchar(255) NOT NULL,
   `userType` varchar(20) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `profile` varchar(30) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -316,8 +340,9 @@ CREATE TABLE `UserAccount` (
 -- Dumping data for table `UserAccount`
 --
 
-INSERT INTO `UserAccount` (`id_User`, `username`, `email`, `phoneNumber`, `password`, `userType`, `name`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'nightraven420', 'test@yahoo.com', '0748024111', '$2y$10$swtv30u6Y49Hmq8VOdLg7ev5AIeBfjH99U8cV1obgTwLsm9Eg.5JW', 'admin', 'Dari', NULL, '2023-05-22 22:37:20', '2023-06-08 22:57:43');
+INSERT INTO `UserAccount` (`id_User`, `username`, `email`, `phoneNumber`, `password`, `userType`, `name`, `profile`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'nightraven420', 'test@yahoo.com', '0748024111', '$2y$10$swtv30u6Y49Hmq8VOdLg7ev5AIeBfjH99U8cV1obgTwLsm9Eg.5JW', 'admin', 'Dari', 'cat.png', NULL, '2023-05-22 22:37:20', '2023-06-17 20:38:20'),
+(6, 'Nightraven', 'tana.dariusxbl@gmail.com', '0748024111', '$2y$10$vpp/mtFEPLNTrIigpK/XKurH1pt2Cp0.l/qZRDlnZcf8Z4x487Bci', 'client', 'Tanasescu Darius', 'profile.png', NULL, '2023-06-17 21:25:48', '2023-06-17 21:25:48');
 
 --
 -- Indexes for dumped tables
@@ -431,7 +456,7 @@ ALTER TABLE `AssociationFacility`
 -- AUTO_INCREMENT for table `Booking`
 --
 ALTER TABLE `Booking`
-  MODIFY `id_Reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_Reservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `Facility`
@@ -461,7 +486,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `Payment`
 --
 ALTER TABLE `Payment`
-  MODIFY `id_Payment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_Payment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -479,7 +504,7 @@ ALTER TABLE `Room`
 -- AUTO_INCREMENT for table `Testimonials`
 --
 ALTER TABLE `Testimonials`
-  MODIFY `id_Testimonial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Testimonial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `TypeRoom`
@@ -491,7 +516,7 @@ ALTER TABLE `TypeRoom`
 -- AUTO_INCREMENT for table `UserAccount`
 --
 ALTER TABLE `UserAccount`
-  MODIFY `id_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
