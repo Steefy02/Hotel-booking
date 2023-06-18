@@ -36,7 +36,7 @@
                                         <div class="form-check form-check-flat">
                                             <label class="form-check-label">
                                                 <input class="checkbox" type="checkbox">
-                                                Adauga noi oferte
+                                                Adauga ofertele de vara
                                             </label>
                                         </div>
                                         <i class="remove ti-close"></i>
@@ -54,16 +54,7 @@
                                         <div class="form-check form-check-flat">
                                             <label class="form-check-label">
                                                 <input class="checkbox" type="checkbox">
-                                                refacut fotografii in camere
-                                            </label>
-                                        </div>
-                                        <i class="remove ti-close"></i>
-                                    </li>
-                                    <li>
-                                        <div class="form-check form-check-flat">
-                                            <label class="form-check-label">
-                                                <input class="checkbox" type="checkbox">
-                                                Luat licenta
+                                                Refacut fotografii pt apartamente
                                             </label>
                                         </div>
                                         <i class="remove ti-close"></i>

@@ -57,19 +57,21 @@
     <script src="{{asset('/js/config.js')}}"></script>
   </head>
 
+  <img src="{{asset('images/room-bg.jpg')}}" style="position: fixed; top: 0px; z-index: -1; object-fit: fill; filter: brightness(70%);" />
+
   <body>
     <!-- Content -->
 
     <div class="container-xxl">
       <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner py-4">
+        <div class="authentication-inner py-4" style="opacity: 0.90">
           <!-- Forgot Password -->
           <div class="card">
             <div class="card-body">
                 <div class="mb-2">
                     <div class="logo" style="text-align: center; margin-bottom: 50px; ">
                         <a href="{{route('home')}}" style="color: black;">
-                        Mountain<span>Hotel</span>
+                        Perla<span>Somesului</span>
                         </a>
                     </div>
                 </div>

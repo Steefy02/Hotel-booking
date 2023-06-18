@@ -166,7 +166,7 @@
     <div class="container-fluid" style="margin: 0 auto; background-color: transparent; padding-top: 150px">
 
         <div class="container mx-auto grid grid-cols-2 md:flex px-4 py-2 font-semibold" style="border-radius: 25px; background-color: #02B884; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; text-align:center; opacity: 0.70;">
-            <a href="#dotari" class="py-1 px-3" style="color: black"><b>Dotari camere</b></a>
+            <a href="#descriere" class="py-1 px-3" style="color: black"><b>Descriere camera</b></a>
             <span style="color: black"><b> | </b></span>
             <a href="#facilitati" class="py-1 px-3" style="color: black"><b>Facilitati</b></a>
             <span style="color: black"><b> | </b></span>
@@ -239,19 +239,18 @@
                         <a class="right carousel-control" style="opacity: 0.5;"></a>
                     </div>
 
-
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <h4 id="dotari" style="margin-top: 70px; margin-bottom: 5px;">Dotari camere</h4>
+                            <li id="descriere" class="list-group-item">
+                                <h4 style="margin-top: 70px; margin-bottom: 5px;">Descriere camera</h4>
                             </li>
-                            <li class="list-group-item">
+                            <li id="facilitati" class="list-group-item">
                                 <p style="margin-top: 15px;">
                                     {{$roomtype->description}}
                                 </p>
-                                <h4 id="facilitati" style="margin-top: 70px; margin-bottom: 5px;">Facilitati</h4>
+                                <h4 style="margin-top: 70px; margin-bottom: 5px;">Facilitati</h4>
                             </li>
-                            <li class="list-group-item">
+                            <li  id="servicii_masa" class="list-group-item">
                                 <div class="row">
 
                                     @php
@@ -265,7 +264,7 @@
                                     $fac = Facility::find($facility->id_Facility);
                                     @endphp
 
-                                    <div class="col"><i class="fa-solid fa-check"></i>{{$fac->name}}</div>
+                                    <div class="col-md-4"><i class="fa-solid fa-check"></i> {{$fac->name}}</div>
 
                                     @php
                                     $k++;
@@ -279,7 +278,7 @@
                                     <!-- Force next columns to break to new line -->
                                     {{-- <div class="w-100"></div> --}}
                                 </div>
-                                <h4 id="servicii_masa" style="margin-top: 70px; margin-bottom: 5px;">Servicii masa</h4>
+                                <h4 style="margin-top: 70px; margin-bottom: 5px;">Servicii masa</h4>
                             </li>
                             <li class="list-group-item">
                                 <p style="margin-top: 15px;">
