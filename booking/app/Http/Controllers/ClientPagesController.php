@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MyEmail;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use DB;
@@ -205,6 +206,10 @@ class ClientPagesController extends Controller {
         Session::put('full_name', $request->fullName);
         Session::put('res_email', $request->email);
 
+        $booking_mail = $booking->toArray();
+
+        Mail::to($request->email)->send(new MyEmail($booking_mail));
+
         return response()->json(['success' => 'success'], 200);
     }
 
@@ -290,7 +295,13 @@ class ClientPagesController extends Controller {
         return redirect()->back();
     }
 
-    public function get_pdf_page() {
-        return view('pdf');
+    public function get_pdf_page($id) {
+        $booking = Booking::find($id);
+        return view('pdf')->with('booking', $booking);
+    }
+
+    public function sendMail($id){
+        $booking = Booking::find($id)->toArray();
+        Mail::to('tana.dariusxbl@gmail.com')->send(new MyEmail($booking));
     }
 }

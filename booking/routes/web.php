@@ -77,6 +77,6 @@ Route::post('/admin/facility-room-add', [AdminController::class, 'add_facility_t
 Route::post('/admin/facility-room-remove', [AdminController::class, 'remove_facility_from_room'])->name('admin-remove-facility-from-room');
 
 //testing
-Route::get('/test', [ClientPagesController::class, 'send_mail']);
-Route::get('/pdf', [ClientPagesController::class, 'get_pdf_page']);
-Route::get('/pdf-download', [AdminController::class, 'downloadPDF'])->name('admin-pdf-generation');
+Route::get('/test/{id}', [ClientPagesController::class, 'sendMail']);
+Route::get('/pdf/{id}', [ClientPagesController::class, 'get_pdf_page']);
+Route::get('/pdf-download/{id}', [AdminController::class, 'downloadPDF'])->name('admin-pdf-generation');

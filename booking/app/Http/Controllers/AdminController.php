@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ClientPagesController;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 
 class AdminController extends Controller {
 
@@ -477,14 +478,13 @@ class AdminController extends Controller {
         }
     }
 
-    public function downloadPDF()
+    public function downloadPDF($id)
     {
-        $users = User::all();
+        $booking = Booking::find($id);
 
-        $pdf = PDF::loadView('pdf', array('users' =>  $users))
-        ->setPaper('a4', 'portrait');
-
-        return $pdf->download('users-details.pdf');   
+        $pdf = PDF::loadHTML(view("pdf")->with('booking', $booking));
+        
+        return $pdf->download("raport-" . $booking->id_Reservation . ".pdf");
     }
 
 }
