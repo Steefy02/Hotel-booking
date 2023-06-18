@@ -151,17 +151,20 @@
                 <h5 class="card-header">Detaliile profilului</h5>
                 <!-- Account -->
                 <div class="card-body">
+                    <form method="post" action={{route('change-prof-picture')}} id="prof_form" enctype="multipart/form-data">
+                        @csrf
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <img src="images/cat.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
+                        <img src="{{asset('/images/' . $user['profile'])}}" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar">
                         <div class="button-wrapper">
                             <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                 <span class="d-none d-sm-block">Incarcati o imagine noua</span>
                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                <input type="file" id="upload" class="account-file-input" hidden="" accept="image/png, image/jpeg">
+                                <input type="file" id="upload" onchange="document.getElementById('prof_form').submit()" class="account-file-input" hidden="" name="profile_picture" accept="image/png, image/jpeg">
                             </label>
                             <p class="text-muted mb-0">Doar format JPG sau PNG.</p>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <hr class="my-0">
 

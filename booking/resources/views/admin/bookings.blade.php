@@ -90,6 +90,7 @@ style="justify-content: flex-start!important"
                 </td>
                 <td>
                   <a href="{{route('admin-edit-reservation', ['id' => $booking->id_Reservation])}}"><button class="dri-btn">Edit</button></a>
+                  <a href="{{route('admin-edit-reservation', ['id' => $booking->id_Reservation])}}"><button class="dri-btn">Genereaza PDF</button></a>
                 </td>
               </tr>
               @endforeach

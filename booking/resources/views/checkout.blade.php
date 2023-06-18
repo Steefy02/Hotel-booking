@@ -236,24 +236,24 @@
                     <form id="formAccountSettings" method="POST" onsubmit="return false">
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="firstName" class="form-label">Nume intreg <i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="card-name" name="fullName" placeholder="****" value="{{$user['name']}}" required>
+                                <label for="firstName" class="form-label">Nume intreg @if(!Session::has('res-success'))<i id="name-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i>@endif</label>
+                                <input @if(Session::has('res-success')) class="form-control-plaintext" @else class="form-control" @endif type="text" id="card-name" name="fullName" placeholder="****" @if(Session::has('res-success')) value="{{Session::get('full_name')}}" readonly @else value="{{$user['name']}}" @endif required>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Numar Adulti <i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="adulti" name="adulti" required>
+                                <label for="email" class="form-label">Numar Adulti @if(!Session::has('res-success'))<i id="adulti-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i>@endif</label>
+                                <input @if(Session::has('res-success')) class="form-control-plaintext" @else class="form-control" @endif type="number" min="0" id="adulti" name="adulti" required @if(Session::has('res-success')) value="{{Session::get('adults')}}" readonly @endif>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">E-mail <i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="text" id="email" name="email" placeholder="****@example.com" required value="{{$user['email']}}">
+                                <label for="email" class="form-label">E-mail @if(!Session::has('res-success'))<i id="email-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i>@endif</label>
+                                <input @if(Session::has('res-success')) class="form-control-plaintext" @else class="form-control" @endif type="text" id="email" name="email" placeholder="****@example.com" required @if(Session::has('res-success')) value="{{Session::get('res_email')}}" readonly @else value="{{$user['email']}}" @endif>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label for="email" class="form-label">Numar Copii <i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input class="form-control" type="number" min="0" id="copii" name="copii" required>
+                                <label for="email" class="form-label">Numar Copii @if(!Session::has('res-success'))<i id="copii-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i>@endif</label>
+                                <input @if(Session::has('res-success')) class="form-control-plaintext" @else class="form-control" @endif type="number" min="0" id="copii" name="copii" required @if(Session::has('res-success')) value="{{Session::get('children')}}" readonly @endif>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="phoneNumber">Numar de telefon <i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i></label>
-                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="**** *** ***" value="{{$user['phoneNumber']}}" required>
+                                <label class="form-label" for="phoneNumber">Numar de telefon @if(!Session::has('res-success'))<i id="tel-bouncy" class="fa-solid fa-asterisk fa-bounce fa-sm" style="color: #ff0000;"></i>@endif</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" @if(Session::has('res-success')) class="form-control-plaintext" @else class="form-control" @endif placeholder="**** *** ***" value="{{$user['phoneNumber']}}" required @if(Session::has('res-success')) readonly @endif>
                             </div>
                         </div>
                     </form>
@@ -367,7 +367,8 @@
         type: "POST",
         data: { '_token': "{{csrf_token()}}", 
                 'paymentType': "card",
-                'fullName': "{{$user['name']}}",
+                'fullName': document.getElementById('card-name').value,
+                'email': document.getElementById('email').value,
                 'checkIn': checkIn,
                 'checkOut': checkOut,
                 'roomNumber': {{$room->roomNumber}},
@@ -381,6 +382,8 @@
     });
     @endif
 
+
+    @if(!Session::has('res-success'))
     var name_bouncy = document.getElementById('name-bouncy');
     var name_input = document.getElementById('card-name');
     var email_bouncy = document.getElementById('email-bouncy');
@@ -391,6 +394,48 @@
     var adulti_input = document.getElementById('adulti');
     var copii_bouncy = document.getElementById('copii-bouncy');
     var copii_input = document.getElementById('copii');
+
+    window.onload = function() {
+        if (name_input.value == "") {
+            if (!name_bouncy.classList.contains('fa-bounce')) {
+                name_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            name_bouncy.classList.remove('fa-bounce');
+        }
+
+        if (email_input.value == "") {
+            if (!email_bouncy.classList.contains('fa-bounce')) {
+                email_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            email_bouncy.classList.remove('fa-bounce');
+        }
+
+        if (tel_input.value == "") {
+            if (!tel_bouncy.classList.contains('fa-bounce')) {
+                tel_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            tel_bouncy.classList.remove('fa-bounce');
+        }
+
+        if (adulti_input.value == "") {
+            if (!adulti_bouncy.classList.contains('fa-bounce')) {
+                adulti_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            adulti_bouncy.classList.remove('fa-bounce');
+        }
+
+        if (copii_input.value == "") {
+            if (!copii_bouncy.classList.contains('fa-bounce')) {
+                copii_bouncy.classList.add('fa-bounce')
+            }
+        } else {
+            copii_bouncy.classList.remove('fa-bounce');
+        }
+    }
 
     name_input.onkeyup = function(event) {
         if (name_input.value == "") {
@@ -441,6 +486,7 @@
             copii_bouncy.classList.remove('fa-bounce');
         }
     };
+    @endif
 </script>
 
 <script>
@@ -488,7 +534,8 @@
                 type: "POST",
                 data: { '_token': "{{csrf_token()}}", 
                         'paymentType': "cash",
-                        'fullName': "{{$user['name']}}",
+                        'fullName': document.getElementById('card-name').value,
+                        'email': document.getElementById('email').value,
                         'checkIn': checkIn,
                         'checkOut': checkOut,
                         'roomNumber': {{$room->roomNumber}},

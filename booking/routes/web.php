@@ -36,6 +36,7 @@ Route::get('/finalise', [ClientPagesController::class, 'finalise_reservation'])-
 Route::post('/account/delete', [ClientPagesController::class, 'delete_account'])->name('del-current-account');
 Route::post('stripe', [StripeController::class, 'store'])->name('stripe.store');
 Route::post('/save-testimonial', [ClientPagesController::class, 'save_testimonial'])->name('save-testimonial');
+Route::post('/account/change-picture', [ClientPagesController::class, 'change_prof_picture'])->name('change-prof-picture');
 
 //Auth
 Route::post('login',[CustomAuthController::class,'process_login'])->name('loginPost');
@@ -77,3 +78,4 @@ Route::post('/admin/facility-room-remove', [AdminController::class, 'remove_faci
 
 //testing
 Route::get('/test', [ClientPagesController::class, 'send_mail']);
+Route::get('/pdf', [ClientPagesController::class, 'get_pdf_page']);

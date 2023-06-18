@@ -200,6 +200,11 @@ class ClientPagesController extends Controller {
         $booking->id_Payment = $payment->id_Payment;
         $booking->save();
 
+        Session::put('adults', $request->adults);
+        Session::put('children', $request->children);
+        Session::put('full_name', $request->fullName);
+        Session::put('res_email', $request->email);
+
         return response()->json(['success' => 'success'], 200);
     }
 
@@ -219,16 +224,28 @@ class ClientPagesController extends Controller {
         $price = Session::get('final_price');
         $days = Session::get('days');
         $search_data = Session::get('search');
+        $adults = Session::get('adults');
+        $children = Session::get('children');
+        $full_name = Session::get('full_name');
+        $res_email = Session::get('res_email');
 
         Session::forget('room');
         Session::forget('final_price');
         Session::forget('days');
         Session::forget('search');
+        Session::forget('adults');
+        Session::forget('children');
+        Session::forget('full_name');
+        Session::forget('res_email');
 
         Session::flash('room', $room);
         Session::flash('final_price', $price);
         Session::flash('days', $days);
         Session::flash('search', $search_data);
+        Session::flash('adults', $adults);
+        Session::flash('children', $children);
+        Session::flash('full_name', $full_name);
+        Session::flash('res_email', $res_email);
         Session::flash('res-success', 'yes');
 
         return redirect()->back();
@@ -257,5 +274,23 @@ class ClientPagesController extends Controller {
         $testimonial->save();
 
         return redirect()->back();
+    }
+
+    public function change_prof_picture(Request $request) {
+        $user = Session::get('user');
+
+        $file = $request->file('profile_picture');
+        $filename = $file->getClientOriginalName();
+        $file->move("images/", $filename);
+
+        $user->update(['profile' => $filename]);
+        $user->profile = $filename;
+        Session::put('user', $user);
+
+        return redirect()->back();
+    }
+
+    public function get_pdf_page() {
+        return view('pdf');
     }
 }

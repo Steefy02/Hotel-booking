@@ -463,20 +463,30 @@
                         @endphp
 
                         @if($test_roomtype->id_RoomType == $roomtype->id_RoomType)
+
+                        @php
+                            $colors = array('1' => '#ff2920',
+                                     '2' => '#ff6622',
+                                     '3' => '#ff8c21',
+                                     '4' => '#ffac20',
+                                     '5' => '#ffee77');
+
+                            $actual_color = $colors[$item->rating];
+                        @endphp 
                             
                         <li class="list-group-item" style="padding-left: 0px;">
                             <div class="row mt-4">
                                 <div class="col-md-2">
-                                    <img src="{{asset('images/profile.png')}}" class="user-picture">
+                                    <img src="{{asset('/images/' . $test_user->profile)}}" class="user-picture">
                                     <h6 class="review-user-name">{{$test_user->name}}</h6>
                                     <h7 class="review-room-info"><i class="fa-solid fa-bed" style="color: #ffffff;"></i>&ensp;{{$test_roomtype->type}}</h7>
                                 </div>
                                 <div class="col-md-10">
-                                    <i class="@if($item->rating >= 1) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
-                                    <i class="@if($item->rating >= 2) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
-                                    <i class="@if($item->rating >= 3) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
-                                    <i class="@if($item->rating >= 4) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
-                                    <i class="@if($item->rating == 5) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: #ffac20;"></i>
+                                    <i class="@if($item->rating >= 1) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: {{$actual_color}}"></i>
+                                    <i class="@if($item->rating >= 2) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: {{$actual_color}}"></i>
+                                    <i class="@if($item->rating >= 3) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: {{$actual_color}}"></i>
+                                    <i class="@if($item->rating >= 4) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: {{$actual_color}}"></i>
+                                    <i class="@if($item->rating == 5) fa-solid @else fa-regular @endif fa-star fa-sm" style="color: {{$actual_color}}"></i>
                                     <div class="review-text">
                                         {{$item->content}}
                                     </div>

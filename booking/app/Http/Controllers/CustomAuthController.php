@@ -58,6 +58,7 @@ class CustomAuthController extends Controller {
                 'username' => 'required|max:50',
                 'email' => 'required|email',
                 'password' => 'required|min:6',
+                'phoneNumber' => "required|numeric|digits:10"
             ]);
 
             if(!$validator->fails()) {
@@ -67,7 +68,9 @@ class CustomAuthController extends Controller {
                     'username' => trim($request->username),
                     'email' => strtolower($request->email),
                     'password' => bcrypt($request->password),
-                    'userType' => "client"
+                    'userType' => "client",
+                    'profile' => "profile.png",
+                    'phoneNumber' => $request->phoneNumber
                 ]);
 
                 $credentials = $request->only(['email', 'password']);

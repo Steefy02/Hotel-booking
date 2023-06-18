@@ -111,6 +111,21 @@
                     />
                     </div>
                     <div class="mb-3">
+                      <label for="username" class="form-label">Numar de telefon<span style="color: red"> * </span></label>
+                      <input
+                          type="text"
+                          class="form-control"
+                          id="phone"
+                          name="phoneNumber"
+                          placeholder="Introdu numarul de telefon"
+                          autofocus
+                          required
+                      />
+                      @if($errors->has('phoneNumber'))
+                      <p style="color: red">Nu ati introdus numarul de telefon intr-un format valid!</p>
+                      @endif
+                      </div>
+                    <div class="mb-3">
                     <label for="email" class="form-label">Email<span style="color: red"> * </span></label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required/>
                     @if($errors->has('email'))
