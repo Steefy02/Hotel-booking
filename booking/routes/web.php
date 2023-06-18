@@ -79,3 +79,4 @@ Route::post('/admin/facility-room-remove', [AdminController::class, 'remove_faci
 //testing
 Route::get('/test', [ClientPagesController::class, 'send_mail']);
 Route::get('/pdf', [ClientPagesController::class, 'get_pdf_page']);
+Route::get('/pdf-download', [AdminController::class, 'downloadPDF'])->name('admin-pdf-generation');

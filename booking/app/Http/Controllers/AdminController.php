@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ClientPagesController;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AdminController extends Controller {
 
@@ -474,6 +475,16 @@ class AdminController extends Controller {
         }else {
             return redirect()->back();
         }
+    }
+
+    public function downloadPDF()
+    {
+        $users = User::all();
+
+        $pdf = PDF::loadView('pdf', array('users' =>  $users))
+        ->setPaper('a4', 'portrait');
+
+        return $pdf->download('users-details.pdf');   
     }
 
 }
